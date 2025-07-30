@@ -1,0 +1,14 @@
+#HomebackgroundScene {
+	-fx-background-color: #BEBEBE;
+}
+
+#brandLogo {
+	-fx-font-family: Lucida Console;
+	-fx-font-size: 40;
+	-fx-font-weight: bold;
+	-fx-text-fill: white;
+}
+
+#topMenu{
+	-fx-background-color: #D22030;
+}
