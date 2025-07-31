@@ -18,6 +18,8 @@ public class Main extends Application {
 			String css = this.getClass().getResource("application.css").toExternalForm();
 			scene.getStylesheets().add(css);
 			primaryStage.setScene(scene);
+			primaryStage.setWidth(900);
+			primaryStage.setHeight(800);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -12,3 +12,7 @@
 #topMenu{
 	-fx-background-color: #D22030;
 }
+
+#homeMainPic {
+	-fx-effect: glow;
+}
