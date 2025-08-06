@@ -14,3 +14,19 @@ Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse
 
 !ENTRY com.codetogether.hq.eclipse 1 0 2025-07-30 22:16:10.253
 !MESSAGE Authorization Server started successfuly
+!SESSION 2025-07-30 23:39:37.241 -----------------------------------------------
+eclipse.buildId=4.36.0.20250605-1300
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/neryarmaz/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.java.product -keyring /Users/neryarmaz/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2025-07-30 23:39:38.085
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-07-30 23:40:11.516
+!MESSAGE Logback config file: /Users/neryarmaz/Projects/2025/CS380/groupProj/CS380Proj/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.100.20250418-1315.xml
+
+!ENTRY com.codetogether.hq.eclipse 1 0 2025-07-30 23:40:14.421
+!MESSAGE Authorization Server started successfuly
