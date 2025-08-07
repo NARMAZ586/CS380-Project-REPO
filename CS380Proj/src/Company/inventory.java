@@ -59,7 +59,7 @@ public class inventory {
 		//Inventory.csv ---prodID---> Product.csv
 		//To associate with product.java
 		//To be changed later
-		public product getProduct(product[] allProducts) {
+		/*public product getProduct(product[] allProducts) {
 			for (product p : allProducts) {
 				if (p.getProdID() == this.prodID) {
 					return p;
@@ -67,6 +67,7 @@ public class inventory {
 			}
 			return null;
 		}
+		*/
 		
 		
 		@Override
