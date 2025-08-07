@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Company.store.product;
+import Company.products.product;
 import Company.customer;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -59,9 +59,8 @@ public class Controller /*implements Initializable*/{
     private void handleSwitchesClick() {
         System.out.println("Switches clicked!");
         //store s = new store();
-        product p = new product("keyboard");
+        product p = new product();
         
-        String name = p.getName();
  
     }
     
