@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
@@ -77,44 +77,23 @@
             </Button>
          </children>
       </HBox>
-      <VBox fx:id="mainImageVBox" spacing="10.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" VBox.vgrow="ALWAYS">
+      <StackPane alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <HBox fx:id="mainImageContainer" alignment="CENTER" maxHeight="500.0" style="-fx-background-color: rgba(0,0,255,0.1);" VBox.vgrow="ALWAYS">
-               <children>
-                  <ImageView fx:id="mainImageView" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@highestResKey.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Black-and-Red-Wallpape.jpg" />
+               </image>
+            </ImageView>
          </children>
-      </VBox>
-      <VBox fx:id="bottomImageVBox" prefHeight="250.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      </StackPane>
+      <HBox fx:id="mainImageContainer" alignment="TOP_CENTER" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
          <children>
-            <HBox fx:id="bottomImageRow" alignment="CENTER" maxHeight="300.0" minHeight="150.0" spacing="10.0">
-               <children>
-                  <HBox fx:id="secondContainer" alignment="CENTER" HBox.hgrow="ALWAYS">
-                     <children>
-                        <ImageView fx:id="secondImageView" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@homepagePic.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="thirdContainer" alignment="CENTER" HBox.hgrow="ALWAYS">
-                     <children>
-                        <ImageView fx:id="thirdImageView" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@secondHomepageKey.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
+            <ImageView fx:id="mainImage" fitHeight="${mainImageContainer.width}" fitWidth="${mainImageContainer.height}" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@highestResKey.png" />
+               </image>
+            </ImageView>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

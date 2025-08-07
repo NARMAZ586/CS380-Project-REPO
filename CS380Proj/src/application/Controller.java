@@ -10,10 +10,13 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Company.store.product;
+import Company.customer;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class Controller implements Initializable{
+public class Controller /*implements Initializable*/{
 
     @FXML private Button btnKeyboards;
     @FXML private MenuButton btnKeycaps;
@@ -21,14 +24,14 @@ public class Controller implements Initializable{
     @FXML private Button btnCart;
     @FXML private Button btnAccount;
     @FXML private TextField searchField;
-    @FXML private HBox mainImageContainer;
-    @FXML private ImageView mainImageView;
-    @FXML private HBox secondContainer;
+    //@FXML private HBox mainImageContainer;
+    //@FXML private ImageView mainImage;
+    /*@FXML private HBox secondContainer;
     @FXML private ImageView secondImageView;
     @FXML private HBox thirdContainer;
     @FXML private ImageView thirdImageView;
     @FXML private HBox bottomImageRow;
-    @FXML private VBox mainVBox;
+    @FXML private VBox mainVBox;*/
     
     
     //buttons
@@ -55,12 +58,19 @@ public class Controller implements Initializable{
     @FXML
     private void handleSwitchesClick() {
         System.out.println("Switches clicked!");
+        //store s = new store();
+        product p = new product("keyboard");
+        
+        String name = p.getName();
+ 
     }
     
+    
+    /*
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	mainImageView.fitWidthProperty().bind(mainImageContainer.widthProperty());
-    	mainImageView.fitHeightProperty().bind(mainImageContainer.heightProperty());
+    	mainImage.fitWidthProperty().bind(mainImageContainer.widthProperty());
+    	mainImage.fitHeightProperty().bind(mainImageContainer.heightProperty());
     	
     	secondImageView.fitWidthProperty().bind(secondContainer.widthProperty());
     	secondImageView.fitHeightProperty().bind(secondContainer.heightProperty());
@@ -68,13 +78,13 @@ public class Controller implements Initializable{
     	thirdImageView.fitWidthProperty().bind(thirdContainer.widthProperty());
     	thirdImageView.fitHeightProperty().bind(thirdContainer.heightProperty());
     	
-    	VBox.setVgrow(mainImageContainer,  Priority.ALWAYS);
+    	HBox.setHgrow(mainImageContainer,  Priority.ALWAYS);
     	VBox.setVgrow(bottomImageRow,  Priority.SOMETIMES);
     	HBox.setHgrow(secondContainer, Priority.ALWAYS);
     	HBox.setHgrow(thirdContainer, Priority.ALWAYS);
-    	;
     	
-    }
+    }*/
+
     
     private double clamp(double value, double min, double max) {
     	return Math.max(min, Math.min(value,  max));
