@@ -10,8 +10,8 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import Company.products.product;
+import Company.products;
 import Company.customer;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -33,7 +33,11 @@ public class Controller /*implements Initializable*/{
     @FXML private HBox bottomImageRow;
     @FXML private VBox mainVBox;*/
     
-    
+    private products myProds;
+    public Controller() {
+    	myProds = new products();
+    	myProds.attempt("this should theortically print");
+    }
     //buttons
     @FXML
     private void handleCartClick() {
