@@ -6,7 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -40,6 +42,10 @@ public class Controller /*implements Initializable*/{
     @FXML private ImageView thirdImageView;
     @FXML private HBox bottomImageRow;
     @FXML private VBox mainVBox;*/
+    
+    @FXML private TextField loginEmail;
+    @FXML private PasswordField loginPassword;
+    @FXML private Label wrongPasswordLabel;
     
     private Stage stage;
     private Scene scene;
@@ -88,6 +94,27 @@ public class Controller /*implements Initializable*/{
 			e.printStackTrace();
 		}
         
+    }
+    
+    @FXML
+    private void userLogin(ActionEvent event) {
+    	checkLogin();
+    }
+    
+    private void checkLogin() {
+    	
+    	
+    	if(loginEmail.getText().toString().equals("Admin@example.com") && loginPassword.getText().toString().equals("password")) {
+    		wrongPasswordLabel.setText("Success!");
+    		
+    		
+    	}
+    	else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()){
+    		wrongPasswordLabel.setText("Please enter your data.");
+    	}
+    	else {
+    		wrongPasswordLabel.setText("Wrong email or password! Try again");
+    	}
     }
 
     @FXML
