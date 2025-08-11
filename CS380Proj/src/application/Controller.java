@@ -44,8 +44,14 @@ public class Controller{
     }
     //buttons
     @FXML
-    private void handleCartClick() {
+    private void handleLogoHomePage(ActionEvent event) {
+    	System.out.println("Logo clicked!");
+        createScene(event, "homepage.fxml");
+    }
+    @FXML
+    private void handleCartClick(ActionEvent event) {
         System.out.println("Cart clicked!");
+        createScene(event, "cartPage.fxml");
     }
 
     @FXML
@@ -74,12 +80,9 @@ public class Controller{
     }
 
     @FXML
-    private void handleSwitchesClick() {
-        System.out.println("Switches clicked!");
-        //store s = new store();
-        //product p = new product();
-        
- 
+    private void handleSwitchesClick(ActionEvent event) {
+        System.out.println("Switches clicked!"); 
+        createScene(event, "switchPage.fxml");
     }
     
     
