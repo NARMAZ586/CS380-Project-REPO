@@ -29,11 +29,13 @@ import javafx.stage.Stage;
 public class Controller{
 
     @FXML private Button btnKeyboards;
-    @FXML private MenuButton btnKeycaps;
+    @FXML private Button btnKeycaps;
     @FXML private Button btnSwitches;
     @FXML private Button btnCart;
     @FXML private Button btnAccount;
+    @FXML private Button btnKeyCaps;
     @FXML private TextField searchField;
+    @FXML private Button logoBtn;
     
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
@@ -112,8 +114,9 @@ public class Controller{
     }
 
     @FXML
-    private void handleKeycapsClick() {
+    private void handleKeycapsClick(ActionEvent event) {
         System.out.println("Keycaps clicked!");
+        createScene(event, "keycaps.fxml");
     }
 
     @FXML

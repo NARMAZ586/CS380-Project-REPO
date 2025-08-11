@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller" stylesheets="@application.css">
    <children>
       <HBox prefHeight="100.0" prefWidth="1453.0" style="-fx-background-color: D22030;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,6 +30,9 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btnSwitches" mnemonicParsing="false" onAction="#handleSwitchesClick" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="SWITCHES" textFill="WHITE" translateY="40.0">
                <font>
@@ -38,6 +41,9 @@
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btnKeyCaps" mnemonicParsing="false" onAction="#handleKeycapsClick" prefHeight="32.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="KEYCAPS" textFill="WHITE" translateY="40.0">
                <HBox.margin>
@@ -45,7 +51,10 @@
                </HBox.margin>
                <font>
                   <Font name="System Bold" size="20.0" />
-               </font></Button>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <TextField fx:id="searchField" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
                <HBox.margin>
                   <Insets left="60.0" top="5.0" />
@@ -57,6 +66,9 @@
                      <image>
                         <Image url="@cart.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </graphic>
                <HBox.margin>
@@ -72,6 +84,9 @@
                      <image>
                         <Image url="@LoginIconProj.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </graphic>
                <HBox.margin>
@@ -83,7 +98,7 @@
             </Button>
          </children>
       </HBox>
-      <Label text="this is the keyboard page" AnchorPane.topAnchor="100.0">
+      <Label text="this is the keycaps page" AnchorPane.topAnchor="100.0">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
