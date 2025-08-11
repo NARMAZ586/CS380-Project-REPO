@@ -6,7 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -32,6 +34,15 @@ public class Controller{
     @FXML private Button btnCart;
     @FXML private Button btnAccount;
     @FXML private TextField searchField;
+    
+    @FXML private TextField loginEmail;
+    @FXML private PasswordField loginPassword;
+    @FXML private Label wrongPasswordLabel;
+    @FXML private Button logoutBtn;
+    
+    
+    
+    
     
     private Stage stage;
     private Scene scene;
@@ -66,6 +77,32 @@ public class Controller{
         System.out.println("Back!");
         createScene(event, "Homepage.fxml");
         
+    }
+    
+    @FXML
+    private void userLogin(ActionEvent event) {
+    	checkLogin(event);
+    }
+    
+    private void checkLogin(ActionEvent event) {
+    	
+    	
+    	if(loginEmail.getText().toString().equals("Admin") && loginPassword.getText().toString().equals("123")) {
+    		wrongPasswordLabel.setText("Success!");
+    		createScene(event, "AdminPage.fxml");
+    		
+    	}
+    	else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()){
+    		wrongPasswordLabel.setText("Please enter your data.");
+    	}
+    	else {
+    		wrongPasswordLabel.setText("Wrong email or password! Try again");
+    	}
+    }
+    
+    @FXML
+    private void userLogout(ActionEvent event) {
+    	createScene(event, "Homepage.fxml");
     }
 
     @FXML
