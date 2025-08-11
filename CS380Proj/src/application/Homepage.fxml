@@ -59,18 +59,18 @@
             </TextField>
             <Button fx:id="btnCart" mnemonicParsing="false" onAction="#handleCartClick" style="-fx-background-color: D22030;" translateY="40.0">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="-13.0">
+                  <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" translateY="-13.0">
                      <image>
-                        <Image url="@../../../../../icons8-cart-96.png" />
+                        <Image url="@cart.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccountClick" style="-fx-background-color: D22030;" textFill="WHITE" translateY="40.0">
+            <Button fx:id="btnAccount" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handleAccountClick" prefHeight="62.0" prefWidth="78.0" style="-fx-background-color: D22030;" textFill="WHITE" translateY="40.0">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="-19.0">
+                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../icons8-person-64.png" />
+                        <Image url="@LoginIconProj.png" />
                      </image>
                   </ImageView>
                </graphic>

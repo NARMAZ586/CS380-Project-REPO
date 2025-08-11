@@ -12,5 +12,51 @@ public class account {
 	//for nery
 	//begin work on searching for items
 	
+	private String email;
+    private String password;
+    private String firstName;
+
+    // Constructor
+    public account(String email, String password, String firstName) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+    }
+
+    // Default constructor
+    public account() {
+    }
+
+    // Gets email
+    public String getEmail() {
+        return email;
+    }
+    
+    //Sets email
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    //Gets password
+    public String getPassword() {
+        return password;
+    }
+    
+    //Sets password
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    //Gets firstName
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    //Sets firstName
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+	
+    //FIX: Write to Csv 
 
 }
