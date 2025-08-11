@@ -5,12 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,7 +14,7 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="1453.0" style="-fx-background-color: D22030;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label prefHeight="56.0" prefWidth="531.0" text="GeekCaps" textFill="WHITE" translateX="10.0" translateY="25.0">
+            <Label prefHeight="66.0" prefWidth="470.0" text="GeekCaps" textFill="WHITE" translateX="10.0" translateY="25.0">
                <font>
                   <Font name="System Bold Italic" size="45.0" />
                </font>
@@ -58,49 +54,12 @@
                   <Insets left="60.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="btnCart" mnemonicParsing="false" onAction="#handleCartClick" style="-fx-background-color: D22030;" translateY="40.0">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" translateY="-13.0">
-                     <image>
-                        <Image url="@cart.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnAccount" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handleAccountClick" prefHeight="62.0" prefWidth="78.0" style="-fx-background-color: D22030;" textFill="WHITE" translateY="40.0">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@LoginIconProj.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <Button fx:id="logoutBtn" alignment="CENTER" mnemonicParsing="false" onAction="#userLogout" prefHeight="23.0" prefWidth="145.0" style="-fx-background-color: D22030;" text="Log out" textFill="WHITE" translateY="40.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
             </Button>
          </children>
       </HBox>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-         <left>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="TOP_LEFT" layoutX="72.0" layoutY="300.0" text="Login">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="loginBackbtn" layoutX="14.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleBackToHomepageClick" text="Back to Homepage" />
-               </children>
-            </AnchorPane>
-         </left>
-         <right>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TextField fx:id="loginEmail" layoutX="14.0" layoutY="289.0" promptText="Email" />
-                  <PasswordField fx:id="loginPassword" layoutX="14.0" layoutY="343.0" promptText="Password" />
-                  <Button fx:id="loginBtn" layoutX="69.0" layoutY="399.0" mnemonicParsing="false" onAction="#userLogin" text="Log In" />
-                  <Label fx:id="wrongPasswordLabel" layoutX="14.0" layoutY="240.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
-               </children>
-            </AnchorPane>
-         </right>
-      </BorderPane>
    </children>
 </AnchorPane>
