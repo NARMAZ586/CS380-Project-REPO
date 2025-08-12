@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.File;
 
 public class products {
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		products p = new products();
 		
 
-	}
+	}*/
 	private ArrayList<product> keyboards;
 	private ArrayList<product> switches;
 	private ArrayList<product> keycaps;
@@ -69,8 +69,7 @@ public class products {
 		private String type;
 		private String description;
 		
-		public product() {
-		}
+		public product() {}
 		
 		public product(String name, int ID, double price, String type, String description) {
 			this.name = name;
