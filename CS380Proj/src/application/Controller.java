@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import Company.products.product;
 import Company.products;
@@ -34,6 +35,7 @@ public class Controller{
     @FXML private Button btnCart;
     @FXML private Button btnAccount;
     @FXML private TextField searchField;
+    @FXML private VBox searchResultsBox;
     
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
@@ -133,4 +135,76 @@ public class Controller{
 		}
     }
     
+    // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION -----
+    @FXML
+    private void initialize() {
+    	// Adds a listener when entering
+    	searchField.setOnAction(e -> performSearch());
+    }
+    
+    private void performSearch() {
+    	//Cleans old search results
+    	searchResultsBox.getChildren().clear();
+    	
+    	//Getting the search entered by the user
+    	String query = searchField.getText().trim().toLowerCase();
+    	
+    	//If the search is empty, return
+    	if (query.isEmpty()) {
+    		return;
+    	}
+    	
+    	//Get all products from products.java
+    	ArrayList<products.product> allProducts = myProds.getAllProducts();
+    	
+    	//List to hold matched products
+    	ArrayList<products.product>matches = new ArrayList<>();
+    	
+    	try {
+    		int idSearch = Integer.parseInt(query);
+    		for (products.product p : allProducts) {
+    			if (p.getprodID() == idSearch) {
+    				matches.add(p);
+    			}
+    		}
+    	} catch (NumberFormatException e) {
+    		//Not a number
+    		for (products.product p : allProducts) {
+    			if (p.getName().toLowerCase().contains(query)) {
+    				matches.add(p);
+    			}
+    		}
+    	}
+    	
+    	//Display results in the Vbox
+    	if (matches.isEmpty() ) {
+    		Label noResults = new Label("No products found.");
+    		searchResultsBox.getChildren().add(noResults);
+    	} else {
+    		for (products.product p : matches) {
+    			//Create label for each product
+    			Label resultLabel = new Label(p.getName() + " (ID: " +p.getprodID() + ",Price $" + ")");
+    			
+    			//Result clickable
+    			resultLabel.setOnMouseClicked(event -> {
+    				System.out.println("Clicked on: " + p.getName());
+    				});
+    			
+    			//Adding to Vbox
+    			searchResultsBox.getChildren().add(resultLabel);
+    		}
+    	}
+    	 /*
+         * If "red" is typed:
+         * 
+         * Found products:
+         * - red Mechanical 
+         * - cherry mx red 
+         * - cherry mx silent red (ID: 6, Price: $18.5)
+         * 
+         *  If "7" is typed:
+         *  FOund products:
+         *  - cherry mx brown (ID: 7, Price: $17)
+         */
+    }
 }
