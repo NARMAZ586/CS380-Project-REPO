@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Region;
 
 import java.io.IOException;
 import java.net.URL;
@@ -127,18 +128,31 @@ public class Controller{
         createScene(event, "switchPage.fxml");
     }
     
+    private void createScene(ActionEvent eve, String fileName) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fileName));
+            Stage stage = Main.getPrimaryStage();
+            Scene scene = Main.getMainScene();
+            if (root instanceof Region) {
+                Region regionR = (Region) root;
+                regionR.prefWidthProperty().bind(stage.widthProperty());
+                regionR.prefHeightProperty().bind(stage.heightProperty());
+            }
+            scene.setRoot(root);
+            stage.setFullScreen(true);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+   
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     
-    private void createScene(ActionEvent eve,String fileName) {
-    	try {
-			Parent root = FXMLLoader.load(getClass().getResource(fileName));
-			stage = (Stage)((Node)eve.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public void switchScene() {
+    	stage.setScene(new Scene(new Label("New Scene")));
     }
     
     // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
