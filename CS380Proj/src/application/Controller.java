@@ -141,22 +141,24 @@ public class Controller{
 		}
     }
     
-    // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION -----
+    // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
     @FXML
     private void initialize() {
     	// Adds a listener when entering
-    	searchField.setOnAction(e -> performSearch());
+    	searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+    		performSearch(newValue);
+    	});
     }
     
-    private void performSearch() {
+    private void performSearch(String query) {
     	//Cleans old search results
     	searchResultsBox.getChildren().clear();
     	
     	//Getting the search entered by the user
-    	String query = searchField.getText().trim().toLowerCase();
+    	query = searchField.getText().trim().toLowerCase();
     	
     	//If the search is empty, return
-    	if (query.isEmpty()) {
+    	if (query == null || query.trim().isEmpty()) {
     		return;
     	}
     	
@@ -164,7 +166,7 @@ public class Controller{
     	ArrayList<products.product> allProducts = myProds.getAllProducts();
     	
     	//List to hold matched products
-    	ArrayList<products.product>matches = new ArrayList<>();
+    	ArrayList<products.product> matches = new ArrayList<>();
     	
     	try {
     		int idSearch = Integer.parseInt(query);
@@ -184,12 +186,11 @@ public class Controller{
     	
     	//Display results in the Vbox
     	if (matches.isEmpty() ) {
-    		Label noResults = new Label("No products found.");
-    		searchResultsBox.getChildren().add(noResults);
+    		searchResultsBox.getChildren().add(new Label("No products found."));
     	} else {
     		for (products.product p : matches) {
     			//Create label for each product
-    			Label resultLabel = new Label(p.getName() + " (ID: " +p.getprodID() + ",Price $" + ")");
+    			Label resultLabel = new Label(p.getName());
     			
     			//Result clickable
     			resultLabel.setOnMouseClicked(event -> {

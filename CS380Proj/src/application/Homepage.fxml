@@ -52,7 +52,6 @@
                   <Insets left="60.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <VBox fx:id="searchResultsBox" prefHeight="100.0" prefWidth="212.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" translateY="70.0" AnchorPane.leftAnchor="50.0" />
             <Button fx:id="btnCart" mnemonicParsing="false" onAction="#handleCartClick" style="-fx-background-color: D22030;" translateY="40.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" translateY="-13.0">
@@ -101,6 +100,11 @@
                   <Image url="@highestResKey.png" />
                </image>
             </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="1039.0" layoutY="72.0" prefHeight="142.0" prefWidth="150.0">
+         <children>
+            <VBox fx:id="searchResultsBox" prefHeight="102.0" prefWidth="150.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
          </children>
       </HBox>
    </children>
