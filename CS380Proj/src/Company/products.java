@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.File;
 
 public class products {
-	public static void main(String[] args) {
-		//products p = new products();
+	/*public static void main(String[] args) {
+		products p = new products();
 		
 
-	}
+	}*/
 	private ArrayList<product> keyboards;
 	private ArrayList<product> switches;
 	private ArrayList<product> keycaps;
@@ -75,8 +75,7 @@ public class products {
 		private String description;
 		private String imgSrc;
 		
-		public product() {
-		}
+		public product() {}
 		
 		public product(String name, int ID, double price, String type, String description, String imgSrc) {
 			this.name = name;
@@ -116,39 +115,6 @@ public class products {
 	
 	
 	//----- SEARCH FUNCTION FOR CONTROLLER.JAVA ------
-	public ArrayList<product> searchProducts(String query) {
-		ArrayList<product> results = new ArrayList<>();
-		
-		Integer idQuery = null;
-		try {
-			idQuery = Integer.parseInt(query);
-		} catch (NumberFormatException ignored) {}
-		
-		for (product p : keyboards) {
-			if (matchesSearch(p, query, idQuery)) results.add(p);
-		}
-		for (product p : switches) {
-			if (matchesSearch(p, query, idQuery)) results.add(p);
-		}
-		for (product p : keycaps) {
-			if (matchesSearch(p, query, idQuery)) results.add(p);
-		}
-		
-		return results;
-	}
-	
-	private boolean matchesSearch(product p, String query, Integer idQuery) {
-		
-		if (p.getName().toLowerCase().contains(query.toLowerCase())) {
-			return true;
-		}
-		
-		if (idQuery != null && p.getprodID() == idQuery) {
-			return true;
-		}
-		return false;
-	}
-	
 	public ArrayList<product> getAllProducts() {
 	    ArrayList<product> all = new ArrayList<>();
 	   // all.addAll(keyboards);

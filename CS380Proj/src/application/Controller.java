@@ -19,9 +19,11 @@ import javafx.scene.layout.HBox;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Region;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import Company.products.product;
 import Company.products;
@@ -42,6 +44,7 @@ public class Controller /*implements Initializable*/{
     @FXML private Button btnAccount;
     @FXML private Button btnKeyCaps;
     @FXML private TextField searchField;
+    @FXML private VBox searchResultsBox;
     @FXML private Button logoBtn;
     
     @FXML private TextField loginEmail;
@@ -146,19 +149,28 @@ public class Controller /*implements Initializable*/{
         createScene(event, "switchPage.fxml");
     }
     
-    
-    
-    private void createScene(ActionEvent eve,String fileName) {
-    	try {
-			Parent root = FXMLLoader.load(getClass().getResource(fileName));
-			stage = (Stage)((Node)eve.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+    private void createScene(ActionEvent eve, String fileName) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fileName));
+            Stage stage = Main.getPrimaryStage();
+            Scene scene = Main.getMainScene();
+            if (root instanceof Region) {
+                Region regionR = (Region) root;
+                regionR.prefWidthProperty().bind(stage.widthProperty());
+                regionR.prefHeightProperty().bind(stage.heightProperty());
+            }
+            scene.setRoot(root);
+            stage.setFullScreen(true);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+   
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
     /*
     @Override
@@ -242,4 +254,81 @@ public class Controller /*implements Initializable*/{
     
     
     
+    public void switchScene() {
+    	stage.setScene(new Scene(new Label("New Scene")));
+    }
+    
+    // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
+    @FXML
+    private void initialize() {
+    	// Adds a listener when entering
+    	searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+    		performSearch(newValue);
+    	});
+    }
+    
+    private void performSearch(String query) {
+    	//Cleans old search results
+    	searchResultsBox.getChildren().clear();
+    	
+    	//Getting the search entered by the user
+    	query = searchField.getText().trim().toLowerCase();
+    	
+    	//If the search is empty, return
+    	if (query == null || query.trim().isEmpty()) {
+    		return;
+    	}
+    	
+    	//Get all products from products.java
+    	ArrayList<products.product> allProducts = myProds.getAllProducts();
+    	
+    	//List to hold matched products
+    	ArrayList<products.product> matches = new ArrayList<>();
+    	
+    	try {
+    		int idSearch = Integer.parseInt(query);
+    		for (products.product p : allProducts) {
+    			if (p.getprodID() == idSearch) {
+    				matches.add(p);
+    			}
+    		}
+    	} catch (NumberFormatException e) {
+    		//Not a number
+    		for (products.product p : allProducts) {
+    			if (p.getName().toLowerCase().contains(query)) {
+    				matches.add(p);
+    			}
+    		}
+    	}
+    	
+    	//Display results in the Vbox
+    	if (matches.isEmpty() ) {
+    		searchResultsBox.getChildren().add(new Label("No products found."));
+    	} else {
+    		for (products.product p : matches) {
+    			//Create label for each product
+    			Label resultLabel = new Label(p.getName());
+    			
+    			//Result clickable
+    			resultLabel.setOnMouseClicked(event -> {
+    				System.out.println("Clicked on: " + p.getName());
+    				});
+    			
+    			//Adding to Vbox
+    			searchResultsBox.getChildren().add(resultLabel);
+    		}
+    	}
+    	 /*
+         * If "red" is typed:
+         * 
+         * Found products:
+         * - red Mechanical 
+         * - cherry mx red 
+         * - cherry mx silent red (ID: 6, Price: $18.5)
+         * 
+         *  If "7" is typed:
+         *  FOund products:
+         *  - cherry mx brown (ID: 7, Price: $17)
+         */
+    }
 }
