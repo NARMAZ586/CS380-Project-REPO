@@ -94,7 +94,7 @@
             <VBox fx:id="searchResultsBox" prefHeight="0.0" prefWidth="212.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
          </children>
       </HBox>
-      <Button fx:id="checkOutBtn" layoutX="1095.0" layoutY="587.0" mnemonicParsing="false" text="Checkout">
+      <Button fx:id="checkOutBtn" layoutX="1095.0" layoutY="587.0" mnemonicParsing="false" onAction="#handleCheckOutClick" text="Checkout">
          <font>
             <Font size="24.0" />
          </font>
