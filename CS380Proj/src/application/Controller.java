@@ -160,7 +160,10 @@ public class Controller /*implements Initializable*/{
         Reference to the product list in searching and filtering.
     */
     private products myProds;
-
+    
+    /**
+     * Constructor for the Controller class
+     */
     public Controller() {
         System.out.println("This was from the controller class");
     	//myProds = new products();
@@ -245,7 +248,6 @@ public class Controller /*implements Initializable*/{
         Leads the user to the Keyboards page
         @param event is triggered by the keybord button
     */
-
     @FXML
     private void handleKeyboardsClick(ActionEvent event) {
         System.out.println("Keyboards clicked!");
@@ -270,11 +272,11 @@ public class Controller /*implements Initializable*/{
         createScene(event, "switchPage.fxml");
     }
     
-/**
-    Loads a new scene in switching the root from the main scene
-    @param event ActionEvent is being triggered by the button being clicked.
-    @param event fileName from the FXML is to be loaded.
-*/
+    /**
+     * Loads a new scene in switching the root from the main scene
+     * @param eve ActionEvent is being triggered by the button being clicked
+     * @param fileName fileName from the FXML is to be loaded
+     */
     public void createScene(ActionEvent eve, String fileName) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fileName));
@@ -295,7 +297,7 @@ public class Controller /*implements Initializable*/{
     }
    /**
         A setter that sets the stage 
-        @param event sets the stage
+        @param stage sets the stage
    */
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -312,12 +314,17 @@ public class Controller /*implements Initializable*/{
 //    
     
     
-    
+    /**
+     * Void method that is meant to switch the scene
+     */
     public void switchScene() {
     	stage.setScene(new Scene(new Label("New Scene")));
     }
     
     // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
+    /**
+     * The initialize method runs as a method to load UI elements just as the program is starting
+     */
     @FXML
     private void initialize() {
     	// Adds a listener when entering

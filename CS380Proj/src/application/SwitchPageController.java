@@ -139,12 +139,20 @@ public class SwitchPageController implements Initializable{
     void handleLogoHomePage(ActionEvent event) {
 
     }
-
+    
+    /**
+     * Handles actions when Switches is clicked
+     * @param event, an ActionEvent triggered by button click
+     */
     @FXML
     void handleSwitchesClick(ActionEvent event) {
     	
     }
     
+    /**
+     * Method will display the image of the clicked product within the item card
+     * @param prod Just an instance of a product from the products class
+     */
     private void setChosenProduct(products.product prod) {
     	switchNameLabel.setText(prod.getName());
     	switchPriceLabel.setText("$" + prod.getPrice());

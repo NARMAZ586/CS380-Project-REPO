@@ -21,7 +21,6 @@ import javafx.scene.input.MouseEvent;
  * setImage(String image), sets product image.
  */
 
-
 public class ProductItemController {
 
 	//fx id for productItem, FXML linked
@@ -34,12 +33,22 @@ public class ProductItemController {
     @FXML
     private Label productLabel;
     
+    /**
+     * click method that expects a mouse click as its event
+     * @param mouseEvent this is just the mouse click that it expects
+     */
     @FXML
     private void click(MouseEvent mouseEvent) {
     	clickListener.onActionListener(item);
     }
     
+    /**
+     * Variable of type InterfaceListen
+     */
     private InterfaceListener clickListener;
+    /**
+     * variable is called item and it is a product from the products class
+     */
     private products.product item;
 
 
@@ -51,7 +60,12 @@ public class ProductItemController {
     public void setProductName(String name) {
         productLabel.setText(name);
     }
-
+    
+    /**
+     * Method sets the data of the product within the item card
+     * @param product Just a product from the products class
+     * @param listener Variable of type InterfaceListen
+     */
     public void setData(products.product product, InterfaceListener listener) {
         this.item = product;
         this.clickListener = listener;
