@@ -49,7 +49,7 @@
                   <Insets left="50.0" right="50.0" top="40.0" />
                </HBox.margin>
             </Button>
-            <TextField fx:id="searchField" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
+            <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
                <HBox.margin>
                   <Insets left="60.0" top="5.0" />
                </HBox.margin>
@@ -69,9 +69,9 @@
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <HBox layoutX="1030.0" layoutY="75.0" prefHeight="142.0" prefWidth="150.0">
+      <HBox layoutX="974.0" layoutY="72.0" prefHeight="0.0" prefWidth="212.0">
          <children>
-            <VBox fx:id="searchResultsBox" prefHeight="102.0" prefWidth="150.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
+            <VBox fx:id="searchResultsBox" prefHeight="142.0" prefWidth="237.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
          </children>
       </HBox>
    </children>

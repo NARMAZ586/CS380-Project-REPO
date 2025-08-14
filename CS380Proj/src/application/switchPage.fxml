@@ -52,7 +52,7 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Button>
-            <TextField fx:id="searchField" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
+            <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
                <HBox.margin>
                   <Insets left="60.0" top="5.0" />
                </HBox.margin>
