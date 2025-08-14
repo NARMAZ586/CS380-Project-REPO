@@ -9,11 +9,26 @@ import javafx.scene.layout.BorderPane;
 import application.Controller;
 import javafx.application.Platform;
 
-
+/**
+ * Name: Main
+ * Date of code: 7/21/25
+ * @author Nery Armaz, Matthew B., Marlon A., Michelle L.
+ * GUI is displayed from this class
+ */
 public class Main extends Application {
+	/**
+	 * A private variable for stage, as name implies it is the primary stage for the gui
+	 */
     private static Stage primaryStage;
+    /**
+     * A private variable for scene
+     */
     private static Scene mainScene;
     @Override
+    /**
+     * Method contains everything to load and get the GUI running
+     *param stage This parameter is used to load the stage in
+     */
     public void start(Stage stage) {
         try {
             primaryStage = stage;
@@ -35,14 +50,26 @@ public class Main extends Application {
         }
     }
     
+    /**
+     * Getter method for primaryStage
+     * @return Return is the primaryStage, of type Stage
+     */
     public static Stage getPrimaryStage() {
         return primaryStage;
     }
     
+    /**
+     * Getter method for mainScene
+     * @return Return is the mainScene, of type Scene
+     */
     public static Scene getMainScene() {
         return mainScene;
     }
     
+    /**
+     * When program is run through java application it begins at this method
+     * @param args Essentially this parameter calls the start method 
+     */
     public static void main(String[] args) {
         launch(args);
     }

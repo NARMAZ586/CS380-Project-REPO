@@ -1,16 +1,16 @@
 Name,ID,Price,Type,Description
-red Mechanical,1,150.000000,keyboard,Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps
-retroMechanical,2,200.000000,keyboard,A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green
-blueMechanical,3,150.000000,keyboard,Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable
-CustomeBuild,4,250.000000,keyboard,This is a fully custom build. This keyboard option gives full customizable options to the buyer
-cherry mx red,5,15.000000,switch,These switches are for the user that wants a more tactile or stealthy sound to their keyboard
-cherry mx silent red,6,18.500000,switch,These switches provide an even more tactile sound than the original cherry mx red switches
-cherry mx brown,7,17.000000,switch,A tactile key switch which offers a balance of feedback and oise
-Razer Yellow,8,20.000000,switch,Fast linear designed for quick response times
-neon retro,9,100.000000,keycap,These neon retro themed keycaps come in multiple shade of an assortment of colors
-Cherry,10,120.000000,keycap,ERgonomic with agnled tops and varying heights across rows, suitable for gaming and typing
-OEM,11,110.000000,keycap,Common ergonomic type, taller and more angled than Cherry, used in most pre-built keyboards
-SA,12,135.000000,keycap,Tall, rounded, and ergonomic with indented tops, offering comfort for extended typing sessions
-DSA,13,90.000000,keycap,Non-ergonomic with a low-profile, flat shape, prodviding versatility for various keyboard setups
-MOA,14,105.000000,keycap,Non-ergonomic with rounded shapes and smaller topds, giving keyboards a cozy, bubble-like appearance
-Custom caps,15,4.500000,keycap,Offers a fully custom keycaps for any size of keyboard, each keycap is $4.50
+red Mechanical,1,150.000000,keyboard,Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps,evaSwitch.jpg
+retroMechanical,2,200.000000,keyboard,A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green,evaSwitch.jpg
+blueMechanical,3,150.000000,keyboard,Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable,evaSwitch.jpg
+CustomeBuild,4,250.000000,keyboard,This is a fully custom build. This keyboard option gives full customizable options to the buyer,evaSwitch.jpg
+cherry mx red,5,15.000000,switch,These switches are for the user that wants a more tactile or stealthy sound to their keyboard,evaSwitch.jpg
+cherry mx silent red,6,18.500000,switch,These switches provide an even more tactile sound than the original cherry mx red switches,pinkSwitch.png
+cherry mx brown,7,17.000000,switch,A tactile key switch which offers a balance of feedback and oise,cherrymxbrown.jpg
+Razer Yellow,8,20.000000,switch,Fast linear designed for quick response times,novelkey-creams-switches-596114.jpg
+neon retro,9,100.000000,keycap,These neon retro themed keycaps come in multiple shade of an assortment of colors,evaSwitch.jpg
+Cherry,10,120.000000,keycap,ERgonomic with agnled tops and varying heights across rows, suitable for gaming and typing,evaSwitch.jpg
+OEM,11,110.000000,keycap,Common ergonomic type, taller and more angled than Cherry, used in most pre-built keyboards,evaSwitch.jpg
+SA,12,135.000000,keycap,Tall, rounded, and ergonomic with indented tops, offering comfort for extended typing sessions,evaSwitch.jpg
+DSA,13,90.000000,keycap,Non-ergonomic with a low-profile, flat shape, prodviding versatility for various keyboard setups,evaSwitch.jpg
+MOA,14,105.000000,keycap,Non-ergonomic with rounded shapes and smaller topds, giving keyboards a cozy, bubble-like appearance,evaSwitch.jpg
+Custom caps,15,4.500000,keycap,Offers a fully custom keycaps for any size of keyboard, each keycap is $4.50,evaSwitch.jpg

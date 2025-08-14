@@ -56,7 +56,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <TextField fx:id="searchbar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
+            <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
                <HBox.margin>
                   <Insets left="60.0" top="5.0" />
                </HBox.margin>
