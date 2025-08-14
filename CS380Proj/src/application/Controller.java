@@ -1,4 +1,11 @@
 package application;
+/**
+    Controller
+    Date of code: 8/4/25
+    The controller class handles the navigation, interations, and logistics for the JavaFX application
+    This is connected to multiple FXML files such as the Homepage, AdminPage, KeyboardPage, etc. this acts as the main handler for the user interface.
+    @author Michelle
+*/
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,83 +43,184 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Controller /*implements Initializable*/{
-
+    /**
+        Button to navigate to the keyboards page
+    */
     @FXML private Button btnKeyboards;
+    /**
+        Button to navigate to the keycaps page
+    */
     @FXML private Button btnKeycaps;
+    /**
+        Button to navigate to the switches page
+    */
     @FXML private Button btnSwitches;
+    /**
+        Button to navigate to the shopping cart page
+    */
     @FXML private Button btnCart;
+    /**
+        Button to navigate to the account user page
+    */
     @FXML private Button btnAccount;
+
+    /**
+        Button to navigate to the keycaps page
+    */
     @FXML private Button btnKeyCaps;
+    /**
+        A text field where the user inputs a product search
+    */
     @FXML private TextField searchField;
+    /**
+        Container that displays live search results
+    */
     @FXML private VBox searchResultsBox;
+    /**
+        Returns user to the homepage
+    */
     @FXML private Button logoBtn;
-    
+    /**
+        Entering the login email
+    */
     @FXML private TextField loginEmail;
+    /**
+        Entering the ogin password
+    */
     @FXML private PasswordField loginPassword;
+    /**
+        A label to display a login error message
+    */
     @FXML private Label wrongPasswordLabel;
+    /**
+        Button used to logout the user and return to the homepage
+    */
     @FXML private Button logoutBtn;
     
     //fx:id for switchpage
+    /**
+        Displays the selected products price
+    */
     @FXML private Label priceLabel;
+    /**
+        Displays the selected products image
+    */
     @FXML private ImageView productImg;
+    /**
+        Displays the selected products name
+    */
     @FXML private Label productLabel; 
+    /**
+        Displays a selected switch image
+    */
     @FXML private ImageView switchImg;
+    /**
+        Displays the selected switch name
+    */
     @FXML private Label switchNameLabel;  
+    /**
+        Displays the selected switch's price
+    */
     @FXML private Label switchPriceLabel;
+    /**
+        Styles the selected product card
+    */
     @FXML private VBox chosenProductCard;
+    /**
+        Places all the product cards in a layout
+    */
     @FXML private GridPane grid;
+    /**
+        Wraps the product grip used for scrolling
+    */
     @FXML private ScrollPane scroll;
-
+    /**
+        Displays the product or image
+    */
     @FXML private ImageView imageView;
     
     
     
     
-    
+    //stage and scene references
+    /**
+        Managing the main application window
+    */
     private Stage stage;
+    /**
+        Switching between the FXML views
+    */
     private Scene scene;
+    /**
+        Root node in loading the new FXML
+    */
     private Parent root;
     
+    /**
+        Reference to the product list in searching and filtering.
+    */
     private products myProds;
+
     public Controller() {
         System.out.println("This was from the controller class");
     	//myProds = new products();
     	//myProds.attempt("this should theortically print"); 
     }
-    //buttons
+    /**
+        Handles the logo button clicked from the navigation bar
+        Navigates the user back to the homepage
+
+        @param event ActionEvent triggered by the logo button
+    */
     @FXML
     private void handleLogoHomePage(ActionEvent event) {
     	System.out.println("Logo clicked!");
         createScene(event, "homepage.fxml");
     }
+    /**
+        Handles the cart button and switches to the shopping cart page.
+        @param event ActionEvent is triggered by the cart button.
+    */
     @FXML
     private void handleCartClick(ActionEvent event) {
         System.out.println("Cart clicked!");
         createScene(event, "cartPage.fxml");
     }
 
+    /**
+        Handle click to the account button
+        @param event ActionEent the button that is clicked by the account button.
+    */
     @FXML
     private void handleAccountClick(ActionEvent event) {
         System.out.println("Account clicked!");
         createScene(event, "LoginPage.fxml");
         
     }
-    
+    /**
+        Handles click to return to homepage
+        @param event ActionEvent is the button that is clicked by the Homepage button
+    */
     @FXML
     private void handleBackToHomepageClick(ActionEvent event) {
         System.out.println("Back!");
         createScene(event, "Homepage.fxml");
         
     }
-    
+    /**
+        Triggered when the login button is clicked
+        @param event ActionEvent button is clicked by the login button 
+    */
     @FXML
     private void userLogin(ActionEvent event) {
     	checkLogin(event);
     }
     
+    /**
+        Validates user login credentials and displays the feedback and switches to the AdminPage if valid or invalid.
+        @param event in ActionEvent is triggered by the login attempt.
+    */
     private void checkLogin(ActionEvent event) {
-    	
-    	
     	if(loginEmail.getText().toString().equals("Admin") && loginPassword.getText().toString().equals("123")) {
     		wrongPasswordLabel.setText("Success!");
     		createScene(event, "AdminPage.fxml");
@@ -125,32 +233,49 @@ public class Controller /*implements Initializable*/{
     		wrongPasswordLabel.setText("Wrong email or password! Try again");
     	}
     }
-    
+    /**
+        Logs the user out and returns to the homepage
+        @param event is triggered by the logout button
+    */
     @FXML
     private void userLogout(ActionEvent event) {
     	createScene(event, "Homepage.fxml");
     }
+    /**
+        Leads the user to the Keyboards page
+        @param event is triggered by the keybord button
+    */
 
     @FXML
     private void handleKeyboardsClick(ActionEvent event) {
         System.out.println("Keyboards clicked!");
         createScene(event, "keyboardPage.fxml");
     }
-
+    /**
+        Leads the user to the Keycaps page
+        @param event is triggered by the keykaps button
+    */
     @FXML
     private void handleKeycapsClick(ActionEvent event) {
         System.out.println("Keycaps clicked!");
         createScene(event, "keycaps.fxml");
     }
-
+    /**
+        Leads the user to the Switches page
+        @param event is triggered by the switches button        
+    */
     @FXML
     private void handleSwitchesClick(ActionEvent event) {
         System.out.println("Switches clicked!"); 
         createScene(event, "switchPage.fxml");
     }
     
-
-    private void createScene(ActionEvent eve, String fileName) {
+/**
+    Loads a new scene in switching the root from the main scene
+    @param event ActionEvent is being triggered by the button being clicked.
+    @param event fileName from the FXML is to be loaded.
+*/
+    public void createScene(ActionEvent eve, String fileName) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fileName));
             Stage stage = Main.getPrimaryStage();
@@ -168,80 +293,14 @@ public class Controller /*implements Initializable*/{
             e.printStackTrace();
         }
     }
-   
+   /**
+        A setter that sets the stage 
+        @param event sets the stage
+   */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-    /*
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("This was from the initialize class");
-    	myProds = new products(); // initialize product data
-        ArrayList<product> allProducts = new ArrayList<>();
-        //var allProducts = myProds.getAllProducts();
-        allProducts = myProds.getAllProducts();
-
-        if (!allProducts.isEmpty()) {
-            //setChosenProduct(allProducts.get(0));
-            
-        }
-
-        int column = 0;
-        int row = 0;
-        int i = 1;
-        System.out.print(i + " loader test\n");
-        i++;
-
-        try {
-            for (products.product prod : allProducts) {
-                System.out.println(prod.getName());
-            	//FXMLLoader loader = new FXMLLoader();
-                //loader.setLocation(getClass().getResource("productItem.fxml"));
-                //FXMLLoader loader = new FXMLLoader(getClass().getResource("productItem.fxml"));
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("productItem.fxml"));
-                //loader.setController(this); // Use the existing controller instance
-                //Parent root = loader.load();
-
-                //System.out.print("fun");
-            	AnchorPane pane = loader.load();
-
-                ProductItemController itemController = loader.getController();
-            	// Assuming fxml has these fx:id values
-                itemController.setProductName(prod.getName());
-                itemController.setPrice("$" + prod.getPrice());
-            	//Label nameLabel = (Label) pane.lookup("#productLabel");
-            	//Label priceLabel = (Label) pane.lookup("#priceLabel");
-            	//ImageView imageView = (ImageView) pane.lookup("#imgSrc");
-
-            	// Set the values
-            	//nameLabel.setText(prod.getName());
-            	//priceLabel.setText("$" + prod.getPrice());
-            	Image img = new Image(getClass().getResourceAsStream( prod.getImgSrc()));
-                itemController.setImage(img);
-            	//imageView.setImage(img);
-
-                grid.add(pane, column, row);
-                column++;
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-                /*
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);*/
-
-                //AnchorPane.setMargin(pane, new javafx.geometry.Insets(10));
-            /*}
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         
-    }*/
+    
     
 //    private void setChosenProduct(products.product prod) {
 //        productLabel.setText(prod.getName());
@@ -267,6 +326,12 @@ public class Controller /*implements Initializable*/{
     	});
     }
     
+    /**
+        Performs a product search while using a query string such as the product name or ID.
+        It displays the corresponding feedback and switches to AdminPage if found valid.
+
+        @param event ActionEvent is triggered by the login attempt.
+    */
     private void performSearch(String query) {
     	//Cleans old search results
     	searchResultsBox.getChildren().clear();

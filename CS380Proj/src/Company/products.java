@@ -5,15 +5,37 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 
+/**
+ * Name: products
+ * Date of code: 8/4/25
+ * @author Nery Armaz, Marlon A. Matthew B.
+ * Class products is used to encapsulate methods used for the products and it also contains the class attributes along with getters for class product(a single product)
+ * Important functions: writeCSV(String fileName): void, getAllProducts(): ArrayList<product>
+ * ArrayList was used a few times in this class mainly to organize all of the products into a single ArrayList
+ * It was used in the getAllProducts method and in the products constructor
+ */
 public class products {
 	/*public static void main(String[] args) {
 		products p = new products();
 		
 
 	}*/
+	/**
+	 * An ArrayList of type product, which contains all of the default keyboards that are made at the start
+	 */
 	private ArrayList<product> keyboards;
+	/**
+	 * An ArrayList of type product, which contains all of the default switches that are made at the start
+	 */
 	private ArrayList<product> switches;
+	/**
+	 * An ArrayList of type product, which contains all of the default keycaps that are made at the start
+	 */
 	private ArrayList<product> keycaps;
+	/**
+	 * Default constructor for products, when called it creates the ArrayList for keyboards, switches, and keycaps.
+	 * It will then fill the array list with objects of product 
+	 */
 	public products() {
 		keyboards = new ArrayList<>();
 		keyboards.add(new product("red Mechanical", 1, 150.0, "keyboard", "Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps", "evaSwitch.jpg"));
@@ -36,6 +58,10 @@ public class products {
 		writeCSV("products.csv");
 	}
 	
+	/**
+	 * Method creates a CSV and fills it up with all of the products that were created in the constructor
+	 * @param fileName Just the naming of the csv file
+	 */
 	public void writeCSV(String fileName) {
 		File file = new File("Database/" + fileName);
 		file.getParentFile().mkdirs();
@@ -59,24 +85,54 @@ public class products {
 		}
 	}
 	
-	private List<product> getSwitches(){
-		return switches;
-	}
-	
+	/**
+	 * Small method used to test if class object was correctly be used in controller.java
+	 * @param n Just the string that is meant to be printed to console
+	 */
 	public void attempt(String n) {
 		System.out.println(n);
 	}
-
+	
+	/**
+	 * This class contains all the attributes of a single product such as the name, price, etc
+	 */
 	public static class product{
+		/**
+		 * Price of the product
+		 */
 		private double price;
+		/**
+		 * Name of the product
+		 */
 		private String name;
+		/**
+		 * Id of the product
+		 */
 		private int ID;
+		/**
+		 * what type of product this is
+		 */
 		private String type;
+		/**
+		 * Description of the product
+		 */
 		private String description;
+		/**
+		 * What image is used for this product
+		 */
 		private String imgSrc;
 		
-		public product() {}
+		//public product() {}
 		
+		/**
+		 * Constructor for the product class
+		 * @param name product name
+		 * @param ID product id
+		 * @param price product price
+		 * @param type product type
+		 * @param description product description
+		 * @param imgSrc product image source
+		 */
 		public product(String name, int ID, double price, String type, String description, String imgSrc) {
 			this.name = name;
 			this.ID = ID;
@@ -86,34 +142,61 @@ public class products {
 			this.imgSrc = imgSrc;
 		}
 		
-		
+		/**
+		 * Getter method for name
+		 * @return Will return the name attribute of the object product
+		 */
 		public String getName() {
 			return name;
 		}
 		
+		/**
+		 * Getter method for price
+		 * @return Will return the price attribute of the object product
+		 */
 		public double getPrice() {
 			return price;
 		}
 		
+		/**
+		 * Getter method for ID
+		 * @return Will return the ID attribute of the object product
+		 */
 		public int getprodID() {
 			return ID;
 		}
 		
+		/**
+		 * Getter method for type
+		 * @return Will return the type attribute of the object product
+		 */
 		public String prodType() {
 			return type;
 		}
 		
+		/**
+		 * Getter method for description
+		 * @return Will return the description attribute of the object product
+		 */
 		public String prodDescription() {
 			return description;
 		}
 		
+		/**
+		 * Getter method for image source
+		 * @return Will return the imgSrc attribute of the object product
+		 */
 		public String getImgSrc() {
 			return imgSrc;
 		}
 	}
 	
 	
-	
+	/**
+	 * Method creates a new ArrayList called getAllProducts
+	 * It then adds all previous array lists into a single one 
+	 * @return Will return an ArrayList of all products
+	 */
 	//----- SEARCH FUNCTION FOR CONTROLLER.JAVA ------
 	public ArrayList<product> getAllProducts() {
 	    ArrayList<product> all = new ArrayList<>();
@@ -121,6 +204,14 @@ public class products {
 	    all.addAll(switches);
 	    //all.addAll(keycaps);
 	    return all;
+	}
+	
+	/**
+	 * Method returns the private attribute from class products: ArrayList<product> switches
+	 * @return
+	 */
+	private ArrayList<product> getSwitches(){
+		return switches;
 	}
 
 }

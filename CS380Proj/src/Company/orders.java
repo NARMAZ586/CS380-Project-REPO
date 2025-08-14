@@ -1,8 +1,25 @@
 package Company;
 
+/** 
+ * orders
+ * 08/8/2025
+ * @author Matthew Berleson
+ * 
+ * Class Description:Class is to represent ordering system for the shop, containing info relevant to shop orders
+ * 
+ * Important Functions:
+ * Getter and setter functions for Order attributes
+ * 
+ * DataStructures:
+ * ArrayList<product>: used to hold product objects
+ * GridPane: Layout to display product cars in a grid
+ */
+
 public class orders {
 	
-	
+	/**
+	 *order attributes
+	 */
 	int customerID;
 	int orderID;
 	int productID;
@@ -13,6 +30,18 @@ public class orders {
 	
 	
 	//constructor 
+	/**
+	 *constructor for the orders class
+	 *
+	 *@param customerID, ID of customer placing order
+	 *@param orderID, ID of placed order
+	 *@param productID, ID of product ordered
+	 *@param price, price of products
+	 *@param ShippingDate, shipping date for order
+	 *@param paymentMethhod, method used for payment
+	 *@param itemName, name of the item ordered
+	 *
+	 */
 	public orders(int customerID, int orderID, int productID, double price, String shippingDate, String paymentMethod, String itemName) {
         this.customerID = customerID;
         this.orderID = orderID;
@@ -24,66 +53,124 @@ public class orders {
     }
 	
 	// getter methods for order and product attributes
+
+	/**
+	 *gets customerID
+	 *@returns customerID
+	 */
 	public int getCustomerID() {
 		return customerID;
 		
 	}
 	
+	/**
+	 *gets orderID
+	 *@returns orderID
+	 */
 	public int getOrderID() {
 		return orderID;
 		
 	}
 	
+	/**
+	 *gets productID
+	 *@returns productID
+	 */
 	public int getProductID() {
 		return productID;
 		
 	}
 	
+	/**
+	 *gets price
+	 *@returns price
+	 */
 	public double getPrice() {
 		return price;
 		
 	}
 	
+	/**
+	 *gets shipping Date
+	 *@returns shippingDate
+	 */
 	public String getDate() {
 		return shippingDate;
 		
 	}
 	
+	/**
+	 *gets payment Method
+	 *@returns paymentMethod
+	 */
     public String getPayment() {
 		return paymentMethod;
 		
 	}
     
+	/**
+	 *gets customerID
+	 *@returns customerID
+	 */
     public String getItem() {
 		return itemName;
 		
 	}
     
     //Setter methods for order
+
+	/**
+	 *Sets customerID
+	 *@param customerID
+	 */
     public void setCustomerID(int customerID) {
     	this.customerID = customerID;
     }
     
+	/**
+     * Sets the order ID.
+     * @param orderID The ID of the order.
+     */
     public void setOrderID(int orderID) {
     	this.orderID = orderID;
     }
 
+	/**
+     * Sets the product ID.
+     * @param productID The ID of the product.
+     */
     public void setProductID(int productID) {
 	    this.productID = productID;
     }
 
+	/**
+     * Sets the price.
+     * @param price The price of the product.
+     */
     public void setPrice(double price) {
 	    this.price = price;
     }
 
+	/**
+     * Sets the shipping date.
+     * @param shippingDate The shipping date of the order.
+     */
     public void setDate(String shippingDate) {
 	    this.shippingDate = shippingDate;
     }
 
+	/**
+     * Sets the payment Method.
+     * @param paymentMethod The paymentMethod of the order.
+     */
     public void setPayment(String paymentMethod) {
 	    this.paymentMethod = paymentMethod;
     }
     
+	/**
+     * Sets the item Name.
+     * @param itemName The itemName of the product.
+     */
     public void setItem(String itemName) {
     	this.itemName = itemName;
     }

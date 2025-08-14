@@ -26,10 +26,27 @@ import javafx.scene.layout.ColumnConstraints;
 import Company.products;
 import Company.products.product;
 
+import application.Controller;
+
+/** 
+ * SwitchPageController
+ * 08/12/2025
+ * @author Matthew Berleson
+ * 
+ * Class Description:Class is meant to be a controller for the switch product page that displays products and adds them to shopping cart.
+ * 
+ * Important Functions:
+ * intializes(): intializes product list and loads product cards into grid
+ * handleAccountClick(), handleCartClick(), etc... : Handles navigation on mouse click
+ * 
+ * DataStructures:
+ * ArrayList<product>: used to hold product objects
+ * GridPane: Layout to display product cars in a grid
+ */
 
 public class SwitchPageController implements Initializable{
     private products myProds;
-	
+
 	@FXML
     private Button btnAccount;
 
@@ -72,26 +89,47 @@ public class SwitchPageController implements Initializable{
     //@FXML 
     //private ImageView imageView;
 
+
+    /**
+     *Handles actions when account is clicked.
+     *@param event, an ActionEvent triggered by button click
+     */
     @FXML
     void handleAccountClick(ActionEvent event) {
 
     }
 
+    /**
+     *Handles actions when cart is clicked.
+     *@param event, an ActionEvent triggered by button click
+     */
     @FXML
     void handleCartClick(ActionEvent event) {
 
     }
 
+    /**
+     *Handles actions when keyboards is clicked.
+     *@param event, an ActionEvent triggered by button click
+     */
     @FXML
     void handleKeyboardsClick(ActionEvent event) {
 
     }
 
+    /**
+     *Handles actions when Keycaps is clicked.
+     *@param event, an ActionEvent triggered by button click
+     */
     @FXML
     void handleKeycapsClick(ActionEvent event) {
 
     }
 
+    /**
+     *Handles actions when Hompage Logo is clicked.
+     *@param event, an ActionEvent triggered by button click
+     */
     @FXML
     void handleLogoHomePage(ActionEvent event) {
 
@@ -99,9 +137,15 @@ public class SwitchPageController implements Initializable{
 
     @FXML
     void handleSwitchesClick(ActionEvent event) {
-
+    	
     }
 
+
+    /**
+     *Intializes controller, loads products and dynamically adds product cards to grid UI
+     *@param location
+     *@param resources
+     */
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");
     	myProds = new products(); // initialize product data
