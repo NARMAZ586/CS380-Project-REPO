@@ -186,6 +186,15 @@ public class SwitchPageController implements Initializable{
     }
     
     /**
+    Leads the user to the search page
+    @param event is triggered by the search button
+     */
+    @FXML
+    private void handleSearchClick(ActionEvent event) {
+
+    }
+    
+    /**
      * Method will display the image of the clicked product within the item card
      * @param prod Just an instance of a product from the products class
      */

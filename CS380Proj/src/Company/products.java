@@ -200,9 +200,9 @@ public class products {
 	//----- SEARCH FUNCTION FOR CONTROLLER.JAVA ------
 	public ArrayList<product> getAllProducts() {
 	    ArrayList<product> all = new ArrayList<>();
-	   // all.addAll(keyboards);
+	    all.addAll(keyboards);
 	    all.addAll(switches);
-	    //all.addAll(keycaps);
+	    all.addAll(keycaps);
 	    return all;
 	}
 	
