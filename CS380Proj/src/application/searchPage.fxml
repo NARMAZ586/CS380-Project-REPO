@@ -9,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
@@ -79,15 +78,6 @@
             </Button>
          </children>
       </HBox>
-      <StackPane alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="100.0">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Black-and-Red-Wallpape.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
       <AnchorPane layoutX="311.0" layoutY="110.0" prefHeight="351.0" prefWidth="557.0">
          <children>
             <TextField fx:id="searchBar" layoutY="6.0" prefHeight="35.0" prefWidth="475.0" promptText="Search..." />

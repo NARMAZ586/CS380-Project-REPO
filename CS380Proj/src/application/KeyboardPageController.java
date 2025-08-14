@@ -1,6 +1,6 @@
 package application;
 
-import application.InterfaceListener;
+//import application.InterfaceListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,128 +27,62 @@ import javafx.scene.layout.ColumnConstraints;
 import Company.products;
 import Company.products.product;
 
-import application.Controller;
-
-/** 
- * SwitchPageController
- * 08/12/2025
- * @author Matthew Berleson
- * 
- * Class Description:Class is meant to be a controller for the switch product page that displays products and adds them to shopping cart.
- * 
- * Important Functions:
- * intializes(): intializes product list and loads product cards into grid
- * handleAccountClick(), handleCartClick(), etc... : Handles navigation on mouse click
- * 
- * DataStructures:
- * ArrayList<product>: used to hold product objects
- * GridPane: Layout to display product cars in a grid
- */
-
-public class SwitchPageController extends SceneController implements Initializable{
-    /**
-    * An instance of products called myProds 
-    */
+public class KeyboardPageController extends SceneController implements Initializable{
     private products myProds;
-    /**
-     *Button use for the Account page
-     */
+	
 	@FXML
     private Button btnAccount;
-	/**
-	 * Button use for the Cart page
-	 */
+
     @FXML
     private Button btnCart;
-    /**
-     * Button used for the KeyCaps page
-     */
+
     @FXML
     private Button btnKeyCaps;
-    /**
-     * Button use for Keyboards page
-     */
+
     @FXML
-    private Button btnKeyboards;
-    
-    /**
-     * Button use for the chosen ProductCard page
-     */
+    private Button btnSwitches;
+
     @FXML
     private VBox chosenProductCard;
-    /**
-     * A Grid Pane for the Switch Page
-     */
+
     @FXML
     private GridPane grid;
-    /**
-     * Button for the Logo that leads to the Homepage
-     */
+
     @FXML
     private Button logoBtn;
-    /**
-     * ScrollPane that is used for scroll
-     */
+
     @FXML
     private ScrollPane scroll;
-    /**
-     * Textfield that is used for the searchField
-     */
+
     @FXML
     private TextField searchField;
-    /**
-     * ImageView that is used for switching images in SwitchPage
-     */
+
     @FXML
     private ImageView switchImg;
-    
-    /**
-    * The label switchNameLabel is used for the item card on switchPage 
-    */
+
     @FXML
     private Label switchNameLabel;
-    
-    /**
-    * The label switchPriceLabel is used for the item card on switchPage 
-    */
+
     @FXML
     private Label switchPriceLabel;
-
-    /**
-    * Container Image is used for imgSrc 
-    */
+    
     private Image img;
     
-    /**
-    *  An instance of InterfaceListener, that is used to expect a click from the mouse
-    */
     private InterfaceListener clickListener;
     
-    /**
-     * Method will display the image of the clicked product within the item card
-     * @param prod Just an instance of a product from the products class
-     */
     private void setChosenProduct(products.product prod) {
-    	
     	switchNameLabel.setText(prod.getName());
     	switchPriceLabel.setText("$" + prod.getPrice());
-    	//System.out.println(getClass().getResource("/application/img/" + prod.getImgSrc()));
     	img = new Image(getClass().getResourceAsStream("/img/" + prod.getImgSrc()));
     	switchImg.setImage(img);
     	chosenProductCard.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
     }
 
-
-    /**
-     *Intializes controller, loads products and dynamically adds product cards to grid UI
-     *@param location, The location of the URL
-     *@param resources Used to access specific resources in the java language
-     */
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");
     	myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
-        allProducts = myProds.getSwitches();
+        allProducts = myProds.getKeyboards();
 
         if (!allProducts.isEmpty()) {
             setChosenProduct(allProducts.get(0));
@@ -183,8 +117,8 @@ public class SwitchPageController extends SceneController implements Initializab
 
                 ProductItemController itemController = loader.getController(); 
                 
-                
                 itemController.setData(prod, clickListener);
+                
                 grid.add(pane, column, row);
                 GridPane.setMargin(pane, new javafx.geometry.Insets(10));
                 column++;
