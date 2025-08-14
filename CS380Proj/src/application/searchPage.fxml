@@ -3,22 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <HBox prefHeight="100.0" prefWidth="1453.0" style="-fx-background-color: D22030;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="logoBtn" mnemonicParsing="false" onAction="#handleLogoHomePage" style="-fx-background-color: D22030;" text="GeekCaps" textFill="WHITE">
+            <Button fx:id="logoBtn" defaultButton="true" mnemonicParsing="false" onAction="#handleLogoHomePage" style="-fx-background-color: D22030;" text="GeekCaps" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -33,9 +31,6 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
             <Button fx:id="btnSwitches" mnemonicParsing="false" onAction="#handleSwitchesClick" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="SWITCHES" textFill="WHITE" translateY="40.0">
                <font>
@@ -44,39 +39,24 @@
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
-            <Button fx:id="btnKeyCaps" mnemonicParsing="false" onAction="#handleKeycapsClick" style="-fx-background-color: D22030;" styleClass="nav-button" text="KEYCAPS" textFill="WHITE">
+            <Button fx:id="btnKeyCaps" mnemonicParsing="false" onAction="#handleKeycapsClick" prefHeight="32.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="KEYCAPS" textFill="WHITE" translateY="40.0">
                <HBox.margin>
-                  <Insets left="45.0" right="42.0" top="40.0" />
+                  <Insets />
                </HBox.margin>
                <font>
                   <Font name="System Bold" size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
-               <HBox.margin>
-                  <Insets left="60.0" top="5.0" />
-               </HBox.margin>
-            </TextField>
+               </font></Button>
             <Button fx:id="btnCart" mnemonicParsing="false" onAction="#handleCartClick" style="-fx-background-color: D22030;" translateY="40.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" translateY="-13.0">
                      <image>
                         <Image url="@cart.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </ImageView>
                </graphic>
                <HBox.margin>
-                  <Insets left="70.0" right="45.0" top="-3.0" />
+                  <Insets left="70.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -91,7 +71,7 @@
                   </ImageView>
                </graphic>
                <HBox.margin>
-                  <Insets left="20.0" top="-15.0" />
+                  <Insets left="60.0" top="-15.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -99,34 +79,21 @@
             </Button>
          </children>
       </HBox>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-         <left>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="TOP_LEFT" layoutX="72.0" layoutY="300.0" text="Login">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="loginBackbtn" layoutX="14.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleBackToHomepageClick" text="Back to Homepage" />
-               </children>
-            </AnchorPane>
-         </left>
-         <right>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TextField fx:id="loginEmail" layoutX="14.0" layoutY="289.0" promptText="Email" />
-                  <PasswordField fx:id="loginPassword" layoutX="14.0" layoutY="343.0" promptText="Password" />
-                  <Button fx:id="loginBtn" layoutX="69.0" layoutY="399.0" mnemonicParsing="false" onAction="#userLogin" text="Log In" />
-                  <Label fx:id="wrongPasswordLabel" layoutX="14.0" layoutY="240.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
-               </children>
-            </AnchorPane>
-         </right>
-      </BorderPane>
-      <HBox layoutX="974.0" layoutY="72.0" prefHeight="0.0" prefWidth="212.0">
+      <StackPane alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <VBox fx:id="searchResultsBox" prefHeight="102.0" prefWidth="212.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Black-and-Red-Wallpape.jpg" />
+               </image>
+            </ImageView>
          </children>
-      </HBox>
+      </StackPane>
+      <AnchorPane layoutX="311.0" layoutY="110.0" prefHeight="351.0" prefWidth="557.0">
+         <children>
+            <TextField fx:id="searchBar" layoutY="6.0" prefHeight="35.0" prefWidth="475.0" promptText="Search..." />
+            <ListView fx:id="listView" layoutY="41.0" prefHeight="309.0" prefWidth="553.0" />
+            <Button layoutX="484.0" layoutY="6.0" mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="68.0" text="Search" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

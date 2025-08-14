@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,7 +21,11 @@ import javafx.scene.layout.Region;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import Company.products.product;
 import Company.products;
 import Company.customer;
@@ -36,7 +41,7 @@ public class Controller{
     @FXML private Button btnCart;
     @FXML private Button btnAccount;
     @FXML private Button btnKeyCaps;
-    @FXML private TextField searchField;
+    @FXML private TextField searchBar;
     @FXML private VBox searchResultsBox;
     @FXML private Button logoBtn;
     
@@ -44,7 +49,7 @@ public class Controller{
     @FXML private PasswordField loginPassword;
     @FXML private Label wrongPasswordLabel;
     @FXML private Button logoutBtn;
-    
+    @FXML private ListView<String> listView;
     
     
     
@@ -57,6 +62,11 @@ public class Controller{
     public Controller() {
     	myProds = new products();
     	myProds.attempt("this should theortically print");
+    	
+    	words = new ArrayList<>();
+    	for(products.product p : myProds.getAllProducts()) {
+    		words.add(p.getName());
+    	}
     }
     //buttons
     @FXML
@@ -128,6 +138,13 @@ public class Controller{
         createScene(event, "switchPage.fxml");
     }
     
+    @FXML
+    private void handleSearchClick(ActionEvent event) {
+        System.out.println("Search clicked!");
+        createScene(event, "searchPage.fxml");
+    }
+
+    
     private void createScene(ActionEvent eve, String fileName) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fileName));
@@ -156,76 +173,45 @@ public class Controller{
     }
     
     // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
+    
+    //Contains the names from product.java (keyboards, keypads, and switches)
+    ArrayList<String> words = new ArrayList<>(Arrays.asList());
+    
+    //Clicks the button
     @FXML
-    private void initialize() {
-    	// Adds a listener when entering
-    	searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-    		performSearch(newValue);
+    void search(ActionEvent event) {
+        listView.getItems().clear();
+        listView.getItems().addAll(searchList(searchBar.getText(),words));
+    }//when clicked, it clears and makes a new
+    
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    	listView.setVisible(false);
+    	
+    	words.clear();
+    	
+    	for (products.product p : myProds.getAllProducts()) {
+    		words.add(p.getName());
+    	}
+    	
+    	searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+    		if (newValue.isEmpty()) {
+    			listView.getItems().clear();
+    			listView.setVisible(false);
+    		} else {
+    			List<String> results = searchList(newValue, words);
+    			listView.getItems().setAll(results);
+    			listView.setVisible(!results.isEmpty());
+    		}
     	});
     }
     
-    private void performSearch(String query) {
-    	//Cleans old search results
-    	searchResultsBox.getChildren().clear();
-    	
-    	//Getting the search entered by the user
-    	query = searchField.getText().trim().toLowerCase();
-    	
-    	//If the search is empty, return
-    	if (query == null || query.trim().isEmpty()) {
-    		return;
-    	}
-    	
-    	//Get all products from products.java
-    	ArrayList<products.product> allProducts = myProds.getAllProducts();
-    	
-    	//List to hold matched products
-    	ArrayList<products.product> matches = new ArrayList<>();
-    	
-    	try {
-    		int idSearch = Integer.parseInt(query);
-    		for (products.product p : allProducts) {
-    			if (p.getprodID() == idSearch) {
-    				matches.add(p);
-    			}
-    		}
-    	} catch (NumberFormatException e) {
-    		//Not a number
-    		for (products.product p : allProducts) {
-    			if (p.getName().toLowerCase().contains(query)) {
-    				matches.add(p);
-    			}
-    		}
-    	}
-    	
-    	//Display results in the Vbox
-    	if (matches.isEmpty() ) {
-    		searchResultsBox.getChildren().add(new Label("No products found."));
-    	} else {
-    		for (products.product p : matches) {
-    			//Create label for each product
-    			Label resultLabel = new Label(p.getName());
-    			
-    			//Result clickable
-    			resultLabel.setOnMouseClicked(event -> {
-    				System.out.println("Clicked on: " + p.getName());
-    				});
-    			
-    			//Adding to Vbox
-    			searchResultsBox.getChildren().add(resultLabel);
-    		}
-    	}
-    	 /*
-         * If "red" is typed:
-         * 
-         * Found products:
-         * - red Mechanical 
-         * - cherry mx red 
-         * - cherry mx silent red (ID: 6, Price: $18.5)
-         * 
-         *  If "7" is typed:
-         *  FOund products:
-         *  - cherry mx brown (ID: 7, Price: $17)
-         */
+    
+    private List<String> searchList(String searchWords, List<String> listOfStrings) {
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+        
+        return listOfStrings.stream().filter(input -> { //input = test
+            return searchWordsArray.stream().allMatch(word -> //word = te
+                    input.toLowerCase().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
     }
 }
