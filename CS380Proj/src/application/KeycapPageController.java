@@ -1,34 +1,29 @@
 package application;
 
-import application.InterfaceListener;
-
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
+import Company.products;
+import Company.products.product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.fxml.Initializable;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.VBox;
 
-import Company.products;
-import Company.products.product;
-
-
-public class SwitchPageController extends SceneController implements Initializable{
+public class KeycapPageController extends SceneController implements Initializable{
     private products myProds;
 	
 	@FXML
@@ -38,10 +33,10 @@ public class SwitchPageController extends SceneController implements Initializab
     private Button btnCart;
 
     @FXML
-    private Button btnKeyCaps;
+    private Button btnKeyboards;
 
     @FXML
-    private Button btnKeyboards;
+    private Button btnSwitches;
 
     @FXML
     private VBox chosenProductCard;
@@ -73,10 +68,8 @@ public class SwitchPageController extends SceneController implements Initializab
 
     
     private void setChosenProduct(products.product prod) {
-    	
     	switchNameLabel.setText(prod.getName());
     	switchPriceLabel.setText("$" + prod.getPrice());
-    	//System.out.println(getClass().getResource("/application/img/" + prod.getImgSrc()));
     	img = new Image(getClass().getResourceAsStream("/img/" + prod.getImgSrc()));
     	switchImg.setImage(img);
     	chosenProductCard.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
@@ -86,7 +79,7 @@ public class SwitchPageController extends SceneController implements Initializab
         System.out.println("This was from the initialize class");
     	myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
-        allProducts = myProds.getSwitches();
+        allProducts = myProds.getKeycaps();
 
         if (!allProducts.isEmpty()) {
             setChosenProduct(allProducts.get(0));
@@ -121,8 +114,8 @@ public class SwitchPageController extends SceneController implements Initializab
 
                 ProductItemController itemController = loader.getController(); 
                 
-                
                 itemController.setData(prod, clickListener);
+                
                 grid.add(pane, column, row);
                 GridPane.setMargin(pane, new javafx.geometry.Insets(10));
                 column++;

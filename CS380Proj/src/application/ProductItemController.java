@@ -35,7 +35,7 @@ public class ProductItemController {
         priceLabel.setText("$" + product.getPrice());
         
         // Assuming the image is available as a resource
-        Image img = new Image(getClass().getResourceAsStream(product.getImgSrc()));
+        Image img = new Image(getClass().getResourceAsStream("/img/" + product.getImgSrc()));
         productImg.setImage(img);
     }
 

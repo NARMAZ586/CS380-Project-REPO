@@ -1,6 +1,6 @@
 package application;
 
-import application.InterfaceListener;
+//import application.InterfaceListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,8 +27,7 @@ import javafx.scene.layout.ColumnConstraints;
 import Company.products;
 import Company.products.product;
 
-
-public class SwitchPageController extends SceneController implements Initializable{
+public class KeyboardPageController extends SceneController implements Initializable{
     private products myProds;
 	
 	@FXML
@@ -41,7 +40,7 @@ public class SwitchPageController extends SceneController implements Initializab
     private Button btnKeyCaps;
 
     @FXML
-    private Button btnKeyboards;
+    private Button btnSwitches;
 
     @FXML
     private VBox chosenProductCard;
@@ -70,13 +69,10 @@ public class SwitchPageController extends SceneController implements Initializab
     private Image img;
     
     private InterfaceListener clickListener;
-
     
     private void setChosenProduct(products.product prod) {
-    	
     	switchNameLabel.setText(prod.getName());
     	switchPriceLabel.setText("$" + prod.getPrice());
-    	//System.out.println(getClass().getResource("/application/img/" + prod.getImgSrc()));
     	img = new Image(getClass().getResourceAsStream("/img/" + prod.getImgSrc()));
     	switchImg.setImage(img);
     	chosenProductCard.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
@@ -86,7 +82,7 @@ public class SwitchPageController extends SceneController implements Initializab
         System.out.println("This was from the initialize class");
     	myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
-        allProducts = myProds.getSwitches();
+        allProducts = myProds.getKeyboards();
 
         if (!allProducts.isEmpty()) {
             setChosenProduct(allProducts.get(0));
@@ -121,8 +117,8 @@ public class SwitchPageController extends SceneController implements Initializab
 
                 ProductItemController itemController = loader.getController(); 
                 
-                
                 itemController.setData(prod, clickListener);
+                
                 grid.add(pane, column, row);
                 GridPane.setMargin(pane, new javafx.geometry.Insets(10));
                 column++;

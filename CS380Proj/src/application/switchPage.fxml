@@ -37,7 +37,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnSwitches" mnemonicParsing="false" onAction="#handleSwitchesClick" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="SWITCHES" textFill="WHITE" translateY="40.0">
+            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="SWITCHES" textFill="WHITE" translateY="40.0">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>

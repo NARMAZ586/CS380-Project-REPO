@@ -16,7 +16,7 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="1453.0" style="-fx-background-color: D22030;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="logoBtn" defaultButton="true" mnemonicParsing="false" onAction="#handleLogoHomePage" style="-fx-background-color: D22030;" text="GeekCaps" textFill="WHITE">
+            <Button defaultButton="true" mnemonicParsing="false" style="-fx-background-color: D22030;" text="GeekCaps" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -88,7 +88,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Black-and-Red-Wallpape.jpg" />
+                  <Image url="@../img/Black-and-Red-Wallpape.jpg" />
                </image>
             </ImageView>
          </children>
@@ -97,7 +97,7 @@
          <children>
             <ImageView fx:id="mainImage" fitHeight="${mainImageContainer.width}" fitWidth="${mainImageContainer.height}" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@highestResKey.png" />
+                  <Image url="@../img/highestResKey.png" />
                </image>
             </ImageView>
          </children>

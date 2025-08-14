@@ -16,10 +16,10 @@ public class products {
 	private ArrayList<product> keycaps;
 	public products() {
 		keyboards = new ArrayList<>();
-		keyboards.add(new product("red Mechanical", 1, 150.0, "keyboard", "Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps", "evaSwitch.jpg"));
-		keyboards.add(new product("retroMechanical", 2, 200.00, "keyboard", "A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green", "evaSwitch.jpg"));
-		keyboards.add(new product("blueMechanical", 3, 150.00, "keyboard", "Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable", "evaSwitch.jpg"));
-		keyboards.add(new product("CustomeBuild", 4, 250.00, "keyboard", "This is a fully custom build. This keyboard option gives full customizable options to the buyer", "evaSwitch.jpg"));
+		keyboards.add(new product("red Mechanical", 1, 150.0, "keyboard", "Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps", "redMech.png"));
+		keyboards.add(new product("retroMechanical", 2, 200.00, "keyboard", "A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green", "retroMech.jpg"));
+		keyboards.add(new product("blueMechanical", 3, 150.00, "keyboard", "Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable", "blueMech.jpg"));
+		keyboards.add(new product("CustomeBuild", 4, 250.00, "keyboard", "This is a fully custom build. This keyboard option gives full customizable options to the buyer", "owlKeyboard.jpg"));
 		switches = new ArrayList<>();
 		switches.add(new product("cherry mx red", 5, 15.00, "switch", "These switches are for the user that wants a more tactile or stealthy sound to their keyboard", "evaSwitch.jpg"));
 		switches.add(new product("cherry mx silent red", 6, 18.50, "switch", "These switches provide an even more tactile sound than the original cherry mx red switches", "pinkSwitch.png"));
@@ -59,9 +59,35 @@ public class products {
 		}
 	}
 	
-	private List<product> getSwitches(){
-		return switches;
-	}
+	/**
+     * Method returns the private attribute from class products: ArrayList<product> switches
+     * @return returns the switches in the array list
+     */
+    public ArrayList<product> getSwitches(){
+    	ArrayList<product> product = new ArrayList<>();
+    	product.addAll(switches);
+ 	    return product;
+    }
+    
+    /**
+     * Method returns the private attribute from class products: ArrayList<product> switches
+     * @return returns the switches in the array list
+     */
+    public ArrayList<product> getKeyboards(){
+    	ArrayList<product> product = new ArrayList<>();
+    	product.addAll(keyboards);
+ 	    return product;
+    }
+    
+    /**
+     * Method returns the private attribute from class products: ArrayList<product> switches
+     * @return returns the switches in the array list
+     */
+    public ArrayList<product> getKeycaps(){
+    	ArrayList<product> product = new ArrayList<>();
+    	product.addAll(keycaps);
+ 	    return product;
+    }
 	
 	public void attempt(String n) {
 		System.out.println(n);
@@ -117,9 +143,9 @@ public class products {
 	//----- SEARCH FUNCTION FOR CONTROLLER.JAVA ------
 	public ArrayList<product> getAllProducts() {
 	    ArrayList<product> all = new ArrayList<>();
-	   // all.addAll(keyboards);
+	    all.addAll(keyboards);
 	    all.addAll(switches);
-	    //all.addAll(keycaps);
+	    all.addAll(keycaps);
 	    return all;
 	}
 
