@@ -1,8 +1,8 @@
 Name,ID,Price,Type,Description
-red Mechanical,1,150.000000,keyboard,Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps,evaSwitch.jpg
-retroMechanical,2,200.000000,keyboard,A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green,evaSwitch.jpg
-blueMechanical,3,150.000000,keyboard,Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable,evaSwitch.jpg
-CustomeBuild,4,250.000000,keyboard,This is a fully custom build. This keyboard option gives full customizable options to the buyer,evaSwitch.jpg
+red Mechanical,1,150.000000,keyboard,Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps,redMech.png
+retroMechanical,2,200.000000,keyboard,A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green,retroMech.jpg
+blueMechanical,3,150.000000,keyboard,Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable,blueMech.jpg
+CustomeBuild,4,250.000000,keyboard,This is a fully custom build. This keyboard option gives full customizable options to the buyer,owlKeyboard.jpg
 cherry mx red,5,15.000000,switch,These switches are for the user that wants a more tactile or stealthy sound to their keyboard,evaSwitch.jpg
 cherry mx silent red,6,18.500000,switch,These switches provide an even more tactile sound than the original cherry mx red switches,pinkSwitch.png
 cherry mx brown,7,17.000000,switch,A tactile key switch which offers a balance of feedback and oise,cherrymxbrown.jpg

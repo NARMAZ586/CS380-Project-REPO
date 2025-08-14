@@ -3,16 +3,21 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.KeycapPageController">
    <children>
       <HBox prefHeight="100.0" prefWidth="1453.0" style="-fx-background-color: D22030;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,9 +36,6 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
             <Button fx:id="btnSwitches" mnemonicParsing="false" onAction="#handleSwitchesClick" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="SWITCHES" textFill="WHITE" translateY="40.0">
                <font>
@@ -42,21 +44,15 @@
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
-            <Button fx:id="btnKeyCaps" mnemonicParsing="false" onAction="#handleKeycapsClick" prefHeight="32.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="KEYCAPS" textFill="WHITE" translateY="40.0">
+            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="192.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="KEYCAPS" textFill="WHITE" translateY="40.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
                <font>
                   <Font name="System Bold" size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
+               </font></Button>
+            <TextField fx:id="searchField" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
                <HBox.margin>
                   <Insets left="60.0" top="5.0" />
                </HBox.margin>
@@ -67,9 +63,6 @@
                      <image>
                         <Image url="@cart.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </ImageView>
                </graphic>
                <HBox.margin>
@@ -85,9 +78,6 @@
                      <image>
                         <Image url="@LoginIconProj.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </ImageView>
                </graphic>
                <HBox.margin>
@@ -99,15 +89,80 @@
             </Button>
          </children>
       </HBox>
-      <Label text="this is the keycaps page" AnchorPane.topAnchor="100.0">
-         <font>
-            <Font name="System Bold" size="48.0" />
-         </font>
-      </Label>
-      <HBox layoutX="974.0" layoutY="72.0" prefHeight="0.0" prefWidth="212.0">
-         <children>
-            <VBox fx:id="searchResultsBox" prefHeight="102.0" prefWidth="212.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
-         </children>
-      </HBox>
+      <BorderPane layoutY="102.0" prefHeight="625.0" prefWidth="1320.0">
+         <left>
+            <VBox prefHeight="626.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Product">
+                           <font>
+                              <Font name="Cooper Black" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="chosenProductCard" alignment="CENTER" prefHeight="435.0" prefWidth="100.0">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="53.0" prefWidth="250.0">
+                           <children>
+                              <Label fx:id="switchNameLabel" prefHeight="48.0" prefWidth="154.0" text="Switch">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="switchPriceLabel" prefHeight="48.0" prefWidth="123.0" text="Price">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="switchImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@cherrymxbrown.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox alignment="CENTER" prefHeight="103.0" prefWidth="250.0">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="143.0" text="Qty+">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox prefHeight="26.0" prefWidth="102.0" promptText="1" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" text="Add to cart" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="426.0" prefWidth="867.0">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
