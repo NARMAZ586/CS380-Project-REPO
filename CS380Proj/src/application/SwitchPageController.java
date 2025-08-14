@@ -1,5 +1,7 @@
 package application;
 
+import application.InterfaceListener;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,7 +23,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.ColumnConstraints;
-
 
 import Company.products;
 import Company.products.product;
@@ -88,6 +89,10 @@ public class SwitchPageController implements Initializable{
 
     //@FXML 
     //private ImageView imageView;
+    
+    private Image img;
+    
+    private InterfaceListener clickListener;
 
 
     /**
@@ -139,6 +144,14 @@ public class SwitchPageController implements Initializable{
     void handleSwitchesClick(ActionEvent event) {
     	
     }
+    
+    private void setChosenProduct(products.product prod) {
+    	switchNameLabel.setText(prod.getName());
+    	switchPriceLabel.setText("$" + prod.getPrice());
+    	img = new Image(getClass().getResourceAsStream(prod.getImgSrc()));
+    	switchImg.setImage(img);
+    	chosenProductCard.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
+    }
 
 
     /**
@@ -150,12 +163,17 @@ public class SwitchPageController implements Initializable{
         System.out.println("This was from the initialize class");
     	myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
-        //var allProducts = myProds.getAllProducts();
         allProducts = myProds.getAllProducts();
 
         if (!allProducts.isEmpty()) {
-            //setChosenProduct(allProducts.get(0));
+            setChosenProduct(allProducts.get(0));
             
+            clickListener = new InterfaceListener() {
+                @Override
+                public void onActionListener(products.product item) {
+                    setChosenProduct(item);
+                }
+            };
         }
         
         for (int i = 0; i < 2; i++) { // 3 columns
@@ -168,42 +186,28 @@ public class SwitchPageController implements Initializable{
         RowConstraints rowConst = new RowConstraints();
         rowConst.setMinHeight(220); // height for each product card
         grid.getRowConstraints().add(rowConst);
-
+        
         int column = 0;
         int row = 0;
-        int i = 1;
-        System.out.print(i + " loader test\n");
-        i++;
-
+        
         try {
             for (products.product prod : allProducts) {
                 System.out.println(prod.getName());
-            	//FXMLLoader loader = new FXMLLoader();
-                //loader.setLocation(getClass().getResource("productItem.fxml"));
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("productItem.fxml"));
-                //loader.setController(this); // Use the existing controller instance
-                //Parent root = loader.load();
-
-                //System.out.print("fun");
             	AnchorPane pane = loader.load();
 
-                ProductItemController itemController = loader.getController();
-            	// Assuming fxml has these fx:id values
-                itemController.setProductName(prod.getName());
-                itemController.setPrice("$" + prod.getPrice());
-            	//Label nameLabel = (Label) pane.lookup("#productLabel");
-            	//Label priceLabel = (Label) pane.lookup("#priceLabel");
-            	//ImageView imageView = (ImageView) pane.lookup("#imgSrc");
-
-            	// Set the values
-            	//nameLabel.setText(prod.getName());
-            	//priceLabel.setText("$" + prod.getPrice());
-            	Image img = new Image(getClass().getResourceAsStream( prod.getImgSrc()));
-                itemController.setImage(img);
-            	//imageView.setImage(img);
-
+                ProductItemController itemController = loader.getController(); 
+                //current
+//                itemController.setProductName(prod.getName());
+//                itemController.setPrice("$" + prod.getPrice());
+                // current
+                
+                itemController.setData(prod, clickListener);
+                // current
+//            	Image img = new Image(getClass().getResourceAsStream( prod.getImgSrc())); // <--- error getting imgfile here FIXED
+//                itemController.setImage(img);
+             // current
                 grid.add(pane, column, row);
-
                 GridPane.setMargin(pane, new javafx.geometry.Insets(10));
                 column++;
                 if (column == 3) {
@@ -214,18 +218,12 @@ public class SwitchPageController implements Initializable{
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
-
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
-                
-                
-               // GridPane.setMargin(grid, new javafx.geometry.Insets(10)); //not sure what it does but doesn't seem to be harmful
-                //AnchorPane.setMargin(pane, new javafx.geometry.Insets(10));
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } 
-         
+        }    
     }
 }
