@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
@@ -31,7 +32,11 @@ import javafx.scene.layout.Region;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import Company.products.product;
 import Company.products;
 import Company.customer;
@@ -69,6 +74,12 @@ public class Controller /*implements Initializable*/{
     */
     @FXML private Button btnKeyCaps;
     /**
+        A text field where the user inputs into the searchbar
+    */
+    @FXML 
+    private TextField searchBar; //keep this one for sure
+    
+    /**
         A text field where the user inputs a product search
     */
     @FXML private TextField searchField;
@@ -96,6 +107,11 @@ public class Controller /*implements Initializable*/{
         Button used to logout the user and return to the homepage
     */
     @FXML private Button logoutBtn;
+
+    /**
+    * Listview which is used in the search method
+    */
+    @FXML private ListView<String> listView;
     
     //fx:id for switchpage
     /**
@@ -165,14 +181,17 @@ public class Controller /*implements Initializable*/{
      * Constructor for the Controller class
      */
     public Controller() {
-        System.out.println("This was from the controller class");
-    	//myProds = new products();
-    	//myProds.attempt("this should theortically print"); 
+    	myProds = new products();
+    	myProds.attempt("this should theortically print");
+    	
+    	words = new ArrayList<>();
+    	for(products.product p : myProds.getAllProducts()) {
+    		words.add(p.getName());
+    	}
     }
     /**
         Handles the logo button clicked from the navigation bar
         Navigates the user back to the homepage
-
         @param event ActionEvent triggered by the logo button
     */
     @FXML
@@ -271,13 +290,24 @@ public class Controller /*implements Initializable*/{
         System.out.println("Switches clicked!"); 
         createScene(event, "switchPage.fxml");
     }
-    
+
+    /**
+        Leads the user to the search page
+        @param event is triggered by the search button
+    */
+    @FXML
+    private void handleSearchClick(ActionEvent event) {
+        System.out.println("Search clicked!");
+        createScene(event, "searchPage.fxml");
+    }
+
     /**
      * Loads a new scene in switching the root from the main scene
      * @param eve ActionEvent is being triggered by the button being clicked
      * @param fileName fileName from the FXML is to be loaded
      */
     public void createScene(ActionEvent eve, String fileName) {
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fileName));
             Stage stage = Main.getPrimaryStage();
@@ -322,85 +352,48 @@ public class Controller /*implements Initializable*/{
     }
     
     // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
+
+    
+    //Contains the names from product.java (keyboards, keypads, and switches)
     /**
-     * The initialize method runs as a method to load UI elements just as the program is starting
+     * creates an array list from keyboards, keypads, and switches
      */
+    ArrayList<String> words = new ArrayList<>(Arrays.asList());
+    
+    //Clicks the button
+
+    /**
+     *when clicked, it clears and makes a new search results
+     *@param event when the button "search" is clicked*/
     @FXML
-    private void initialize() {
-    	// Adds a listener when entering
-    	searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-    		performSearch(newValue);
-    	});
+    void search(ActionEvent event) {
+        listView.getItems().clear();
+        listView.getItems().addAll(searchList(searchBar.getText(),words));
     }
     
     /**
-        Performs a product search while using a query string such as the product name or ID.
-        It displays the corresponding feedback and switches to AdminPage if found valid.
-
-        @param event ActionEvent is triggered by the login attempt.
-    */
-    private void performSearch(String query) {
-    	//Cleans old search results
-    	searchResultsBox.getChildren().clear();
-    	
-    	//Getting the search entered by the user
-    	query = searchField.getText().trim().toLowerCase();
-    	
-    	//If the search is empty, return
-    	if (query == null || query.trim().isEmpty()) {
-    		return;
-    	}
-    	
-    	//Get all products from products.java
-    	ArrayList<products.product> allProducts = myProds.getAllProducts();
-    	
-    	//List to hold matched products
-    	ArrayList<products.product> matches = new ArrayList<>();
-    	
-    	try {
-    		int idSearch = Integer.parseInt(query);
-    		for (products.product p : allProducts) {
-    			if (p.getprodID() == idSearch) {
-    				matches.add(p);
-    			}
-    		}
-    	} catch (NumberFormatException e) {
-    		//Not a number
-    		for (products.product p : allProducts) {
-    			if (p.getName().toLowerCase().contains(query)) {
-    				matches.add(p);
-    			}
-    		}
-    	}
-    	
-    	//Display results in the Vbox
-    	if (matches.isEmpty() ) {
-    		searchResultsBox.getChildren().add(new Label("No products found."));
-    	} else {
-    		for (products.product p : matches) {
-    			//Create label for each product
-    			Label resultLabel = new Label(p.getName());
-    			
-    			//Result clickable
-    			resultLabel.setOnMouseClicked(event -> {
-    				System.out.println("Clicked on: " + p.getName());
-    				});
-    			
-    			//Adding to Vbox
-    			searchResultsBox.getChildren().add(resultLabel);
-    		}
-    	}
-    	 /*
-         * If "red" is typed:
-         * 
-         * Found products:
-         * - red Mechanical 
-         * - cherry mx red 
-         * - cherry mx silent red (ID: 6, Price: $18.5)
-         * 
-         *  If "7" is typed:
-         *  FOund products:
-         *  - cherry mx brown (ID: 7, Price: $17)
-         */
+     * The initialize method runs as a method to load UI elements just as the program is starting
+     * @param URL program starting
+     * @param resourceBundle gathers the resources
+     */
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    	listView.getItems().addAll(words);
     }
+    
+    /**
+     * inputs and outputs are tracked and leads to the search bar
+     * @param searchWords to search the words from the bar
+     * @param listOfStrings used for using the input for the words in the listView
+     * @return returns the words to the ListView
+     * */
+    private List<String> searchList(String searchWords, List<String> listOfStrings) {
+    	
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+        
+        return listOfStrings.stream().filter(input -> { //input = test
+            return searchWordsArray.stream().allMatch(word -> //word = te
+                    input.toLowerCase().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
+
 }

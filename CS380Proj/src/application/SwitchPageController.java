@@ -46,52 +46,88 @@ import application.Controller;
  */
 
 public class SwitchPageController implements Initializable{
+    /**
+    * An instance of products called myProds 
+    */
     private products myProds;
-
+    /**
+     *Button use for the Account page
+     */
 	@FXML
     private Button btnAccount;
-
+	/**
+	 * Button use for the Cart page
+	 */
     @FXML
     private Button btnCart;
-
+    /**
+     * Button used for the KeyCaps page
+     */
     @FXML
     private Button btnKeyCaps;
-
+    /**
+     * Button use for Keyboards page
+     */
     @FXML
     private Button btnKeyboards;
-
+    /**
+     * Button use for Switches page
+     */
     @FXML
     private Button btnSwitches;
-
+    /**
+     * Button use for the chosen ProductCard page
+     */
     @FXML
     private VBox chosenProductCard;
-
+    /**
+     * A Grid Pane for the Switch Page
+     */
     @FXML
     private GridPane grid;
-
+    /**
+     * Button for the Logo that leads to the Homepage
+     */
     @FXML
     private Button logoBtn;
-
+    /**
+     * ScrollPane that is used for scroll
+     */
     @FXML
     private ScrollPane scroll;
-
+    /**
+     * Textfield that is used for the searchField
+     */
     @FXML
     private TextField searchField;
-
+    /**
+     * ImageView that is used for switching images in SwitchPage
+     */
     @FXML
     private ImageView switchImg;
-
+    
+    /**
+    * The label switchNameLabel is used for the item card on switchPage 
+    */
     @FXML
     private Label switchNameLabel;
-
+    
+    /**
+    * The label switchPriceLabel is used for the item card on switchPage 
+    */
     @FXML
     private Label switchPriceLabel;
 
     //@FXML 
     //private ImageView imageView;
-    
+    /**
+    * Container Image is used for imgSrc 
+    */
     private Image img;
     
+    /**
+    *  An instance of InterfaceListener, that is used to expect a click from the mouse
+    */
     private InterfaceListener clickListener;
 
 
@@ -164,8 +200,8 @@ public class SwitchPageController implements Initializable{
 
     /**
      *Intializes controller, loads products and dynamically adds product cards to grid UI
-     *@param location
-     *@param resources
+     *@param location, The location of the URL
+     *@param resources Used to access specific resources in the java language
      */
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");

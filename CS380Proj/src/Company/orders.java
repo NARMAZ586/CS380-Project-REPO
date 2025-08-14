@@ -18,14 +18,32 @@ package Company;
 public class orders {
 	
 	/**
-	 *order attributes
-	 */
+	* customer Id of class orders 
+	*/	
 	int customerID;
+	/**
+	* order Id of class orders 
+	*/
 	int orderID;
+	/**
+	* product Id of class orders 
+	*/
 	int productID;
+	/**
+	* price of class orders 
+	*/
 	double price;
+	/**
+	* shipping date of class orders 
+	*/
 	String shippingDate;
+	/**
+	* payment Method of class orders 
+	*/
 	String paymentMethod;
+	/**
+	* item name of the order
+	*/
 	String itemName;
 	
 	
@@ -33,14 +51,13 @@ public class orders {
 	/**
 	 *constructor for the orders class
 	 *
-	 *@param customerID, ID of customer placing order
-	 *@param orderID, ID of placed order
-	 *@param productID, ID of product ordered
-	 *@param price, price of products
-	 *@param ShippingDate, shipping date for order
-	 *@param paymentMethhod, method used for payment
-	 *@param itemName, name of the item ordered
-	 *
+	 *@param customerID ID of customer placing order
+	 *@param orderID ID of placed order
+	 *@param productID ID of product ordered
+	 *@param price price of products
+	 *@param ShippingDate shipping date for order
+	 *@param paymentMethhod method used for payment
+	 *@param itemName name of the item ordered
 	 */
 	public orders(int customerID, int orderID, int productID, double price, String shippingDate, String paymentMethod, String itemName) {
         this.customerID = customerID;
@@ -56,7 +73,7 @@ public class orders {
 
 	/**
 	 *gets customerID
-	 *@returns customerID
+	 *@return customerID 
 	 */
 	public int getCustomerID() {
 		return customerID;
@@ -65,7 +82,7 @@ public class orders {
 	
 	/**
 	 *gets orderID
-	 *@returns orderID
+	 *@return orderID
 	 */
 	public int getOrderID() {
 		return orderID;
@@ -74,7 +91,7 @@ public class orders {
 	
 	/**
 	 *gets productID
-	 *@returns productID
+	 *@return productID
 	 */
 	public int getProductID() {
 		return productID;
@@ -83,7 +100,7 @@ public class orders {
 	
 	/**
 	 *gets price
-	 *@returns price
+	 *@return price
 	 */
 	public double getPrice() {
 		return price;
@@ -92,7 +109,7 @@ public class orders {
 	
 	/**
 	 *gets shipping Date
-	 *@returns shippingDate
+	 *@return shippingDate
 	 */
 	public String getDate() {
 		return shippingDate;
@@ -101,7 +118,7 @@ public class orders {
 	
 	/**
 	 *gets payment Method
-	 *@returns paymentMethod
+	 *@return paymentMethod
 	 */
     public String getPayment() {
 		return paymentMethod;
@@ -110,7 +127,7 @@ public class orders {
     
 	/**
 	 *gets customerID
-	 *@returns customerID
+	 *@return customerID
 	 */
     public String getItem() {
 		return itemName;
@@ -121,7 +138,7 @@ public class orders {
 
 	/**
 	 *Sets customerID
-	 *@param customerID
+	 *@param customerID The customer ID of the order
 	 */
     public void setCustomerID(int customerID) {
     	this.customerID = customerID;

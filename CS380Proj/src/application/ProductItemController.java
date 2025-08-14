@@ -23,13 +23,20 @@ import javafx.scene.input.MouseEvent;
 
 public class ProductItemController {
 
-	//fx id for productItem, FXML linked
+	/**
+	 * fx priceLabel for productItem, FXML linked
+	 * 
+	 */
 	@FXML
     private Label priceLabel;
-
+	/**
+	 * fx productImg for product, FXML linked
+	 */
     @FXML
     private ImageView productImg;
-
+    /**
+     *FX Label for the product, FXML linked 
+     */
     @FXML
     private Label productLabel;
     
@@ -55,7 +62,7 @@ public class ProductItemController {
 
     /**
      * Sets the name of the product
-     *@param String name, name of the product to display
+     * @param name name of the product to display
      */
     public void setProductName(String name) {
         productLabel.setText(name);
@@ -80,7 +87,7 @@ public class ProductItemController {
 
     /**
      * Sets the price of the product
-     *@param String price, price of the product to display
+     * @param price of the product to display
      */
     public void setPrice(String price) {
         priceLabel.setText(price);
@@ -88,7 +95,7 @@ public class ProductItemController {
 
     /**
      * Sets the image of the product
-     *@param String image, image of the product to display
+     * @param String image, image of the product to display
      */
     public void setImage(javafx.scene.image.Image image) {
         productImg.setImage(image);

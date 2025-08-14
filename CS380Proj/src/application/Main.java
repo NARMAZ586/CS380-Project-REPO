@@ -27,6 +27,7 @@ public class Main extends Application {
     @Override
     /**
      * Method contains everything to load and get the GUI running
+     *param stage This parameter is used to load the stage in
      */
     public void start(Stage stage) {
         try {

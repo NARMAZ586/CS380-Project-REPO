@@ -7,11 +7,20 @@ import Company.products.product;
 * Date of code: 8/4/2025
 * @author Nery A., Marlon S.
 * Class inventory holds all the methods and also class inventories
+* Inventory by itself represents all products on the application, despite their type
 */
 public class inventory {
+	/**
+	 * 
+	 * @param args starts the Inventory java
+	 */
 	public static void main(String[] args) {
 		
 	}
+	/**
+	* Class inventories is used to describe a group of products
+	* For example the brand sells keyboards, switches, and keycaps, so each of these is considered their own inventory group 
+	*/
 	public static class inventories{
 		/**
 		* Name of the inventory
@@ -30,6 +39,9 @@ public class inventory {
 		*/
 		private String type;
 		
+		/**
+		* Default constructor for inventories 
+		*/
 		public inventories() {
 	}
 	
@@ -51,7 +63,7 @@ public class inventory {
 		//Getters
 		/**
 		 * Getter method for name
-		 * @return Will return the name attribute of the object inevntory
+		 * @return Will return the name attribute of the object inventory
 		 */
 		public String getName() {
 			return name;

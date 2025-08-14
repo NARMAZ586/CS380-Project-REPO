@@ -208,7 +208,7 @@ public class products {
 	
 	/**
 	 * Method returns the private attribute from class products: ArrayList<product> switches
-	 * @return
+	 * @return returns the switches in the array list
 	 */
 	private ArrayList<product> getSwitches(){
 		return switches;

@@ -20,10 +20,10 @@ public class CreditCardValidation {
 	
 	/**
 	 * This method combines all methods below to determine if all card inputs are valid and therefore the whole card is valid 
-	 * @param Card, user inputs their card number
-	 * @param CVC, this is for the security code of the card
-	 * @param expMonth, this for the expiration month
-	 * @param expYear, this is for the expiration year
+	 * @param Card user inputs their card number
+	 * @param CVC this is for the security code of the card
+	 * @param expMonth this for the expiration month
+	 * @param expYear this is for the expiration year
 	 * @return The return of this method is either true or false, so either the card is valid or invalid
 	 */
 	//card must be between length 14-16 and all characters must be numeric
@@ -49,7 +49,7 @@ public class CreditCardValidation {
 	/**
 	 * Takes the card number that was inputed into isValidCard, and uses the Luhn algorithm to determine if it is valid
 	 * @param num, this is the same parameter as Card from isValidCard
-	 * @return, The return is boolean, so it is either true or false
+	 * @return The return is boolean, so it is either true or false
 	 */
 	//Uses Luhn Algorithm to verify if Card number is valid
 	private static Boolean checkSum(String num) {
@@ -86,8 +86,8 @@ public class CreditCardValidation {
 	
 	/**
 	 * Takes input for CVC and checks if length is correct and if all characters are numeric
-	 * @param num, number of the CVC for the card
-	 * @return, only returns true or false since it is Boolean
+	 * @param num number of the CVC for the card
+	 * @return only returns true or false since it is Boolean
 	 */
 	//Checks length of CVC and if it's all numeric
 	private static Boolean isValidCVC(String num) {

@@ -18,7 +18,7 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="1453.0" style="-fx-background-color: D22030;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="logoBtn" mnemonicParsing="false" onAction="#handleLogoHomePage" style="-fx-background-color: D22030;" text="Geekcaps" textFill="WHITE">
+            <Button fx:id="logoBtn" mnemonicParsing="false" onAction="#handleLogoHomePage" style="-fx-background-color: D22030;" text="GeekCaps" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -59,7 +59,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="searchField" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
+            <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
                <HBox.margin>
                   <Insets left="60.0" top="5.0" />
                </HBox.margin>
@@ -123,9 +123,9 @@
             </AnchorPane>
          </right>
       </BorderPane>
-      <HBox layoutX="903.0" layoutY="72.0" prefHeight="139.0" prefWidth="150.0">
+      <HBox layoutX="974.0" layoutY="72.0" prefHeight="0.0" prefWidth="212.0">
          <children>
-            <VBox fx:id="searchResultsBox" prefHeight="102.0" prefWidth="150.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
+            <VBox fx:id="searchResultsBox" prefHeight="102.0" prefWidth="212.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
          </children>
       </HBox>
    </children>
