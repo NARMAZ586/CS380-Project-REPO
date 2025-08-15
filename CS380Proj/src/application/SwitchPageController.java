@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.ColumnConstraints;
 import Company.ShoppingCart;
+import Company.inventory;
 import Company.products;
 import Company.products.product;
 
@@ -49,7 +50,7 @@ public class SwitchPageController extends SceneController implements Initializab
     /**
     * An instance of products called myProds 
     */
-    private products myProds;
+    //private products myProds = new products();
     /**
      *Button use for the Account page
      */
@@ -154,9 +155,9 @@ public class SwitchPageController extends SceneController implements Initializab
      */
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");
-    	myProds = new products(); // initialize product data
+    	//myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
-        allProducts = myProds.getSwitches();
+        allProducts = inventory.getallSwitches();
 
         if (!allProducts.isEmpty()) {
             setChosenProduct(allProducts.get(0));

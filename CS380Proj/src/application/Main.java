@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import application.Controller;
 import javafx.application.Platform;
+import Company.inventory;
 
 /**
  * Name: Main
@@ -31,6 +32,8 @@ public class Main extends Application {
      */
     public void start(Stage stage) {
         try {
+        	inventory.InitialProducts();
+        	
             primaryStage = stage;
             Parent root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
             mainScene = new Scene(root);

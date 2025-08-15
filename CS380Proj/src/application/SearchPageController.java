@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import Company.products.product;
+import Company.inventory;
 import Company.products;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -32,7 +33,7 @@ public class SearchPageController extends SceneController{
     /**
     Reference to the product list in searching and filtering.
      */
-	private products myProds;
+	//private products myProds;
 	
 	/**
 	* Listview which is used in the search method
@@ -89,9 +90,12 @@ public class SearchPageController extends SceneController{
     @FXML private Button searchAddToCart;
     
 	public SearchPageController() {
-    	myProds = new products();
-    	myProds.attempt("this should theortically print");
-    	
+    	//myProds = new products();
+    	//myProds.attempt("this should theortically print");
+    	words = new ArrayList<>();
+    	for(products.product p : inventory.getAllProducts()) {
+    		words.add(p.getName());
+    	}
 	}
 
 	

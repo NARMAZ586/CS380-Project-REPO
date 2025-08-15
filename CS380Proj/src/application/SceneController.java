@@ -198,6 +198,7 @@ public class SceneController {
             ShoppingCart.addItem(selectedProduct, requestedQty);
             selectedProduct.setStockQuantity(stock - requestedQty);
             updateStockLabel(selectedProduct);
+            System.out.println("This is the stock of " + selectedProduct.getName() + ": " + stock);
             quantityField.setText(""); // clear after adding
         } else {
             System.out.println("Not enough stock available.");
