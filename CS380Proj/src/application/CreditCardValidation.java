@@ -14,7 +14,7 @@ public class CreditCardValidation {
 	 @param args
 	 */
 	public static void main(String[] args) {
-		Boolean result = isValidCard("4532566939013388", "123", "12", "2030");
+		Boolean result = isValidCard("", "", "", "");
 		System.out.println(result);
     }
 	
@@ -28,21 +28,21 @@ public class CreditCardValidation {
 	 */
 	//card must be between length 14-16 and all characters must be numeric
 	public static Boolean isValidCard(String Card, String CVC, String expMonth, String expYear) {
-		if (Card.length() < 14 || Card.length() > 16 || Card == null || !isNumeric(Card)) {
+		if (Card == null ||Card.length() < 14 || Card.length() > 16 || !isNumeric(Card)) {
 			return false;
 		}
 		if (CVC == null || !isNumeric(CVC)) {
 			return false;
 		}
-		if (expMonth == null || !isNumeric(expMonth) || expYear == null || !isNumeric(expYear)) {
+		if (expMonth == null || expYear == null || !isNumeric(expMonth) || !isNumeric(expYear)) {
 			return false;
 		}
-		System.out.println("all inputs for card info are numeric");
+		//System.out.println("all inputs for card info are numeric");
 		if (checkSum(Card) && isValidCVC(CVC) && isValidExpiration(expMonth, expYear)){
-			System.out.println("Passed all card tests: valid");
+			System.out.println("Passed all card verification tests: valid");
 			return true;
 		} else {
-			System.out.println("Did not pass all card tests: invalid");
+			System.out.println("Did not pass all card verification tests: invalid");
 			return false;
 		}
 	}
@@ -63,23 +63,23 @@ public class CreditCardValidation {
 				if (currNum > 9) {
 					currNum = currNum - 9;
 				}
-				System.out.println(currNum);
+				//System.out.println(currNum);
 				sum += currNum;
 			} else {
-				System.out.println(Character.getNumericValue(num.charAt(i)));
+				//System.out.println(Character.getNumericValue(num.charAt(i)));
 				sum += Character.getNumericValue(num.charAt(i));
 			}
 			//System.out.println(alternate);
 			alternate = !alternate;
 			
 		}
-		System.out.println(sum);
+		//System.out.println(sum);
 		int result = sum * 9;
 		if (result % 10 == 0) {
-			System.out.println("Valid card number");
+			//System.out.println("Valid card number");
 			return true;
 		} else {
-			System.out.println("Invalid card");
+			//System.out.println("Invalid card");
 			return false;
 		}
 	}
@@ -92,10 +92,10 @@ public class CreditCardValidation {
 	//Checks length of CVC and if it's all numeric
 	private static Boolean isValidCVC(String num) {
 		if (!isNumeric(num) || num.length() < 3 || num.length() > 4) {
-			System.out.println("invalid CVC");
+			//System.out.println("invalid CVC");
 			return false;
 		}
-		System.out.println("valid CVC");
+		//System.out.println("valid CVC");
 		return true;	
 	}
 	/**
@@ -111,10 +111,10 @@ public class CreditCardValidation {
 		int month = Integer.parseInt(m);
 		int year = Integer.parseInt(y);
 		if (month < 1 || month > 12 || year < 2025 || year > 2030) {
-			System.out.println("invalid month or year");
+			//System.out.println("invalid month or year");
 			return false;
 		}
-		System.out.println("valid month and year");
+		//System.out.println("valid month and year");
 		return true;
 	}
 	/**

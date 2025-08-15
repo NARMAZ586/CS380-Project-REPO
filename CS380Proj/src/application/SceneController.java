@@ -9,9 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import javafx.scene.control.Button;
+
 public class SceneController {
-	
-	
 	/**
     Handles the logo button clicked from the navigation bar
     Navigates the user back to the homepage

@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -22,10 +24,13 @@ import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import java.util.List;
+import java.util.ArrayList;
 import Company.products.product;
 import Company.products;
 import Company.customer;
+import application.CreditCardValidation;
+
 
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -69,6 +74,85 @@ public class CheckOutController extends SceneController/*implements Initializabl
     @FXML private GridPane grid;
     
     /**
+     * Button that runs the credit card verification program
+     */
+    @FXML private Button btnPayNow;
+    
+    /**
+     * For entering customer first name
+     */
+    @FXML private TextField customerFirstName;
+    
+    /**
+     * For entering customer last name
+     */
+    @FXML private TextField customerLastName;
+    
+    /**
+     * For entering customer email
+     */
+    @FXML private TextField customerEmail;
+    
+    /**
+     * For entering customer phone number
+     */
+    @FXML private TextField customerPhoneNum;
+    
+    /**
+     * For entering customer street address
+     */
+    @FXML private TextField customerAddress;
+    
+    /**
+     * For entering customer card number
+     */
+    @FXML private TextField cardNumber;
+    
+    /**
+     * For entering customer card CVC
+     */
+    @FXML private TextField cardCVC;
+    
+    /**
+     * For entering customer card expiration month
+     */
+    @FXML private TextField cardExpMonth;
+    
+    /**
+     * For entering customer card expiration year
+     */
+    @FXML private TextField cardExpYear;
+    
+    /**
+     * Label outputs if payment process was a success or not
+     */
+    @FXML private Label paymentProcessResult;
+    
+    /**
+     * Button is if customer wants to return to home page during the payment process
+     */
+    @FXML private Button btnBackHome;
+    
+    /**
+     * The free shipping method available to user
+     */
+    @FXML private RadioButton optionFree;
+    
+    /**
+     * The standard shipping method available to user
+     */
+    @FXML private RadioButton optionStandard;
+    
+    /**
+     * The express shipping method available to user
+     */
+    @FXML private RadioButton optionExpress;
+    
+    /**
+     * The group name for the radio buttons
+     */
+    @FXML private ToggleGroup shippingOptions;
+    /**
         Managing the main application window
     */
     private Stage stage;
@@ -87,147 +171,86 @@ public class CheckOutController extends SceneController/*implements Initializabl
     private products myProds;
     
     /**
+     * An object of the CreditCardValidation class in order to use isValidCard method
+     */
+    private CreditCardValidation validate;
+    
+    /**
+     * This list holds all of the customers that will make a purchase
+     */
+    private List<customer> customers = new ArrayList<>();
+    
+    /**
+     * Integer for the customer ID
+     */
+    private int customerCount = 0;
+    
+    /**
      * Constructor for the CheckOutController class
      */
-    public CheckOutController() {
-    	myProds = new products();
-    	myProds.attempt("this should theortically print");
-    }
-//    
-//    /**
-//        Handles the logo button clicked from the navigation bar
-//        Navigates the user back to the homepage
-//        @param event ActionEvent triggered by the logo button
-//    */
-//    @FXML
-//    private void handleLogoHomePage(ActionEvent event) {
-//    	System.out.println("Logo clicked!");
-//        createScene(event, "homepage.fxml");
-//    }
-//    /**
-//        Handles the cart button and switches to the shopping cart page.
-//        @param event ActionEvent is triggered by the cart button.
-//    */
-//    @FXML
-//    private void handleCartClick(ActionEvent event) {
-//        System.out.println("Cart clicked!");
-//        createScene(event, "cartPage.fxml");
-//    }
-//
-//    /**
-//        Handle click to the account button
-//        @param event ActionEent the button that is clicked by the account button.
-//    */
-//    @FXML
-//    private void handleAccountClick(ActionEvent event) {
-//        System.out.println("Account clicked!");
-//        createScene(event, "LoginPage.fxml");
-//        
-//    }
-//    /**
-//        Handles click to return to homepage
-//        @param event ActionEvent is the button that is clicked by the Homepage button
-//    */
-//    @FXML
-//    private void handleBackToHomepageClick(ActionEvent event) {
-//        System.out.println("Back!");
-//        createScene(event, "Homepage.fxml");
-//        
-//    }
-//    
-//    /**
-//        Leads the user to the Keyboards page
-//        @param event is triggered by the keybord button
-//    */
-//    @FXML
-//    private void handleKeyboardsClick(ActionEvent event) {
-//        System.out.println("Keyboards clicked!");
-//        createScene(event, "keyboardPage.fxml");
-//    }
-//    /**
-//        Leads the user to the Keycaps page
-//        @param event is triggered by the keykaps button
-//    */
-//    @FXML
-//    private void handleKeycapsClick(ActionEvent event) {
-//        System.out.println("Keycaps clicked!");
-//        createScene(event, "keycaps.fxml");
-//    }
-//    /**
-//        Leads the user to the Switches page
-//        @param event is triggered by the switches button        
-//    */
-//    @FXML
-//    private void handleSwitchesClick(ActionEvent event) {
-//        System.out.println("Switches clicked!"); 
-//        createScene(event, "switchPage.fxml");
-//    }
-//
-//    /**
-//        Leads the user to the search page
-//        @param event is triggered by the search button
-//    */
-//    @FXML
-//    private void handleSearchClick(ActionEvent event) {
-//        System.out.println("Search clicked!");
-//        createScene(event, "searchPage.fxml");
-//    }
-//    /**
-//     * Leads the user to the checkout page
-//     * @param event Triggered when the user clicks checkout button on the shopping cart page
-//     */
-//    @FXML
-//    private void handleCheckOutClick(ActionEvent event) {
-//    	System.out.println("Checkout clicked");
-//    	createScene(event, "Checkout.fxml");
-//    }
-//    
-//    /**
-//     * Loads a new scene in switching the root from the main scene
-//     * @param eve ActionEvent is being triggered by the button being clicked
-//     * @param fileName fileName from the FXML is to be loaded
-//     */
-//    public void createScene(ActionEvent eve, String fileName) {
-//
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getResource(fileName));
-//            Stage stage = Main.getPrimaryStage();
-//            Scene scene = Main.getMainScene();
-//            if (root instanceof Region) {
-//                Region regionR = (Region) root;
-//                regionR.prefWidthProperty().bind(stage.widthProperty());
-//                regionR.prefHeightProperty().bind(stage.heightProperty());
-//            }
-//            scene.setRoot(root);
-//            stage.setFullScreen(true);
-//            stage.setResizable(false);
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//   /**
-//        A setter that sets the stage 
-//        @param stage sets the stage
-//   */
-//    public void setStage(Stage stage) {
-//        this.stage = stage;
-//    }
-//    
-//    /**
-//     * Void method that is meant to switch the scene
-//     */
-//    public void switchScene() {
-//    	stage.setScene(new Scene(new Label("New Scene")));
-//    }
-//    
+    public CheckOutController() {}
+    
     /**
-     * The initialize method runs as a method to load UI elements just as the program is starting
-     * @param URL program starting
-     * @param resourceBundle gathers the resources
+     * Method that updates the customer ID
      */
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    	
+    private int update() {
+    	return ++customerCount;
     }
+    
+    /**
+     * Returns the string of the shipping method selected
+     * @return Returns a string 
+     */
+    private String getShipping() {
+    	String shippingMethod;
+    	RadioButton picked = (RadioButton) shippingOptions.getSelectedToggle();
+    	if (picked != null) {
+    		shippingMethod = picked.getText();
+    	} else {
+    		shippingMethod = null;
+    	}
+    	return shippingMethod;
+    }
+    
+    /**
+     * Triggered when btnPayNow is clicked, it verified if all fields on this page are valid
+     * @param event Waits and expects a button click on btnPayNow
+     */
+    public void VerifyPaymentProcess(ActionEvent event) {
+    	String shipping = getShipping();
+    	if(!customerFirstName.getText().isBlank() && !customerLastName.getText().isBlank() && !customerEmail.getText().isBlank() && !customerPhoneNum.getText().isBlank() && !customerAddress.getText().isBlank()) {
+    		if (getShipping() != null) {
+    			if(validate.isValidCard(cardNumber.getText().toString(), cardCVC.getText().toString(), cardExpMonth.getText().toString(), cardExpYear.getText().toString())) {
+//            		System.out.println("Card Number: " + cardNumber.getText().toString());
+//            		System.out.println("Card CVC: " + cardCVC.getText().toString());
+//            		System.out.println("Card Expiration Month: " + cardExpMonth.getText().toString());
+//            		System.out.println("Card Expiration Year: " + cardExpYear.getText().toString());
+            		customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
+            		System.out.println("Shipping Method: " + shipping);
+            		System.out.println("Payment process went through");
+            		paymentProcessResult.setText("Payment has been processed");
+            		createScene(event, "Orders.fxml");
+            	} else {
+            		paymentProcessResult.setText("Card information is invalid");
+            		System.out.println("Invalid Card Information Entered");
+            	}
+    		} else {
+    			paymentProcessResult.setText("No shipping method selected");
+    			System.out.println("No shiping option selected");
+    		}
+    	} else {
+    		paymentProcessResult.setText("Fill in all fields");
+    		System.out.println("Info is blank");
+    	}
+    }
+    
+//    /**
+//     * The initialize method runs as a method to load UI elements just as the program is starting
+//     * @param URL program starting
+//     * @param resourceBundle gathers the resources
+//     */
+//    public void initialize(URL url, ResourceBundle resourceBundle) {
+//    	
+//    }
 }
  
