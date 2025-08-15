@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import Company.products.product;
+import Company.inventory;
 import Company.products;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -160,17 +161,15 @@ public class Controller extends SceneController {
     /**
         Reference to the product list in searching and filtering.
     */
-    private products myProds;
-    
+    //private products myProds = new products();
     /**
      * Constructor for the Controller class
      */
     public Controller() {
-    	myProds = new products();
-    	myProds.attempt("this should theortically print");
+    	//myProds = new products();
     	//look into this FIX
     	words = new ArrayList<>();
-    	for(products.product p : myProds.getAllProducts()) {
+    	for(products.product p : inventory.getAllProducts()) {
     		words.add(p.getName());
     	}
     }
@@ -247,7 +246,7 @@ public class Controller extends SceneController {
     	listView.setVisible(false);
     	
     	words.clear();
-    	for (products.product p : myProds.getAllProducts()) {
+    	for (products.product p : inventory.getAllProducts()) {
     		words.add(p.getName());
     	}
     	

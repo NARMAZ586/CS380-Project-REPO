@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import Company.inventory;
 import Company.products;
 import Company.products.product;
 import javafx.fxml.FXML;
@@ -24,7 +25,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 public class KeycapPageController extends SceneController implements Initializable{
-    private products myProds;
+    //private products myProds = new products();
 	
 	@FXML
     private Button btnAccount;
@@ -85,9 +86,9 @@ public class KeycapPageController extends SceneController implements Initializab
 
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");
-    	myProds = new products(); // initialize product data
+    	//myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
-        allProducts = myProds.getKeycaps();
+        allProducts = inventory.getallKeycaps();
 
         if (!allProducts.isEmpty()) {
             setChosenProduct(allProducts.get(0));

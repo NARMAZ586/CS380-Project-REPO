@@ -38,27 +38,27 @@ public class products {
 	 * It will then fill the array list with objects of product 
 	 */
 	public products() {
-		keyboards = new ArrayList<>();
-		keyboards.add(new product("red Mechanical", 1, 150.0, "keyboard", "Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps", "redMech.png", 10));
-		keyboards.add(new product("retroMechanical", 2, 200.00, "keyboard", "A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green", "retroMech.jpg", 5));
-		keyboards.add(new product("blueMechanical", 3, 150.00, "keyboard", "Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable", "blueMech.jpg", 8));
-		keyboards.add(new product("CustomeBuild", 4, 250.00, "keyboard", "This is a fully custom build. This keyboard option gives full customizable options to the buyer", "owlKeyboard.jpg", 3));
-
-		switches = new ArrayList<>();
-		switches.add(new product("Eva-0", 5, 15.00, "switch", "These switches are for the user that wants a more tactile or stealthy sound to their keyboard", "evaSwitch.jpg", 100));
-		switches.add(new product("BananaSplit", 6, 18.50, "switch", "These switches provide an even more tactile sound than the original cherry mx red switches", "pinkSwitch.png", 75));
-		switches.add(new product("cherry mx brown", 7, 17.00, "switch", "A tactile key switch which offers a balance of feedback and noise", "cherrymxbrown.jpg", 60));
-		switches.add(new product("Novelkey Creams", 8, 20.00, "switch", "Fast linear designed for quick response times", "novelkey-creams-switches-596114.jpg", 90));
-
-		keycaps = new ArrayList<>();
-		keycaps.add(new product("Retro", 9, 100.0, "keycap", "These neon retro themed keycaps come in multiple shade of an assortment of colors", "retro.png", 25));
-		keycaps.add(new product("Cherry Blossom", 10, 120.00, "keycap", "Ergonomic with angled tops and varying heights across rows, suitable for gaming and typing", "cherryBloss.png", 15));
-		keycaps.add(new product("Samurai", 11, 110.00, "keycap", "Common ergonomic type, taller and more angled than Cherry, used in most pre-built keyboards", "samurai.png", 12));
-		keycaps.add(new product("Purple", 12, 135.00, "keycap", "Tall, rounded, and ergonomic with indented tops, offering comfort for extended typing sessions", "purple.png", 20));
-		keycaps.add(new product("Charmer", 13, 90.00, "keycap", "Non-ergonomic with a low-profile, flat shape, providing versatility for various keyboard setups", "charmer.png", 30));
-		keycaps.add(new product("Latin", 14, 105.00, "keycap", "Non-ergonomic with rounded shapes and smaller tops, giving keyboards a cozy, bubble-like appearance", "latin.png", 10));
-		keycaps.add(new product("Katana", 15, 4.50, "keycap", "Offers fully custom keycaps for any size of keyboard, each keycap is $4.50", "katana.png", 1000));
-		writeCSV("products.csv");
+//		keyboards = new ArrayList<>();
+//		keyboards.add(new product("red Mechanical", 1, 150.0, "keyboard", "Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps", "redMech.png", 10));
+//		keyboards.add(new product("retroMechanical", 2, 200.00, "keyboard", "A retro themed mechanical keyboard that comes in 5 different shades of blue, purple, and neon green", "retroMech.jpg", 5));
+//		keyboards.add(new product("blueMechanical", 3, 150.00, "keyboard", "Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable", "blueMech.jpg", 8));
+//		keyboards.add(new product("CustomeBuild", 4, 250.00, "keyboard", "This is a fully custom build. This keyboard option gives full customizable options to the buyer", "owlKeyboard.jpg", 3));
+//
+//		switches = new ArrayList<>();
+//		switches.add(new product("Eva-0", 5, 15.00, "switch", "These switches are for the user that wants a more tactile or stealthy sound to their keyboard", "evaSwitch.jpg", 100));
+//		switches.add(new product("BananaSplit", 6, 18.50, "switch", "These switches provide an even more tactile sound than the original cherry mx red switches", "pinkSwitch.png", 75));
+//		switches.add(new product("cherry mx brown", 7, 17.00, "switch", "A tactile key switch which offers a balance of feedback and noise", "cherrymxbrown.jpg", 60));
+//		switches.add(new product("Novelkey Creams", 8, 20.00, "switch", "Fast linear designed for quick response times", "novelkey-creams-switches-596114.jpg", 90));
+//
+//		keycaps = new ArrayList<>();
+//		keycaps.add(new product("Retro", 9, 100.0, "keycap", "These neon retro themed keycaps come in multiple shade of an assortment of colors", "retro.png", 25));
+//		keycaps.add(new product("Cherry Blossom", 10, 120.00, "keycap", "Ergonomic with angled tops and varying heights across rows, suitable for gaming and typing", "cherryBloss.png", 15));
+//		keycaps.add(new product("Samurai", 11, 110.00, "keycap", "Common ergonomic type, taller and more angled than Cherry, used in most pre-built keyboards", "samurai.png", 12));
+//		keycaps.add(new product("Purple", 12, 135.00, "keycap", "Tall, rounded, and ergonomic with indented tops, offering comfort for extended typing sessions", "purple.png", 20));
+//		keycaps.add(new product("Charmer", 13, 90.00, "keycap", "Non-ergonomic with a low-profile, flat shape, providing versatility for various keyboard setups", "charmer.png", 30));
+//		keycaps.add(new product("Latin", 14, 105.00, "keycap", "Non-ergonomic with rounded shapes and smaller tops, giving keyboards a cozy, bubble-like appearance", "latin.png", 10));
+//		keycaps.add(new product("Katana", 15, 4.50, "keycap", "Offers fully custom keycaps for any size of keyboard, each keycap is $4.50", "katana.png", 1000));
+//		writeCSV("products.csv");
 	}
 	
 	/**

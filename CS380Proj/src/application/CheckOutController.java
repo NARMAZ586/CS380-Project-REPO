@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import Company.products.product;
 import Company.products;
 import Company.customer;
+import Company.inventory;
 import application.CreditCardValidation;
 
 
@@ -168,7 +169,7 @@ public class CheckOutController extends SceneController/*implements Initializabl
     /**
         Reference to the product list in searching and filtering.
     */
-    private products myProds;
+    //private products myProds;
     
     /**
      * An object of the CreditCardValidation class in order to use isValidCard method
@@ -218,6 +219,10 @@ public class CheckOutController extends SceneController/*implements Initializabl
      */
     public void VerifyPaymentProcess(ActionEvent event) {
     	String shipping = getShipping();
+    	System.out.println(inventory.getAllProducts());
+    	System.out.println(inventory.getAllKeyboards());
+    	System.out.println(inventory.getallKeycaps());
+    	System.out.println(inventory.getallSwitches());
     	if(!customerFirstName.getText().isBlank() && !customerLastName.getText().isBlank() && !customerEmail.getText().isBlank() && !customerPhoneNum.getText().isBlank() && !customerAddress.getText().isBlank()) {
     		if (getShipping() != null) {
     			if(validate.isValidCard(cardNumber.getText().toString(), cardCVC.getText().toString(), cardExpMonth.getText().toString(), cardExpYear.getText().toString())) {
