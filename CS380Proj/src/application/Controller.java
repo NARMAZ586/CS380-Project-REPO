@@ -244,7 +244,23 @@ public class Controller extends SceneController {
      * @param resourceBundle gathers the resources
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    	listView.getItems().addAll(words);
+    	listView.setVisible(false);
+    	
+    	words.clear();
+    	for (products.product p : myProds.getAllProducts()) {
+    		words.add(p.getName());
+    	}
+    	
+    	searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+    		if (newValue.isEmpty()) {
+    			listView.getItems().clear();
+    			listView.setVisible(false);
+    		} else {
+    			List<String> results = searchList(newValue, words);
+    			listView.getItems().setAll(results);
+    			listView.setVisible(!results.isEmpty());
+    		}
+    	});
     }
     
     /**

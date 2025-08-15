@@ -235,5 +235,4 @@ public class products {
 			return imgSrc;
 		}
 	}
-
 }

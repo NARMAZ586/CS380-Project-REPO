@@ -51,12 +51,18 @@
                </HBox.margin>
                <font>
                   <Font name="System Bold" size="20.0" />
-               </font></Button>
-            <TextField fx:id="searchField" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
-               <HBox.margin>
-                  <Insets left="60.0" top="5.0" />
-               </HBox.margin>
-            </TextField>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#handleSearchClick" prefHeight="43.0" prefWidth="110.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="SEARCH" translateY="40.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
             <Button fx:id="btnCart" mnemonicParsing="false" onAction="#handleCartClick" style="-fx-background-color: D22030;" translateY="40.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" translateY="-13.0">

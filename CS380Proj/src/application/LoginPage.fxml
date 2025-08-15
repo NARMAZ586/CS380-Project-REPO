@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
@@ -59,11 +58,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="212.0" promptText="Search..." translateY="40.0">
-               <HBox.margin>
-                  <Insets left="60.0" top="5.0" />
-               </HBox.margin>
-            </TextField>
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#handleSearchClick" prefHeight="43.0" prefWidth="110.0" style="-fx-background-color: D22030;" styleClass="nav-button" text="SEARCH" translateY="40.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
             <Button fx:id="btnCart" mnemonicParsing="false" onAction="#handleCartClick" style="-fx-background-color: D22030;" translateY="40.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" translateY="-13.0">
@@ -123,10 +125,6 @@
             </AnchorPane>
          </right>
       </BorderPane>
-      <HBox layoutX="974.0" layoutY="72.0" prefHeight="0.0" prefWidth="212.0">
-         <children>
-            <VBox fx:id="searchResultsBox" prefHeight="102.0" prefWidth="212.0" spacing="5.0" style="-fx-background-color: white; -fx-padding: 5; -fx-border-color: black;" />
-         </children>
-      </HBox>
+      <HBox layoutX="974.0" layoutY="72.0" prefHeight="0.0" prefWidth="212.0" />
    </children>
 </AnchorPane>
