@@ -65,6 +65,12 @@ public class KeycapPageController extends SceneController implements Initializab
     private Image img;
     
     private InterfaceListener clickListener;
+    
+    @FXML
+    private Label productStockLabel;
+    
+    @FXML
+    private Button addToCartBtn;
 
     
     private void setChosenProduct(products.product prod) {
@@ -73,6 +79,8 @@ public class KeycapPageController extends SceneController implements Initializab
     	img = new Image(getClass().getResourceAsStream("/img/" + prod.getImgSrc()));
     	switchImg.setImage(img);
     	chosenProductCard.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
+    	selectedProduct = prod; //saves selected product for add cart
+    	updateStockLabel(prod);
     }
 
     public void initialize(URL location, ResourceBundle resources) {

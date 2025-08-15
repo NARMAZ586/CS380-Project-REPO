@@ -1,5 +1,6 @@
 package application;
 
+import Company.ShoppingCart;
 import Company.products;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

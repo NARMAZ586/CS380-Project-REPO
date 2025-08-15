@@ -1,11 +1,16 @@
 package application;
 import java.io.IOException;
 
+import Company.ShoppingCart;
+import Company.products.product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -93,6 +98,8 @@ public class SceneController {
         createScene(event, "switchPage.fxml");
     }
     
+    
+    
     /**
      * Loads a new scene in switching the root from the main scene
      * @param eve ActionEvent is being triggered by the button being clicked
@@ -115,6 +122,81 @@ public class SceneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    
+    /**
+     * Variable used to store selected product from grid, and used to add to cart
+     */
+    protected product selectedProduct;
+    
+    protected int quantity;
+    
+    @FXML
+    protected Button btnAddToCart;
+    
+    @FXML
+    protected Label productStockLabel;
+    
+    /**
+     * Updates the label based on the stock of the given product.
+     */
+    protected void updateStockLabel(product prod) {
+        if (prod.getStockQuantity() > 0) {
+            productStockLabel.setText("In Stock: " + prod.getStockQuantity());
+            if (btnAddToCart != null) btnAddToCart.setDisable(false);
+        } else {
+            productStockLabel.setText("Sold Out");
+            if (btnAddToCart != null) btnAddToCart.setDisable(true);
+        }
+    }
+    
+    @FXML
+    protected TextField quantityField;
+    
+    /**
+     * Called when "Add to Cart" button is pressed.
+     */
+    @FXML
+    protected void handleAddToCart() {
+    	if (selectedProduct == null) return;
+
+        int requestedQty = 1; // default
+        try {
+            if (quantityField != null && !quantityField.getText().isEmpty()) {
+                requestedQty = Integer.parseInt(quantityField.getText());
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid quantity entered.");
+            quantityField.setText("1");
+            return;
+        }
+
+        if (requestedQty <= 0) {
+            System.out.println("Quantity must be at least 1.");
+            quantityField.setText("1");
+            return;
+        }
+
+        int stock = selectedProduct.getStockQuantity();
+        if (stock >= requestedQty) {
+            ShoppingCart.addItem(selectedProduct, requestedQty);
+            selectedProduct.setStockQuantity(stock - requestedQty);
+            updateStockLabel(selectedProduct);
+            quantityField.setText(""); // clear after adding
+        } else {
+            System.out.println("Not enough stock available.");
+            quantityField.setText(String.valueOf(stock));
+        }
+    }
+
+    public void setSelectedProduct(product p) {
+        this.selectedProduct = p;
+    }
+    
+    //not used but useful for getting product info that has been selected
+    public product getSelectedProduct() {
+        return this.selectedProduct;
     }
 
     

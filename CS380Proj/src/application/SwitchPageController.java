@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.ColumnConstraints;
-
+import Company.ShoppingCart;
 import Company.products;
 import Company.products.product;
 
@@ -124,6 +124,13 @@ public class SwitchPageController extends SceneController implements Initializab
     */
     private InterfaceListener clickListener;
     
+    @FXML
+    private Label productStockLabel;
+    
+    @FXML
+    private Button addToCartBtn;
+    
+    
     /**
      * Method will display the image of the clicked product within the item card
      * @param prod Just an instance of a product from the products class
@@ -132,10 +139,11 @@ public class SwitchPageController extends SceneController implements Initializab
     	
     	switchNameLabel.setText(prod.getName());
     	switchPriceLabel.setText("$" + prod.getPrice());
-    	//System.out.println(getClass().getResource("/application/img/" + prod.getImgSrc()));
     	img = new Image(getClass().getResourceAsStream("/img/" + prod.getImgSrc()));
     	switchImg.setImage(img);
     	chosenProductCard.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
+    	selectedProduct = prod; //saves selected product for add cart
+    	updateStockLabel(prod);
     }
 
 
