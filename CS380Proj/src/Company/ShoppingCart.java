@@ -9,6 +9,8 @@ public class ShoppingCart {
     private static Map<product, Integer> cartItems = new HashMap<>();
     private static double currentTotalPrice = 0.0;
 
+    
+    //Matt- modified this function to prevent adding to cart if not enough stock
     public static void addItem(product p, int quantity) {
     	
     	if(quantity <= 0) {

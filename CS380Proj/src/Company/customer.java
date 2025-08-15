@@ -30,7 +30,7 @@ public class customer {
 		Customers unique ID
 	*/
 	private int ID;
-	
+
 	
 	// --- Default constructor ---
 	/**
@@ -52,7 +52,7 @@ public class customer {
 	 * @param address customer's address
 	 * @param ID customer's ID
 	 */
-	public customer(String firstName, String lastName, String email, String username, String phoneNumber, String address, int ID) {
+	public customer(String firstName, String lastName, String email, String phoneNumber, String address, int ID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -159,8 +159,6 @@ public class customer {
 		public void setID(int ID) {
 			this.ID = ID;
 		}
-		
-		
 		
 		@Override
 		/**

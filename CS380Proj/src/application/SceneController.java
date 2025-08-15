@@ -98,6 +98,15 @@ public class SceneController {
         createScene(event, "switchPage.fxml");
     }
     
+    /**
+    
+    Leads the user to the checkout page
+    @param event Triggered when the user clicks checkout button on the shopping cart page*/@FXML
+    protected void handleCheckOutClick(ActionEvent event) {
+    	System.out.println("Checkout clicked");
+        createScene(event, "Checkout.fxml");
+    }
+    
     
     
     /**
@@ -132,6 +141,9 @@ public class SceneController {
     
     protected int quantity;
     
+    /**
+     * button for product page add to cart.
+     */
     @FXML
     protected Button btnAddToCart;
     
@@ -139,7 +151,7 @@ public class SceneController {
     protected Label productStockLabel;
     
     /**
-     * Updates the label based on the stock of the given product.
+     * Updates the label based on the stock of the selected product card.
      */
     protected void updateStockLabel(product prod) {
         if (prod.getStockQuantity() > 0) {
@@ -151,6 +163,9 @@ public class SceneController {
         }
     }
     
+    /**
+     * textfield for quantityfield in product page vbox display
+     */
     @FXML
     protected TextField quantityField;
     
@@ -189,7 +204,8 @@ public class SceneController {
             quantityField.setText(String.valueOf(stock));
         }
     }
-
+    
+    //Sets selected product in product selection page
     public void setSelectedProduct(product p) {
         this.selectedProduct = p;
     }

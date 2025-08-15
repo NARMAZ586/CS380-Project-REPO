@@ -250,5 +250,4 @@ public class products {
 			this.stockQuantity = stockQuantity;
 		}
 	}
-
 }
