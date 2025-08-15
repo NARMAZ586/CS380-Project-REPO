@@ -218,7 +218,7 @@ public class Controller extends SceneController {
 //    	stage.setScene(new Scene(new Label("New Scene")));
 //    }
     
-    // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
+    // ----- CONNECTED TO PRODUCTS.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
 
     
     //Contains the names from product.java (keyboards, keypads, and switches)
@@ -227,7 +227,6 @@ public class Controller extends SceneController {
      */
     ArrayList<String> words = new ArrayList<>(Arrays.asList());
     
-    //Clicks the button
 
     /**
      *when clicked, it clears and makes a new search results
@@ -244,23 +243,7 @@ public class Controller extends SceneController {
      * @param resourceBundle gathers the resources
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    	listView.setVisible(false);
-    	
-    	words.clear();
-    	for (products.product p : myProds.getAllProducts()) {
-    		words.add(p.getName());
-    	}
-    	
-    	searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-    		if (newValue.isEmpty()) {
-    			listView.getItems().clear();
-    			listView.setVisible(false);
-    		} else {
-    			List<String> results = searchList(newValue, words);
-    			listView.getItems().setAll(results);
-    			listView.setVisible(!results.isEmpty());
-    		}
-    	});
+    	listView.getItems().addAll(words);
     }
     
     /**
