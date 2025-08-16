@@ -19,8 +19,11 @@ public class ShoppingCart {
     	
     	int currentQuantity = cartItems.getOrDefault(p, 0);
     	int stock = p.getStockQuantity();
+//    	System.out.println("\nThis is my test for the stock: " + stock);
+//    	System.out.println("\nThis is my test for the currentquantity: " + currentQuantity);
+//    	System.out.println("\nThis is my test for the quantity: " + quantity);
     	
-    	if (currentQuantity + quantity > stock) {
+    	if (quantity > stock) {
             System.out.println("Cannot add more than stock. Only " + stock + " available.");
             return;
         }

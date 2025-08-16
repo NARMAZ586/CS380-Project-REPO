@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import Company.ShoppingCart;
 import Company.products.product;
+import application.shoppingCartController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 
 public class SceneController {
 	
-	
+	@FXML private Label shoppingCartResultLabel;
 	/**
     Handles the logo button clicked from the navigation bar
     Navigates the user back to the homepage
@@ -104,7 +105,15 @@ public class SceneController {
     @param event Triggered when the user clicks checkout button on the shopping cart page*/@FXML
     protected void handleCheckOutClick(ActionEvent event) {
     	System.out.println("Checkout clicked");
-        createScene(event, "Checkout.fxml");
+    	if (ShoppingCart.getCartItems().isEmpty()) {
+    		shoppingCartResultLabel.setText("Your cart is empty");
+    		System.out.println("Your cart is empty");
+    	} else if(shoppingCartController.getShippingMethod() == null) {
+    		shoppingCartResultLabel.setText("Select a shipping method");
+    		System.out.println("Please select a shipping method first");
+    	} else {
+    		createScene(event, "Checkout.fxml");
+    	}
     }
     
     

@@ -243,6 +243,7 @@ public class Controller extends SceneController {
      * @param resourceBundle gathers the resources
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    	//
     	listView.setVisible(false);
     	
     	words.clear();
