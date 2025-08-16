@@ -158,20 +158,11 @@ public class Controller extends SceneController {
     */
     //private Parent root;
     
-    /**
-        Reference to the product list in searching and filtering.
-    */
-    //private products myProds = new products();
+
     /**
      * Constructor for the Controller class
      */
     public Controller() {
-    	//myProds = new products();
-    	//look into this FIX
-    	words = new ArrayList<>();
-    	for(products.product p : inventory.getAllProducts()) {
-    		words.add(p.getName());
-    	}
     }
     
     /**
@@ -216,67 +207,15 @@ public class Controller extends SceneController {
 //    public void switchScene() {
 //    	stage.setScene(new Scene(new Label("New Scene")));
 //    }
-    
-    // ----- CONNECTED TO CUSTOMER.JAVA FOR SEARCH FUNCTION ON THE TOP RIGHT -----
 
-    
-    //Contains the names from product.java (keyboards, keypads, and switches)
-    /**
-     * creates an array list from keyboards, keypads, and switches
-     */
-    ArrayList<String> words = new ArrayList<>(Arrays.asList());
-    
-    //Clicks the button
-
-    /**
-     *when clicked, it clears and makes a new search results
-     *@param event when the button "search" is clicked*/
-    @FXML
-    void search(ActionEvent event) {
-        listView.getItems().clear();
-        listView.getItems().addAll(searchList(searchBar.getText(),words));
-    }
-    
     /**
      * The initialize method runs as a method to load UI elements just as the program is starting
      * @param URL program starting
      * @param resourceBundle gathers the resources
      */
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    	//
-    	listView.setVisible(false);
-    	
-    	words.clear();
-    	for (products.product p : inventory.getAllProducts()) {
-    		words.add(p.getName());
-    	}
-    	
-    	searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-    		if (newValue.isEmpty()) {
-    			listView.getItems().clear();
-    			listView.setVisible(false);
-    		} else {
-    			List<String> results = searchList(newValue, words);
-    			listView.getItems().setAll(results);
-    			listView.setVisible(!results.isEmpty());
-    		}
-    	});
-    }
-    
-    /**
-     * inputs and outputs are tracked and leads to the search bar
-     * @param searchWords to search the words from the bar
-     * @param listOfStrings used for using the input for the words in the listView
-     * @return returns the words to the ListView
-     * */
-    private List<String> searchList(String searchWords, List<String> listOfStrings) {
-    	
-        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
-        
-        return listOfStrings.stream().filter(input -> { //input = test
-            return searchWordsArray.stream().allMatch(word -> //word = te
-                    input.toLowerCase().contains(word.toLowerCase()));
-        }).collect(Collectors.toList());
-    }
 
+    
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
