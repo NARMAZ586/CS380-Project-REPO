@@ -118,6 +118,8 @@ public class SceneController {
     
     
     
+    
+    
     /**
      * Loads a new scene in switching the root from the main scene
      * @param eve ActionEvent is being triggered by the button being clicked
@@ -183,7 +185,10 @@ public class SceneController {
      */
     @FXML
     protected void handleAddToCart() {
-    	if (selectedProduct == null) return;
+    	if (selectedProduct == null) {
+    		System.out.println("No Product selected.");
+    		return;
+    	}
 
         int requestedQty = 1; // default
         try {

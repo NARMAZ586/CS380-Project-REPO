@@ -2,6 +2,7 @@ package application;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,8 +11,11 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import java.net.URL;
@@ -28,13 +32,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-public class SearchPageController extends SceneController{
-
-    /**
-    Reference to the product list in searching and filtering.
-     */
-	//private products myProds;
-	
+public class SearchPageController extends SceneController implements Initializable{
+		
 	/**
 	* Listview which is used in the search method
 	*/
@@ -87,17 +86,13 @@ public class SearchPageController extends SceneController{
     
     @FXML private ImageView searchSwitchImg;
     
-    @FXML private Button searchAddToCart;
+    @FXML private Button addToCartBtn;
+    
+    @FXML private Label productStockLabel;
+   
     
 	public SearchPageController() {
-    	//myProds = new products();
-    	//myProds.attempt("this should theortically print");
-    	words = new ArrayList<>();
-    	for(products.product p : inventory.getAllProducts()) {
-    		words.add(p.getName());
-    	}
 	}
-
 	
 	
 	///////////////FOR SEARCHING IN THE SEARCH FUNCTION
@@ -105,40 +100,43 @@ public class SearchPageController extends SceneController{
 	/**
      * creates an array list from keyboards, keypads, and switches
      */
-	ArrayList<String> words = new ArrayList<>(Arrays.asList());
+	ArrayList<product> allProducts = new ArrayList<>();
 	
 	
     /**
      *when clicked, it clears and makes a new search results
      *@param event when the button "search" is clicked*/
-    @FXML
-    void search(ActionEvent event) {
-        listView.getItems().clear();
-        listView.getItems().addAll(searchList(searchBar.getText(),words));
-    }
-    
+	@FXML private void search() {
+		String keyword = searchBar.getText().toLowerCase();
+		
+		ObservableList<String> matches = FXCollections.observableArrayList();
+		for (product p : allProducts) {
+			if (p.getName().toLowerCase().contains(keyword)) {
+				matches.add(p.getName());
+			}
+		}
+		listView.setItems(matches);
+	}
     /**
      * The initialize method runs as a method to load UI elements just as the program is starting
      * @param URL program starting
      * @param resourceBundle gathers the resources
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    	listView.getItems().addAll(words);
-    }
-    
-    /**
-     * inputs and outputs are tracked and leads to the search bar
-     * @param searchWords to search the words from the bar
-     * @param listOfStrings used for using the input for the words in the listView
-     * @return returns the words to the ListView
-     * */
-    private List<String> searchList(String searchWords, List<String> listOfStrings) {
+    	inventory.InitialProducts();
+    	allProducts.addAll(inventory.getAllProducts());
     	
-        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
-        
-        return listOfStrings.stream().filter(input -> { //input = test
-            return searchWordsArray.stream().allMatch(word -> //word = te
-                    input.toLowerCase().contains(word.toLowerCase()));
-        }).collect(Collectors.toList());
+    	listView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+    		if (newVal != null ) {
+    			for (product p : allProducts) {
+    				if (p.getName().equals(newVal)) {
+    					searchProductLabel.setText(p.getName());
+    					searchPriceLabel.setText("$" + p.getPrice());
+    					searchSwitchImg.setImage(new Image(getClass().getResourceAsStream("/img/" + p.getImgSrc())));
+    					break;
+    				}
+    			}
+    		}
+    	});
     }
 }

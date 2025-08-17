@@ -6,12 +6,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane prefHeight="728.0" prefWidth="1320.0" style="-fx-background-color: #BEBEBE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AdminPageController">
    <children>
       <HBox prefHeight="100.0" prefWidth="1453.0" style="-fx-background-color: D22030;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,26 +43,51 @@
             </Button>
          </children>
       </HBox>
-
-      <VBox alignment="TOP_CENTER" layoutX="24.0" layoutY="120.0" prefWidth="1272.0" spacing="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="120.0">
-         <children>
-            <Label text="Admin Dashboard" textFill="#2e2e2e">
-               <font><Font name="System Bold" size="36.0" /></font>
-            </Label>
-
-            <Button fx:id="viewOrdersBtn" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: D22030;" text="View Orders" textFill="WHITE">
-               <font><Font name="System Bold" size="18.0" /></font>
-            </Button>
-
-            <TableView fx:id="productTable" maxWidth="600.0" prefHeight="300.0" prefWidth="1123.0">
-               <columns>
-                  <TableColumn fx:id="nameCol" prefWidth="200.0" text="Product Name" />
-                  <TableColumn fx:id="idCol" prefWidth="100.0" text="Product ID" />
-                  <TableColumn fx:id="typeCol" prefWidth="150.0" text="Type" />
-                  <TableColumn fx:id="priceCol" prefWidth="149.0" text="Price" />
-               </columns>
-            </TableView>
-         </children>
-      </VBox>
+      <Label layoutX="88.0" layoutY="142.0" text="Add Account">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="656.0" layoutY="142.0" text="Manage Stock">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAddAccount" layoutX="159.0" layoutY="616.0" mnemonicParsing="false" onAction="#handleBtnAddAccount" text="Add Account" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtFieldAdminPageEmail" layoutX="87.0" layoutY="213.0" prefHeight="43.0" prefWidth="294.0" promptText="Email">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtFieldAdminPageUsername" layoutX="87.0" layoutY="363.0" prefHeight="43.0" prefWidth="294.0" promptText="Username">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtFieldAdminPagePassword" layoutX="87.0" layoutY="513.0" prefHeight="43.0" prefWidth="294.0" promptText="Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="tblViewProductStock" layoutX="517.0" layoutY="235.0" prefHeight="300.0" prefWidth="600.0" style="-fx-border-color: Black;">
+        <columns>
+          <TableColumn fx:id="tblColumnProductName" prefWidth="300.0" text="Product Name" />
+          <TableColumn fx:id="tblColumnQuantity" prefWidth="300.0" text="Quantity" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnRemoveStock" layoutX="877.0" layoutY="616.0" mnemonicParsing="false" onAction="#handleBtnRemoveStock" text="Remove Stock" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAddStock" layoutX="598.0" layoutY="616.0" mnemonicParsing="false" onAction="#handleBtnAddStock" text="Add Stock" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
