@@ -218,6 +218,7 @@ public class Controller extends SceneController {
      * @param URL program starting
      * @param resourceBundle gathers the resources
      */
+
     
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

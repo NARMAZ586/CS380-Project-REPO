@@ -31,6 +31,7 @@ import Company.products;
 import Company.customer;
 import Company.inventory;
 import application.CreditCardValidation;
+import Company.ShoppingCart;
 
 
 import javafx.scene.layout.Region;
@@ -134,42 +135,37 @@ public class CheckOutController extends SceneController/*implements Initializabl
      */
     @FXML private Button btnBackHome;
     
-    /**
-     * The free shipping method available to user
-     */
-    @FXML private RadioButton optionFree;
-    
-    /**
-     * The standard shipping method available to user
-     */
-    @FXML private RadioButton optionStandard;
-    
-    /**
-     * The express shipping method available to user
-     */
-    @FXML private RadioButton optionExpress;
-    
-    /**
-     * The group name for the radio buttons
-     */
-    @FXML private ToggleGroup shippingOptions;
-    /**
-        Managing the main application window
-    */
-    private Stage stage;
-    /**
-        Switching between the FXML views
-    */
-    private Scene scene;
-    /**
-        Root node in loading the new FXML
-    */
-    private Parent root;
-    
-    /**
-        Reference to the product list in searching and filtering.
-    */
-    //private products myProds;
+//    /**
+//     * The free shipping method available to user
+//     */
+//    @FXML private RadioButton optionFree;
+//    
+//    /**
+//     * The standard shipping method available to user
+//     */
+//    @FXML private RadioButton optionStandard;
+//    
+//    /**
+//     * The express shipping method available to user
+//     */
+//    @FXML private RadioButton optionExpress;
+//    
+//    /**
+//     * The group name for the radio buttons
+//     */
+//    @FXML private ToggleGroup shippingOptions;
+//    /**
+//        Managing the main application window
+//    */
+//    private Stage stage;
+//    /**
+//        Switching between the FXML views
+//    */
+//    private Scene scene;
+//    /**
+//        Root node in loading the new FXML
+//    */
+//    private Parent root;
     
     /**
      * An object of the CreditCardValidation class in order to use isValidCard method
@@ -202,47 +198,46 @@ public class CheckOutController extends SceneController/*implements Initializabl
      * Returns the string of the shipping method selected
      * @return Returns a string 
      */
-    private String getShipping() {
-    	String shippingMethod;
-    	RadioButton picked = (RadioButton) shippingOptions.getSelectedToggle();
-    	if (picked != null) {
-    		shippingMethod = picked.getText();
-    	} else {
-    		shippingMethod = null;
-    	}
-    	return shippingMethod;
-    }
+//    private String getShipping() {
+//    	String shippingMethod;
+//    	RadioButton picked = (RadioButton) shippingOptions.getSelectedToggle();
+//    	if (picked != null) {
+//    		shippingMethod = picked.getText();
+//    	} else {
+//    		shippingMethod = null;
+//    	}
+//    	return shippingMethod;
+//    }
     
     /**
      * Triggered when btnPayNow is clicked, it verified if all fields on this page are valid
      * @param event Waits and expects a button click on btnPayNow
      */
     public void VerifyPaymentProcess(ActionEvent event) {
-    	String shipping = getShipping();
+    	//String shipping = getShipping();
     	System.out.println(inventory.getAllProducts());
     	System.out.println(inventory.getAllKeyboards());
     	System.out.println(inventory.getallKeycaps());
     	System.out.println(inventory.getallSwitches());
+    	System.out.println("\n\n");
+    	
+    	System.out.println(ShoppingCart.getCartItems());
+    	
     	if(!customerFirstName.getText().isBlank() && !customerLastName.getText().isBlank() && !customerEmail.getText().isBlank() && !customerPhoneNum.getText().isBlank() && !customerAddress.getText().isBlank()) {
-    		if (getShipping() != null) {
-    			if(validate.isValidCard(cardNumber.getText().toString(), cardCVC.getText().toString(), cardExpMonth.getText().toString(), cardExpYear.getText().toString())) {
-//            		System.out.println("Card Number: " + cardNumber.getText().toString());
-//            		System.out.println("Card CVC: " + cardCVC.getText().toString());
-//            		System.out.println("Card Expiration Month: " + cardExpMonth.getText().toString());
-//            		System.out.println("Card Expiration Year: " + cardExpYear.getText().toString());
-            		customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
-            		System.out.println("Shipping Method: " + shipping);
-            		System.out.println("Payment process went through");
-            		paymentProcessResult.setText("Payment has been processed");
-            		createScene(event, "Orders.fxml");
-            	} else {
-            		paymentProcessResult.setText("Card information is invalid");
-            		System.out.println("Invalid Card Information Entered");
-            	}
-    		} else {
-    			paymentProcessResult.setText("No shipping method selected");
-    			System.out.println("No shiping option selected");
-    		}
+    		if(validate.isValidCard(cardNumber.getText().toString(), cardCVC.getText().toString(), cardExpMonth.getText().toString(), cardExpYear.getText().toString())) {
+//        		System.out.println("Card Number: " + cardNumber.getText().toString());
+//        		System.out.println("Card CVC: " + cardCVC.getText().toString());
+//        		System.out.println("Card Expiration Month: " + cardExpMonth.getText().toString());
+//        		System.out.println("Card Expiration Year: " + cardExpYear.getText().toString());
+        		customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
+        		//System.out.println("Shipping Method: " + shipping);
+        		System.out.println("Payment process went through");
+        		paymentProcessResult.setText("Payment has been processed");
+        		createScene(event, "Orders.fxml");
+        	} else {
+        		paymentProcessResult.setText("Card information is invalid");
+        		System.out.println("Invalid Card Information Entered");
+        	}
     	} else {
     		paymentProcessResult.setText("Fill in all fields");
     		System.out.println("Info is blank");
