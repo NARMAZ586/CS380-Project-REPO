@@ -14,20 +14,45 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TableColumn;
-
+/**
+shoppingCartController
+Date of code: 8/16/25
+This controller class handles all of the UI elements of the Shopping Cart page
+This includes things like displaying the selected products, checks out option, and displays the price depending on quantity
+@author Nery A.
+*/
 public class shoppingCartController extends SceneController{
+	/**
+	 * default constructor of shoppingCartController
+	 */
+	public shoppingCartController() {};
+	/**
+	 * Table view of the cart item
+	 */
 	@FXML private TableView<cartItem> cartTableView;
-	
+	/**
+	 * displays of the subtotal of the shopping cart
+	 */
 	@FXML private Label subtotalLabel;
-	
+	/**
+	 * displays the total of the shopping cart
+	 */
 	@FXML private Label totalLabel;
-	
+	/**
+	 * displays the product name in a string in a table column 
+	 */
 	@FXML private TableColumn<cartItem, String> productName;
-	
+	/**
+	 * displays the product unit price in a string in a table column 
+	 */	
 	@FXML private TableColumn<cartItem, String> unitPrice;
-	
+	/**
+	 * displays the product quantity in a string in a table column 
+	 */
 	@FXML private TableColumn<cartItem, String> QuantityItem;
-	
+	/**
+	 * displays the product price in a string in a table column 
+	 */
 	@FXML private TableColumn<cartItem, String> Price;
 	
 	/**
@@ -49,39 +74,72 @@ public class shoppingCartController extends SceneController{
      * The group name for the radio buttons
      */
     @FXML private ToggleGroup shippingOptions;
-    
+    /**
+     * displays the shipping label
+     */
     @FXML private Label shippingLabel;
-    
+    /**
+     * displays the quantity label
+     */
     @FXML private Label quantityLabel;
-    
+    /**
+     * have a string of the shipping method
+     */
     private static String shippingMethod;
 	
-	
+    /** 
+     *  class for the cart item
+     */
 	public static class cartItem{
+		/**
+		 * have the product in shopping cart
+		 */
 		private product prod;
+		/**
+		 * have the number of quantity in shopping cart
+		 */
 		private int quantity;
-		
+		/**
+		 * displays the product and quantity of the item in cart
+		 * @param product constructor of product
+		 * @param quantity constructor of quantity
+		 */
 		public cartItem(product product, int quantity) {
 			this.prod = product;
 			this.quantity = quantity;
 		}
-		
+		/**
+		 * gets the Name
+		 * @return returns the name product in Shopping cart
+		 */
 		public String getName() {
 			return prod.getName();
 		}
-		
+		/**
+		 * gets the quantity
+		 * @return returns the quantity in the shopping cart
+		 */
 		public int getQuantity() {
 			return quantity;
 		}
-		
+		/**
+		 * displays the price per item
+		 * @return returns the price per item in a string
+		 */
 		public String getPricePerItem() {
 			return "$" + String.format("%.2f", prod.getPrice());
 		}
-		
+		/**
+		 * displays the total price
+		 * @return returns the total price of the products
+		 */
 		public String getTotalPrice() {
 			return "$" + String.format("%.2f", prod.getPrice() * quantity);
 		}
-		
+		/**
+		 *  function of calculating the price through quantity
+		 * @return returns the total amount of price depending on quantity
+		 */
 		public double getTotalPriceNum() {
 			return prod.getPrice() * quantity;
 		}
@@ -91,11 +149,17 @@ public class shoppingCartController extends SceneController{
 		}
 		
 	}
-	
+	/**
+	 * gets the shipping method as a string
+	 * @return returns the shipping method
+	 */
 	public static String getShippingMethod() {
 		return shippingMethod;
 	}
-	
+	/**
+	 * gets the shipping through string and radio button
+	 * @return string returns to the shippingMethod
+	 */
 	private String getShipping() {
     	String shippingMethod;
     	RadioButton picked = (RadioButton) shippingOptions.getSelectedToggle();
@@ -107,6 +171,11 @@ public class shoppingCartController extends SceneController{
     	return shippingMethod;
     }
 	
+	/**
+	 * displays the shipping cost
+	 * @return returns depending which case has chosen
+	 */
+	//private double shippingCost() {
 	public double shippingCost() {
 		String shipping = getShipping();
 		if (shipping == null) {
@@ -125,7 +194,9 @@ public class shoppingCartController extends SceneController{
 			return 0;
 		}
 	}
-	
+	/**
+	 * updates the totals of the shopping cart
+	 */
 	private void updateTotals() {
 		double subtotal = 0.0;
 		for (cartItem item : cartTableView.getItems()) {
@@ -140,7 +211,9 @@ public class shoppingCartController extends SceneController{
 		subtotalLabel.setText("$" + String.format("%.2f", subtotal));
 		totalLabel.setText("$" + String.format("%.2f", total));
 	}
-	
+	/**
+	 * loads the cart of the shopping cart
+	 */
 	private void loadCart() {
 		//List<product> allProds = inventory.getAllProducts();
 		ObservableList<cartItem> cartData = FXCollections.observableArrayList();
@@ -166,7 +239,9 @@ public class shoppingCartController extends SceneController{
 		subtotalLabel.setText("$" + String.format("%.2f", subtotal));
 		totalLabel.setText("$" + String.format("%.2f", total));
 	}
-	
+	/**
+	 * initializes the shopping cart
+	 */
 	public void initialize() {
 		productName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		unitPrice.setCellValueFactory(new PropertyValueFactory<>("pricePerItem"));

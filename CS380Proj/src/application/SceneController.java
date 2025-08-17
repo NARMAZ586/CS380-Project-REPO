@@ -14,9 +14,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-
+/**
+SceneController
+Date of code: 8/15/25
+This controller class handles all of the Scenes
+This includes things like moving scenes from one fxml to another or have interactions with the UI
+@author Nery A.
+*/
+/**
+ * class of the scene controller
+ */
 public class SceneController {
-	
+	/**
+	 * default constructor of SceneController
+	 */
+	public SceneController() {}
+	/**
+	 * Displays the shopping cart result label
+	 */
 	@FXML private Label shoppingCartResultLabel;
 	/**
     Handles the logo button clicked from the navigation bar
@@ -149,7 +164,9 @@ public class SceneController {
      * Variable used to store selected product from grid, and used to add to cart
      */
     protected product selectedProduct;
-    
+    /**
+     * variable used to store the quantity of the product
+     */
     protected int quantity;
     
     /**
@@ -157,12 +174,15 @@ public class SceneController {
      */
     @FXML
     protected Button btnAddToCart;
-    
+    /**
+     * displays the stock label of the product
+     */
     @FXML
     protected Label productStockLabel;
     
     /**
      * Updates the label based on the stock of the selected product card.
+     * @param prod gets the stock quantity from the product
      */
     protected void updateStockLabel(product prod) {
         if (prod.getStockQuantity() > 0) {
@@ -220,12 +240,18 @@ public class SceneController {
         }
     }
     
-    //Sets selected product in product selection page
+    /**
+     * Sets selected product in product selection page
+     * @param p constructor for the product in scene controller
+     */
     public void setSelectedProduct(product p) {
         this.selectedProduct = p;
     }
     
-    //not used but useful for getting product info that has been selected
+    /**
+     * not used but useful for getting product info that has been selected
+     * @return retunrs to the selected product
+     */
     public product getSelectedProduct() {
         return this.selectedProduct;
     }

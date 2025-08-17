@@ -8,16 +8,22 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import application.Controller;
 import javafx.application.Platform;
+import Company.account;
 import Company.inventory;
 import Company.products;
 
 /**
  * Name: Main
  * Date of code: 7/21/25
- * @author Nery Armaz, Matthew B., Marlon A., Michelle L.
  * GUI is displayed from this class
+ * @author Nery Armaz, Matthew B., Marlon A., Michelle L.
+ * 
  */
 public class Main extends Application {
+	/**
+	 * default constructor of main
+	 * */
+	public Main() {}
 	/**
 	 * A private variable for stage, as name implies it is the primary stage for the gui
 	 */
@@ -35,6 +41,7 @@ public class Main extends Application {
         try {
         	//inventory.InitialProducts();
         	products.readProductsCSV("Database/DefaultProducts.csv");
+        	account.readAccountsCSV("Database/Accounts.csv");
         	inventory.writeDefaultInventory();
         	
             primaryStage = stage;

@@ -3,7 +3,6 @@ package Company;
 /** 
  * orders
  * 08/8/2025
- * @author Matthew Berleson
  * 
  * Class Description:Class is to represent ordering system for the shop, containing info relevant to shop orders
  * 
@@ -11,8 +10,9 @@ package Company;
  * Getter and setter functions for Order attributes
  * 
  * DataStructures:
- * ArrayList<product>: used to hold product objects
+ * ArrayList product: used to hold product objects
  * GridPane: Layout to display product cars in a grid
+ * @author Matthew Berleson
  */
 
 public class orders {
@@ -55,8 +55,8 @@ public class orders {
 	 *@param orderID ID of placed order
 	 *@param productID ID of product ordered
 	 *@param price price of products
-	 *@param ShippingDate shipping date for order
-	 *@param paymentMethhod method used for payment
+	 *@param shippingDate shipping date for order
+	 *@param paymentMethod method used for payment
 	 *@param itemName name of the item ordered
 	 */
 	public orders(int customerID, int orderID, int productID, double price, String shippingDate, String paymentMethod, String itemName) {

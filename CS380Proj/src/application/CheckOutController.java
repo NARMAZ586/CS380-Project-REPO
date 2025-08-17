@@ -1,11 +1,4 @@
 package application;
-/**
-    CheckOutController
-    Date of code: 8/13/25
-    This controller class handles all of the UI elements of the CheckOut page
-    This includes things like verify if credit card is valid or getting the customer information
-    @author Nery Armaz
-*/
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +31,13 @@ import application.OrdersController;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+CheckOutController
+Date of code: 8/13/25
+This controller class handles all of the UI elements of the CheckOut page
+This includes things like verify if credit card is valid or getting the customer information
+@author Nery Armaz
+*/
 public class CheckOutController extends SceneController/*implements Initializable*/{
     /**
         Button to navigate to the keyboards page
@@ -190,6 +189,7 @@ public class CheckOutController extends SceneController/*implements Initializabl
     
     /**
      * Method that updates the customer ID
+     * @return customer add by 1
      */
     private int update() {
     	return ++customerCount;

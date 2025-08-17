@@ -31,7 +31,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleIntegerProperty;
 
-
+/**
+OrdersController
+Date of code: 8/15/25
+This controller class handles all of the UI elements of the Orders page
+This includes things like displaying the orders and putting it in a csv file
+@author Nery A.
+*/
 public class OrdersController extends SceneController {
 	@FXML private TableView<cartItem> cartTableView;
 	@FXML private TableColumn<cartItem, String> productName;
@@ -52,6 +58,15 @@ public class OrdersController extends SceneController {
 	@FXML private Label totalLabel;
 	private static List<customer> customers = CheckOutController.getAllCustomers();
 	private int orderNum = 0;
+
+
+	/**
+	 * default constructor for OrdersController
+	 */
+	public OrdersController() {}
+	/**
+	 * method of the write default orders
+	 */
 	public static void writeDefaultOrders() {
 		File file = new File("Database/Orders.csv");
 		file.getParentFile().mkdirs();

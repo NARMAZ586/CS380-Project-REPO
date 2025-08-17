@@ -1,11 +1,4 @@
 package application;
-/**
-    Controller
-    Date of code: 8/4/25
-    The controller class handles the navigation, interations, and logistics for the JavaFX application
-    This is connected to multiple FXML files such as the Homepage, AdminPage, KeyboardPage, etc. this acts as the main handler for the user interface.
-    @author Michelle
-*/
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -32,7 +25,13 @@ import Company.inventory;
 import Company.products;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+Controller
+Date of code: 8/4/25
+The controller class handles the navigation, interations, and logistics for the JavaFX application
+This is connected to multiple FXML files such as the Homepage, AdminPage, KeyboardPage, etc. this acts as the main handler for the user interface.
+@author Michelle
+*/
 public class Controller extends SceneController {
 
     /**
@@ -60,13 +59,10 @@ public class Controller extends SceneController {
         Button to navigate to the keycaps page
     */
     @FXML private Button btnKeyCaps;
-
     /**
         A text field where the user inputs into the searchbar
     */
-    @FXML 
-    private TextField searchBar; //keep this one for sure
-    
+    @FXML private TextField searchBar; //keep this one for sure
     /**
         A text field where the user inputs a product search
     */
@@ -215,11 +211,9 @@ public class Controller extends SceneController {
 
     /**
      * The initialize method runs as a method to load UI elements just as the program is starting
-     * @param URL program starting
+     * @param url program starting
      * @param resourceBundle gathers the resources
      */
-
-    
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
