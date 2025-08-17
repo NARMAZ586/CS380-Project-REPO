@@ -4,6 +4,9 @@ import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import Company.inventory;
 //Head
 /**
  * Name: products
@@ -65,26 +68,56 @@ public class products {
 	 * Method creates a CSV and fills it up with all of the products that were created in the constructor
 	 * @param fileName Just the naming of the csv file
 	 */
-	public void writeCSV(String fileName) {
-		File file = new File("Database/" + fileName);
-		file.getParentFile().mkdirs();
-		try {
-			FileWriter writer = new FileWriter(file);
-			writer.append("Name,ID,Price,Type,Description\n");
-			for(product k : keyboards) {
-				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", k.getName(), k.getprodID(), k.getPrice(), k.prodType(), k.prodDescription(), k.getImgSrc()));
+//	public void writeCSV(String fileName) {
+//		File file = new File("Database/" + fileName);
+//		file.getParentFile().mkdirs();
+//		try {
+//			FileWriter writer = new FileWriter(file);
+//			writer.append("Name,ID,Price,Type,Description\n");
+//			for(product k : keyboards) {
+//				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", k.getName(), k.getprodID(), k.getPrice(), k.prodType(), k.prodDescription(), k.getImgSrc()));
+//			}
+//			for(product s : switches) {
+//				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", s.getName(), s.getprodID(), s.getPrice(), s.prodType(), s.prodDescription(), s.getImgSrc()));
+//			}
+//			for(product c : keycaps) {
+//				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", c.getName(), c.getprodID(), c.getPrice(), c.prodType(), c.prodDescription(), c.getImgSrc()));
+//			}
+//			System.out.println("Writing to file successful");
+//			writer.close();
+//		} catch(IOException e) {
+//			e.printStackTrace();
+//			System.out.println("Error occured while writing file");
+//		}
+//	}
+	
+	public static void readProductsCSV(String fileName){ 
+		List<product> readProducts = new ArrayList<>();
+		try (BufferedReader BR = new BufferedReader(new FileReader(fileName))){
+			String line;
+			boolean headerLine = true;
+			line = BR.readLine();
+			while (line != null) {
+				if (headerLine) {
+					headerLine = false;
+					line = BR.readLine();
+					continue; //will skip over the header line
+				}
+				String[] columnValues = line.split(",");
+				if(columnValues.length >= 1) {
+					String prodName = columnValues[0];
+					int prodId = Integer.parseInt(columnValues[1]);
+					double prodPrice = Double.parseDouble(columnValues[2]);
+					String prodType = columnValues[3];
+					String prodDescription = columnValues[4];
+					int prodStock = Integer.parseInt(columnValues[5]);
+					String image = columnValues[6];
+					inventory.addToInventory(prodName, prodId, prodPrice, prodType, prodDescription, prodStock, image);
+				}
+				line = BR.readLine();
 			}
-			for(product s : switches) {
-				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", s.getName(), s.getprodID(), s.getPrice(), s.prodType(), s.prodDescription(), s.getImgSrc()));
-			}
-			for(product c : keycaps) {
-				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", c.getName(), c.getprodID(), c.getPrice(), c.prodType(), c.prodDescription(), c.getImgSrc()));
-			}
-			System.out.println("Writing to file successful");
-			writer.close();
 		} catch(IOException e) {
 			e.printStackTrace();
-			System.out.println("Error occured while writing file");
 		}
 	}
 	
@@ -183,7 +216,7 @@ public class products {
 		 * @param description product description
 		 * @param imgSrc product image source
 		 */
-		public product(String name, int ID, double price, String type, String description, String imgSrc, int stockQuantity) {
+		public product(String name, int ID, double price, String type, String description, int stockQuantity, String imgSrc) {
 			this.name = name;
 			this.ID = ID;
 			this.price = price;
