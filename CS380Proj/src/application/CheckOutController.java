@@ -32,6 +32,7 @@ import Company.customer;
 import Company.inventory;
 import application.CreditCardValidation;
 import Company.ShoppingCart;
+import application.OrdersController;
 
 
 import javafx.scene.layout.Region;
@@ -175,7 +176,7 @@ public class CheckOutController extends SceneController/*implements Initializabl
     /**
      * This list holds all of the customers that will make a purchase
      */
-    private List<customer> customers = new ArrayList<>();
+    private static List<customer> customers = new ArrayList<>();
     
     /**
      * Integer for the customer ID
@@ -192,6 +193,11 @@ public class CheckOutController extends SceneController/*implements Initializabl
      */
     private int update() {
     	return ++customerCount;
+    }
+    
+    public static List<customer> getAllCustomers() {
+    	List<customer> allCustomer = customers;
+    	return allCustomer;
     }
     
     /**
@@ -234,6 +240,8 @@ public class CheckOutController extends SceneController/*implements Initializabl
         		System.out.println("Payment process went through");
         		paymentProcessResult.setText("Payment has been processed");
         		createScene(event, "Orders.fxml");
+        		OrdersController.sendEmail("customerreceiver@gmail.com", "62", "Express", 150.60, "Hopefully this sends");
+        		
         	} else {
         		paymentProcessResult.setText("Card information is invalid");
         		System.out.println("Invalid Card Information Entered");

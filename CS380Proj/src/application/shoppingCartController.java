@@ -86,6 +86,10 @@ public class shoppingCartController extends SceneController{
 			return prod.getPrice() * quantity;
 		}
 		
+		public int getProdID() {
+			return prod.getprodID();
+		}
+		
 	}
 	
 	public static String getShippingMethod() {
@@ -103,7 +107,7 @@ public class shoppingCartController extends SceneController{
     	return shippingMethod;
     }
 	
-	private double shippingCost() {
+	public double shippingCost() {
 		String shipping = getShipping();
 		if (shipping == null) {
 			return 0.0;

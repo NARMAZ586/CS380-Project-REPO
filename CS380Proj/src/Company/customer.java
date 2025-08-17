@@ -36,9 +36,7 @@ public class customer {
 	/**
 	 * Default constructor for customer class
 	 */
-	customer() {
-		
-	}
+	public customer() {}
 	
 	
 	// --- Constructor ---
