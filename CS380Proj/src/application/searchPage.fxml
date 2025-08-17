@@ -104,12 +104,12 @@
          <top>
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="searchProductLabel" prefHeight="100.0" prefWidth="300.0" text="Product">
+                  <Label fx:id="searchProductLabel" alignment="CENTER" prefHeight="100.0" prefWidth="300.0" text="Product">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="searchPriceLabel" prefHeight="100.0" prefWidth="300.0" text="Price">
+                  <Label fx:id="searchPriceLabel" alignment="CENTER" prefHeight="100.0" prefWidth="300.0" text="Price">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -118,15 +118,36 @@
             </HBox>
          </top>
          <center>
-            <ImageView fx:id="searchSwitchImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <ImageView fx:id="searchSwitchImg" fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
-            <Button fx:id="searchAddToCart" mnemonicParsing="false" prefHeight="50.0" prefWidth="141.0" text="Add to Cart" BorderPane.alignment="CENTER">
+            <Button fx:id="addToCartBtn" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="50.0" prefWidth="141.0" text="Add to Cart" BorderPane.alignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
          </bottom>
+         <left>
+            <VBox prefHeight="450.0" prefWidth="145.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="164.0" prefWidth="143.0" text="Qty+">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="quantityField" promptText="Enter quantity: 1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="productStockLabel" prefHeight="102.0" prefWidth="146.0">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </left>
       </BorderPane>
    </children>
 </AnchorPane>

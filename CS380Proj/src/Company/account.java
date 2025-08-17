@@ -1,5 +1,8 @@
 package Company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Name: account
  * Date of code: 8/4/25
@@ -98,6 +101,28 @@ public class account {
         this.firstName = firstName;
     }
 	
+    //From Marlon, copy and pasted from UserDatabase.java to account.java
+    
+	private static List<account> accounts = new ArrayList<>();
+	
+	static {
+		accounts.add(new account("Admin","123","Admin"));
+	}
+	
+	public static void addAccount(account a) {
+		accounts.add(a);
+	}
+	
+	public static boolean checkCredentials(String email, String password) {
+		for (account a : accounts ) {
+			if (a.getEmail().equals(email) && a.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+    
+    
     //FIX: Write to Csv 
     
     

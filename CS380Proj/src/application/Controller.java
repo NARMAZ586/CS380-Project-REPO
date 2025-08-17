@@ -38,7 +38,6 @@ public class Controller extends SceneController {
     /**
         Button to navigate to the keyboards page
     */
-
     @FXML private Button btnKeyboards;
     /**
         Button to navigate to the keycaps page
@@ -179,12 +178,18 @@ public class Controller extends SceneController {
         @param event in ActionEvent is triggered by the login attempt.
     */
     private void checkLogin(ActionEvent event) {
-    	if(loginEmail.getText().toString().equals("Admin") && loginPassword.getText().toString().equals("123")) {
+    	String email = loginEmail.getText().trim();
+    	String password = loginPassword.getText().trim();
+    	
+    	
+    	
+    	
+    	if(Company.account.checkCredentials(email, password)) {
     		wrongPasswordLabel.setText("Success!");
     		createScene(event, "AdminPage.fxml");
     		
     	}
-    	else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()){
+    	else if(email.isEmpty() && password.isEmpty()){
     		wrongPasswordLabel.setText("Please enter your data.");
     	}
     	else {
