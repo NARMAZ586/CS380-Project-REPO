@@ -123,7 +123,7 @@ public class SearchPageController extends SceneController implements Initializab
      * @param resourceBundle gathers the resources
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    	inventory.InitialProducts();
+    	//inventory.InitialProducts();
     	allProducts.addAll(inventory.getAllProducts());
     	
     	listView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {

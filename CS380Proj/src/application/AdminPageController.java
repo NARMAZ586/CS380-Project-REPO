@@ -68,7 +68,7 @@ public class AdminPageController extends SceneController{
 	public AdminPageController() {}
 	
 	@FXML public void initialize() {
-		inventory.InitialProducts();
+		//inventory.InitialProducts();
 		productList.addAll(inventory.getAllProducts());
 		
 		tblColumnProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
