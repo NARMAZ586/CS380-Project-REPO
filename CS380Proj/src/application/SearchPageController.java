@@ -30,8 +30,13 @@ import Company.inventory;
 import Company.products;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-
+/**
+SearchPageController
+Date of code: 8/15/25
+This controller class handles all of the UI elements of the SearchPage page
+This includes things like searching products in listView and selecting it display the product and add it
+@author Marlon Santana
+*/
 public class SearchPageController extends SceneController implements Initializable{
 		
 	/**
@@ -44,7 +49,9 @@ public class SearchPageController extends SceneController implements Initializab
      */
 	@FXML 
 	private TextField searchBar; //keep this one for sure
-	
+	/**
+	 * displays the search results box
+	 */
     @FXML private VBox searchResultsBox;
     /**
         Returns user to the homepage
@@ -78,19 +85,30 @@ public class SearchPageController extends SceneController implements Initializab
     Button to navigate to the account user page
      */
     @FXML private Button btnAccount;
-    
-    
+    /**
+     * displays the product label
+     */
     @FXML private Label searchProductLabel;
-    
+    /**
+     * displays the price label
+     */
     @FXML private Label searchPriceLabel;
-    
+    /**
+     * displays the image of the search page
+     */
     @FXML private ImageView searchSwitchImg;
-    
+    /**
+     * displays the button on adding to cart
+     */
     @FXML private Button addToCartBtn;
-    
+    /**
+     * displays the stock label
+     */
     @FXML private Label productStockLabel;
    
-    
+    /**
+     * class for the search page controller
+     */
 	public SearchPageController() {
 	}
 	
@@ -105,7 +123,7 @@ public class SearchPageController extends SceneController implements Initializab
 	
     /**
      *when clicked, it clears and makes a new search results
-     *@param event when the button "search" is clicked*/
+     */
 	@FXML private void search() {
 		String keyword = searchBar.getText().toLowerCase();
 		
@@ -119,7 +137,7 @@ public class SearchPageController extends SceneController implements Initializab
 	}
     /**
      * The initialize method runs as a method to load UI elements just as the program is starting
-     * @param URL program starting
+     * @param url program starting
      * @param resourceBundle gathers the resources
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {

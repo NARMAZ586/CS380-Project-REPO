@@ -26,56 +26,101 @@ import javafx.scene.layout.ColumnConstraints;
 import Company.inventory;
 import Company.products;
 import Company.products.product;
-
+/**
+KeyboardPageController
+Date of code: 8/13/25
+This controller class handles all of the UI elements of the Keyboard page
+This includes things like selecing keyboards and adding to cart depending on quantity
+@author Matthew
+*/
 public class KeyboardPageController extends SceneController implements Initializable{
+	/**
+	 * default constructor of KeyboardPageController
+	 */
+	public KeyboardPageController() {}
     //private products myProds = new products();
-	
+    /**
+    Button to navigate to the account user page
+    */
 	@FXML
     private Button btnAccount;
-
+    /**
+    Button to navigate to the shopping cart page
+    */
     @FXML
     private Button btnCart;
-
+    /**
+    Button to navigate to the keycaps page
+    */
     @FXML
     private Button btnKeyCaps;
-
+    /**
+    Button to navigate to the switches page
+    */
     @FXML
     private Button btnSwitches;
-
+    /**
+    Styles the selected product card
+    */
     @FXML
     private VBox chosenProductCard;
-
+    /**
+    Places all the product cards in a layout
+    */
     @FXML
     private GridPane grid;
-
+    /**
+    Returns user to the homepage
+    */
     @FXML
     private Button logoBtn;
-
+    /**
+    Wraps the product grip used for scrolling
+    */
     @FXML
     private ScrollPane scroll;
-
+    /**
+    Displays a selected switch image
+    */
     @FXML
     private TextField searchField;
-
+    /**
+    Displays the selected switch name
+    */
     @FXML
     private ImageView switchImg;
-
+    /**
+    Displays the selected switch's price
+    */
     @FXML
     private Label switchNameLabel;
-
+    /**
+     * Displays the selected image
+     */
     @FXML
     private Label switchPriceLabel;
-    
+    /**
+     * Displays the selected image
+     */
     private Image img;
-    
+    /**
+     * tracks the clicks
+     */
     private InterfaceListener clickListener;
-    
+    /**
+     * displays the product stock label
+     */
     @FXML
     private Label productStockLabel;
-    
+    /**
+     * displays the add to cart button
+     */
     @FXML
     private Button addToCartBtn;
-    
+    /**
+     * choose the product of the keyboard
+     * @param prod updates the stock label using the chose product
+     */
     private void setChosenProduct(products.product prod) {
     	switchNameLabel.setText(prod.getName());
     	switchPriceLabel.setText("$" + prod.getPrice());

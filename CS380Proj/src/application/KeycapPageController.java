@@ -23,57 +23,88 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-
+/**
+KeycapPageController
+Date of code: 8/14/25
+This controller class handles all of the UI elements of the KeyCap page
+This includes things like selecing keycaps and adding to cart depending on quantity
+@author Matthew B.
+*/
 public class KeycapPageController extends SceneController implements Initializable{
+	/**
+	 * default constructor of KeycapPageController
+	 */
+	public KeycapPageController() {}
     //private products myProds = new products();
-	
-	@FXML
-    private Button btnAccount;
-
-    @FXML
-    private Button btnCart;
-
-    @FXML
-    private Button btnKeyboards;
-
-    @FXML
-    private Button btnSwitches;
-
-    @FXML
-    private VBox chosenProductCard;
-
-    @FXML
-    private GridPane grid;
-
-    @FXML
-    private Button logoBtn;
-
-    @FXML
-    private ScrollPane scroll;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private ImageView switchImg;
-
-    @FXML
-    private Label switchNameLabel;
-
-    @FXML
-    private Label switchPriceLabel;
-    
+    /**
+    Button to navigate to the account user page
+    */
+	@FXML private Button btnAccount;
+    /**
+    Button to navigate to the shopping cart page
+    */
+    @FXML private Button btnCart;
+    /**
+    Button to navigate to the keyboards page
+    */
+    @FXML private Button btnKeyboards;
+    /**
+    Button to navigate to the switches page
+    */
+    @FXML private Button btnSwitches;
+    /**
+    Styles the selected product card
+    */
+    @FXML private VBox chosenProductCard;
+    /**
+    Places all the product cards in a layout
+    */
+    @FXML private GridPane grid;
+    /**
+    Returns user to the homepage
+    */
+    @FXML private Button logoBtn;
+    /**
+    Wraps the product grip used for scrolling
+    */
+    @FXML private ScrollPane scroll;
+    /**
+    A text field where the user inputs a product search
+    */
+    @FXML private TextField searchField;
+    /**
+    Displays a selected switch image
+    */
+    @FXML private ImageView switchImg;
+    /**
+    Displays the selected switch name
+    */
+    @FXML private Label switchNameLabel;
+    /**
+    Displays the selected switch's price
+    */
+    @FXML private Label switchPriceLabel;
+    /**
+     * Displays the selected image
+     */
     private Image img;
-    
+    /**
+     * tracks the clicks
+     */
     private InterfaceListener clickListener;
-    
-    @FXML
-    private Label productStockLabel;
-    
-    @FXML
-    private Button addToCartBtn;
+    /**
+     * displays the product stock label
+     */
+    @FXML private Label productStockLabel;
+    /**
+     * displays the add to cart button
+     */
+    @FXML private Button addToCartBtn;
 
-    
+    /**
+     * chooses the product
+     * @param prod focuses on the chosed product in the keycap page
+     */
     private void setChosenProduct(products.product prod) {
     	switchNameLabel.setText(prod.getName());
     	switchPriceLabel.setText("$" + prod.getPrice());
@@ -83,7 +114,9 @@ public class KeycapPageController extends SceneController implements Initializab
     	selectedProduct = prod; //saves selected product for add cart
     	updateStockLabel(prod);
     }
-
+    /**
+     *  initializes for thekeycaps products
+     */
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");
     	//myProds = new products(); // initialize product data

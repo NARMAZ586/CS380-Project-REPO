@@ -6,8 +6,21 @@ import java.util.List;
 
 import Company.orders;
 import Company.products.product;
-
+/**
+OrdersController
+Date of code: 8/15/25
+This controller class handles all of the UI elements of the Orders page
+This includes things like displaying the orders and putting it in a csv file
+@author Nery A.
+*/
 public class OrdersController extends SceneController{
+	/**
+	 * default constructor for OrdersController
+	 */
+	public OrdersController() {}
+	/**
+	 * constructor of the write default orders
+	 */
 	public static void writeDefaultOrders() {
 		File file = new File("Database/Orders.csv");
 		file.getParentFile().mkdirs();

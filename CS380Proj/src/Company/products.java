@@ -11,11 +11,11 @@ import Company.inventory;
 /**
  * Name: products
  * Date of code: 8/4/25
- * @author Nery Armaz, Marlon A. Matthew B.
  * Class products is used to encapsulate methods used for the products and it also contains the class attributes along with getters for class product(a single product)
- * Important functions: writeCSV(String fileName): void, getAllProducts(): ArrayList<product>
+ * Important functions: writeCSV(String fileName): void, getAllProducts(): ArrayList product
  * ArrayList was used a few times in this class mainly to organize all of the products into a single ArrayList
  * It was used in the getAllProducts method and in the products constructor
+ * @author Nery Armaz, Marlon A. Matthew B.
  */
 public class products {
 	/*public static void main(String[] args) {
@@ -122,7 +122,7 @@ public class products {
 	}
 	
 	/**
-     * Method returns the private attribute from class products: ArrayList<product> switches
+     * Method returns the private attribute from class products: ArrayList product switches
      * @return returns the switches in the array list
      */
     public ArrayList<product> getSwitches(){
@@ -132,7 +132,7 @@ public class products {
     }
     
     /**
-     * Method returns the private attribute from class products: ArrayList<product> switches
+     * Method returns the private attribute from class products: ArrayList product switches
      * @return returns the switches in the array list
      */
     public ArrayList<product> getKeyboards(){
@@ -142,7 +142,7 @@ public class products {
     }
     
     /**
-     * Method returns the private attribute from class products: ArrayList<product> switches
+     * Method returns the private attribute from class products: ArrayList product switches
      * @return returns the switches in the array list
      */
     public ArrayList<product> getKeycaps(){
@@ -202,7 +202,9 @@ public class products {
 		 * What image is used for this product
 		 */
 		private String imgSrc;
-		
+		/**
+		 * displays the image
+		 */
 		private int stockQuantity;
 		
 		//public product() {}
@@ -215,6 +217,7 @@ public class products {
 		 * @param type product type
 		 * @param description product description
 		 * @param imgSrc product image source
+		 * @param stockQuantity stock product quantity
 		 */
 		public product(String name, int ID, double price, String type, String description, int stockQuantity, String imgSrc) {
 			this.name = name;
@@ -274,11 +277,17 @@ public class products {
 		public String getImgSrc() {
 			return imgSrc;
 		}
-
+		/**
+		 *  getter method for stock quantity
+		 * @return will return the stockquantity attribute of the object product
+		 */
 		public int getStockQuantity() {
 			return stockQuantity;
 		}
-
+		/**
+		 *  setter method for stockquantity
+		 * @param stockQuantity constructer
+		 */
 		public void setStockQuantity(int stockQuantity) {
 			this.stockQuantity = stockQuantity;
 		}

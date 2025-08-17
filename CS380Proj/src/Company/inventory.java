@@ -8,13 +8,17 @@ import java.util.ArrayList;
 
 
 /**
-* Name: inventory
-* Date of code: 8/4/2025
-* @author Nery A., Marlon S.
-* Class inventory holds all the methods and also class inventories
-* Inventory by itself represents all products on the application, despite their type
+ * Name: inventory
+ * Date of code: 8/4/2025
+ * Class inventory holds all the methods and also class inventories
+ * Inventory by itself represents all products on the application, despite their type
+ * @author Nery A., Marlon S.
 */
 public class inventory {
+	/**
+	 * default constructor of inventory
+	 */
+	public inventory() {}
 	/**
 	* Class inventories is used to describe a group of products
 	* For example the brand sells keyboards, switches, and keycaps, so each of these is considered their own inventory group 
@@ -68,7 +72,9 @@ public class inventory {
 //			System.out.println("Error occured while writing file");
 //		}
 //	}
-	
+	/**
+	 * class for the default inventory
+	 */
 	public static void writeDefaultInventory() {
 		File file = new File("Database/Inventory.csv");
 		file.getParentFile().mkdirs();
@@ -94,15 +100,32 @@ public class inventory {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * adds to inventory from allProducts
+	 * @param name adds name to the inventory
+	 * @param id adds ID to the inventory
+	 * @param price adds the price to the inventory
+	 * @param type adds the type to the inventory
+	 * @param description adds the description to the inventory
+	 * @param stock adds the stock to the inventory
+	 * @param imgSRC adds the image to the inventory
+	 */
 	public static void addToInventory(String name, int id, double price, String type, String description, int stock, String imgSRC) {
 		allProducts.add(new product(name, id, price, type, description, stock, imgSRC));
 	}
-	
+	/**
+	 * gets all products
+	 * @return returns to allProducts
+	 */
 	public static List<product> getAllProducts(){
 		return allProducts;
 	}
-	
+
+	/**
+	 * gets all Products by ID
+	 * @param ID if the prod id is the correct one
+	 * @return returns the product
+	 */
 	public static product getProductByID (int ID) {
 		for(product p: allProducts) {
 			if(p.getprodID() == ID) {
@@ -111,7 +134,10 @@ public class inventory {
 		}
 		return null;
 	}
-	
+	/**
+	 * gets all the keyboards
+	 * @return returns all the keyboards in the inventory
+	 */
 	public static ArrayList<product> getAllKeyboards () {
 		ArrayList<product> allKeyboards = new ArrayList<> ();
 		for(product p: allProducts) {
@@ -121,7 +147,10 @@ public class inventory {
 		}
 		return allKeyboards;
 	}
-	
+	/**
+	 * gets all the keycaps
+	 * @return returns all the keycaps from the inventory
+	 */
 	public static ArrayList<product> getallKeycaps() {
 		ArrayList<product> allKeycaps = new ArrayList<> ();
 		for (product p: allProducts) {
@@ -131,7 +160,10 @@ public class inventory {
 		}
 		return allKeycaps;
 	}
-	
+	/**
+	 * gets all the switches
+	 * @return returns all the switches from the inventory
+	 */
 	public static ArrayList<product> getallSwitches() {
 		ArrayList<product> allSwitches = new ArrayList<>();
 		for (product p : allProducts) {
@@ -141,7 +173,9 @@ public class inventory {
 		}
 		return allSwitches;
 	}
-	
+	/**
+	 * class for the inventories that has name, prodID, quantity, and type
+	 */
 	public static class inventories{
 		/**
 		* Name of the inventory
@@ -171,7 +205,7 @@ public class inventory {
 		Constructor of the inventories class
 		@param name inventories name
 		@param prodID inventories prodID
-		@param quanitity inventories quantity
+		@param quantity inventories quantity
 		@param type inventories type
 		*/
 		public inventories(String name, int prodID, int quantity, String type) {

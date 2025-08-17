@@ -11,7 +11,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+/**
+AdminPageController
+Date of code: 8/15/25
+This controller class handles all of the UI elements of the Admin page
+This includes things like adding account, adding stock, remove stock
+@author Marlon Santana
+*/
 public class AdminPageController extends SceneController{
     /**
     Returns user to the homepage
@@ -33,7 +39,8 @@ public class AdminPageController extends SceneController{
      */
 	@FXML private Button btnKeyCaps;
 	
-	
+	/**
+	 * Button that leats to the search page*/
 	@FXML private Button btnSearch;
 	
     /**
@@ -41,32 +48,60 @@ public class AdminPageController extends SceneController{
      */
 	@FXML private Button logoutBtn;
 	
+	/**
+	 * Button that adds an account and stores it in account.java
+	 */
 	@FXML private Button btnAddAccount;
-	
+	/**
+	 * TextField that the user enters their email
+	 */
 	@FXML private TextField txtFieldAdminPageEmail;
-	
+	/**
+	 * TextField that the users enters their username
+	 */
 	@FXML private TextField txtFieldAdminPageUsername;
-	
+	/**
+	 * TextField that the users enters their password
+	 */
 	@FXML private TextField txtFieldAdminPagePassword;
-	
+	/**
+	 * TableView that brings the products to this page to display
+	 */
 	@FXML private TableView<product> tblViewProductStock;
-	
+	/**
+	 * TableColumn that showcases the name of the product
+	 */
 	@FXML private TableColumn<product, String> tblColumnProductName;
-	
+	/**
+	 * TableColumn that shows the  Product quantities
+	 */
 	@FXML private TableColumn<product, Integer> tblColumnQuantity;
-	
+	/**
+	 * Button that removes the stock quantity by 1
+	 */
     @FXML private Button btnRemoveStock;
-    
+    /**
+     * Button that adds the stock quantity by 1
+     */
     @FXML private Button btnAddStock;
-    
+    /**
+     * Observable list that brings the productList and put it in an Array List
+     */
     private ObservableList<product> productList = FXCollections.observableArrayList();
-    
+    /**
+     * Logs out the user and to the homepage
+     * @param event leads to the Homepage when pressed
+     */
     @FXML private void userLogout(ActionEvent event) {
     	createScene(event, "Homepage.fxml");
     }
-	
+	/**
+	 * Controller for the admin page
+	 */
 	public AdminPageController() {}
-	
+	/**
+	 * initializes the Admin Page
+	 */
 	@FXML public void initialize() {
 		//inventory.InitialProducts();
 		productList.addAll(inventory.getAllProducts());
@@ -76,7 +111,10 @@ public class AdminPageController extends SceneController{
 
         tblViewProductStock.setItems(productList);
 	}
-	
+	/**
+	 * When pressed it adds a stock
+	 * @param event Adds the stock by 1
+	 */
 	@FXML private void handleBtnAddStock(ActionEvent event) {
 		product selected = tblViewProductStock.getSelectionModel().getSelectedItem();
         if (selected != null) {
@@ -84,7 +122,10 @@ public class AdminPageController extends SceneController{
             tblViewProductStock.refresh();
         }
 	}
-	
+	/**
+	 * When pressed it removes a stock
+	 * @param event Removes the stock by 1
+	 */
 	@FXML private void handleBtnRemoveStock(ActionEvent event) {
 		product selected = tblViewProductStock.getSelectionModel().getSelectedItem();
         if (selected != null && selected.getStockQuantity() > 0) {
@@ -92,7 +133,10 @@ public class AdminPageController extends SceneController{
             tblViewProductStock.refresh();
         }
 	}
-	
+	/**
+	 * When pressed it adds the account
+	 * @param event gets email, username, password to the storage
+	 */
 	@FXML private void handleBtnAddAccount(ActionEvent event) {
 		String email = txtFieldAdminPageEmail.getText().trim();
 		String username = txtFieldAdminPageUsername.getText().trim();

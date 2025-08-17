@@ -33,7 +33,6 @@ import application.Controller;
 /** 
  * SwitchPageController
  * 08/12/2025
- * @author Matthew Berleson
  * 
  * Class Description:Class is meant to be a controller for the switch product page that displays products and adds them to shopping cart.
  * 
@@ -42,11 +41,16 @@ import application.Controller;
  * handleAccountClick(), handleCartClick(), etc... : Handles navigation on mouse click
  * 
  * DataStructures:
- * ArrayList<product>: used to hold product objects
+ * ArrayList product: used to hold product objects
  * GridPane: Layout to display product cars in a grid
+ * @author Matthew Berleson
  */
-
 public class SwitchPageController extends SceneController implements Initializable{
+	/**
+	 * default constructor of SwitchPageController
+	 */
+	public SwitchPageController() {}
+	
     /**
     * An instance of products called myProds 
     */
@@ -124,10 +128,14 @@ public class SwitchPageController extends SceneController implements Initializab
     *  An instance of InterfaceListener, that is used to expect a click from the mouse
     */
     private InterfaceListener clickListener;
-    
+    /**
+     * displays the stock label of the product
+     */
     @FXML
     private Label productStockLabel;
-    
+    /**
+     * displays the add to car button
+     */
     @FXML
     private Button addToCartBtn;
     
