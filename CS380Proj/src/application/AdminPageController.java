@@ -144,8 +144,8 @@ public class AdminPageController extends SceneController{
 	    
 	    if (!email.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
 	    	Company.account.addAccount(new Company.account(email, password, username));
+	    	account.writeSingleAccounts();
 	    	System.out.println("New account created: " + email);
-	    	
 	    	txtFieldAdminPageEmail.clear();
 	    	txtFieldAdminPageUsername.clear();
 	    	txtFieldAdminPagePassword.clear();
