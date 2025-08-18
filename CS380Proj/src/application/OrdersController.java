@@ -11,6 +11,7 @@ import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,10 +71,31 @@ public class OrdersController extends SceneController {
 	/**
 	 * method of the write default orders
 	 */
-	public static void writeOrders() {
+	public static void createOrdersCSV() {
 		File file = new File("Database/Orders.csv");
 		file.getParentFile().mkdirs();
+		try(FileWriter writer = new FileWriter(file)) {
+			writer.append("Name, Order ID, Product ID, Price, Shipping Method, Item Name, First Name, Email, Street Address\n");
+			System.out.println("Created orders.csv");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
+	}
+	
+	
+	public static void AppendRecentOrder() {
+		File file = new File("Database/Inventory.csv");
+		try (FileWriter writer = new FileWriter(file, true);) {
+			int size = allOrders.size() - 1;
+			orders recent = allOrders.get(size);
+			String productIDs = recent.getProductID().stream().map(String::valueOf).collect(Collectors.joining(";"));
+			String itemNames = recent.getItem().stream().map(String::valueOf).collect(Collectors.joining(";"));
+			writer.append(String.format("%d, %d, %s, %.2f, %s, %s, %s, %s, %s", recent.getCustomerID(), recent.getOrderID(), productIDs, recent.gettotalPrice(), recent.getShipMethod(), itemNames, recent.getfirstname(), recent.getEmail(), recent.getaddress()));
+			System.out.println("Appended new order");
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private int updateID() {
@@ -84,15 +106,17 @@ public class OrdersController extends SceneController {
 		if(!customers.isEmpty()) {
 			mostRecentCustomer = customers.get(customers.size() - 1);
 		}
+		int size = allOrders.size() - 1;
+		orders recent = allOrders.get(size);
 		String fullname = mostRecentCustomer.getFirstName() + " " + mostRecentCustomer.getLastName();
-		String email = mostRecentCustomer.getEmail();
+		//String email = mostRecentCustomer.getEmail();
 		String phone = mostRecentCustomer.getPhoneNumber();
-		int customerId = mostRecentCustomer.getID();
-		String address = mostRecentCustomer.getAddress();
-		int orderID = updateID();
+		//int customerId = mostRecentCustomer.getID();
+		//String address = mostRecentCustomer.getAddress();
+		//int orderID = updateID();
 		
 		double subtotal = 0;
-		double total = 0;
+		//double total = 0;
 		int quantity = 0;
 		int totalQuantity = 0;
 		for(Map.Entry<product, Integer> entry: ShoppingCart.getCartItems().entrySet()) {
@@ -101,29 +125,29 @@ public class OrdersController extends SceneController {
 			totalQuantity += quantity;
 			subtotal += prod.getPrice() * quantity;
 		}
-		String shipping = shoppingCartController.getShippingMethod();
-		double shippingCost = 0.0;
-		switch(shipping) {
-		case "14 Day Free Shipping":
-			shippingCost = 0.0;
-			break;
-		case "4 - 6 Day Shipping":
-			shippingCost = 5.50;
-			break;
-		case "1 - 3 Day Shipping":
-			shippingCost = 11.50;
-			break;
-		}
-		total = shippingCost + subtotal;
-		orderIDLabel.setText(String.valueOf(updateID()));
+//		String shipping = shoppingCartController.getShippingMethod();
+//		double shippingCost = 0.0;
+//		switch(shipping) {
+//		case "14 Day Free Shipping":
+//			shippingCost = 0.0;
+//			break;
+//		case "4 - 6 Day Shipping":
+//			shippingCost = 5.50;
+//			break;
+//		case "1 - 3 Day Shipping":
+//			shippingCost = 11.50;
+//			break;
+//		}
+		//total = shippingCost + subtotal;
+		orderIDLabel.setText(String.valueOf(recent.getOrderID()));
 		customerNameLabel.setText(fullname);
-		customerEmailLabel.setText(email);
+		customerEmailLabel.setText(recent.getEmail());
 		customerPhoneLabel.setText(phone);
-		shippingLabel.setText(address);
-		shipMethodLabel.setText(shoppingCartController.getShippingMethod());
-		paymentLabel.setText("Card");
+		shippingLabel.setText(recent.getaddress());
+		shipMethodLabel.setText(recent.getShipMethod());
+		paymentLabel.setText(recent.getPayment());
 		subtotalLabel.setText(String.valueOf(subtotal));
-		totalLabel.setText(String.valueOf(total));
+		totalLabel.setText(String.valueOf(recent.gettotalPrice()));
 		
 		ObservableList<cartItem> cartData = FXCollections.observableArrayList();
 		for(var entry: ShoppingCart.getCartItems().entrySet()) {

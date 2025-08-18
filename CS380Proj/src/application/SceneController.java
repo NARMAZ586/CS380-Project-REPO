@@ -145,13 +145,16 @@ public class SceneController {
             Parent root = FXMLLoader.load(getClass().getResource(fileName));
             Stage stage = Main.getPrimaryStage();
             Scene scene = Main.getMainScene();
-            if (root instanceof Region) {
-                Region regionR = (Region) root;
+            if (root instanceof Region regionR) {
+            	//stage.setWidth(regionR.prefWidth(-1));
+            	//stage.setHeight(regionR.prefHeight(-1));
+            	
+                //Region regionR = (Region) root;
                 regionR.prefWidthProperty().bind(stage.widthProperty());
                 regionR.prefHeightProperty().bind(stage.heightProperty());
             }
             scene.setRoot(root);
-            stage.setFullScreen(true);
+            //stage.setFullScreen(true);
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {

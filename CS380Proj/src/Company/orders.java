@@ -85,6 +85,9 @@ public class orders {
 	}
 	
 	// getter methods for order and product attributes
+	public String getShipMethod() {
+		return shippingMethod;
+	}
 	
 	public String getfirstname() {
 		return firstName;
@@ -94,7 +97,7 @@ public class orders {
 		return email;
 	}
 	
-	public String address () {
+	public String getaddress () {
 		return address;
 	}
 

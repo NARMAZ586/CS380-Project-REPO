@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import Company.account;
 import Company.inventory;
 import Company.products;
+import application.OrdersController;
 
 /**
  * Name: Main
@@ -43,6 +44,8 @@ public class Main extends Application {
         	products.readProductsCSV("Database/DefaultProducts.csv");
         	account.readAccountsCSV("Database/Accounts.csv");
         	inventory.writeDefaultInventory();
+        	OrdersController.createOrdersCSV();
+        	
         	
             primaryStage = stage;
             Parent root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
@@ -50,7 +53,7 @@ public class Main extends Application {
             String css = this.getClass().getResource("application.css").toExternalForm();
             mainScene.getStylesheets().add(css);
             primaryStage.setResizable(false);
-            primaryStage.setFullScreen(true);
+            //primaryStage.setFullScreen(true);
             primaryStage.setScene(mainScene);
             //uncomment this if program is not fully closing when you close it out
             /*primaryStage.setOnCloseRequest(e -> {

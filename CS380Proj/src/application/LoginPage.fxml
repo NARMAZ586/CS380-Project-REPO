@@ -57,25 +57,36 @@
             </Button>
          </children>
       </HBox>
-      <VBox alignment="TOP_CENTER" layoutX="24.0" layoutY="110.0" prefHeight="612.0" prefWidth="1292.0" spacing="15.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Label text="Login" textFill="#2e2e2e">
-               <font><Font name="System Bold" size="36.0" /></font>
-            </Label>
-            <TextField fx:id="loginEmail" maxWidth="350.0" promptText="Email" />
-            <PasswordField fx:id="loginPassword" maxWidth="350.0" prefWidth="120.0" promptText="Password" />
-            <Button fx:id="loginBtn" onAction="#userLogin" prefWidth="180.0" style="-fx-background-color: D22030;" text="SIGN IN" textFill="WHITE">
-               <font><Font name="System Bold" size="16.0" /></font>
-            </Button>
-            <Button fx:id="createAccountBtn" onAction="#handleAccountClick" style="-fx-background-color: transparent; -fx-underline: true;" text="Create Account">
-               <font><Font name="System" size="14.0" /></font>
-            </Button>
-            <Label fx:id="wrongPasswordLabel" text="" textFill="RED" />
-            <Button fx:id="loginBackbtn" onAction="#handleBackToHomepageClick" text="Back to Homepage">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Button>
+            <VBox alignment="TOP_CENTER" prefHeight="612.0" prefWidth="1292.0" spacing="15.0">
+               <children>
+                  <Label text="Login" textFill="#2e2e2e">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="loginEmail" maxWidth="350.0" promptText="Email" />
+                  <PasswordField fx:id="loginPassword" maxWidth="350.0" prefWidth="120.0" promptText="Password" />
+                  <Button fx:id="loginBtn" onAction="#userLogin" prefWidth="180.0" style="-fx-background-color: D22030;" text="SIGN IN" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="createAccountBtn" onAction="#handleAccountClick" style="-fx-background-color: transparent; -fx-underline: true;" text="Create Account">
+                     <font>
+                        <Font name="System" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="wrongPasswordLabel" text="" textFill="RED" />
+                  <Button fx:id="loginBackbtn" onAction="#handleBackToHomepageClick" text="Back to Homepage">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>
