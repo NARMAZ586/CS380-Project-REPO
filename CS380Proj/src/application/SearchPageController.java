@@ -157,4 +157,25 @@ public class SearchPageController extends SceneController implements Initializab
     		}
     	});
     }
+    
+    @FXML private void handleGoToProductDetails(ActionEvent event) {
+    	String selectedName = searchProductLabel.getText();
+    	if (selectedName == null || selectedName.equals("Product")) {
+    		return;
+    	}
+    	
+    	for (product p : allProducts) {
+    		if (p.getName().equals(selectedName)) {
+    			String type = p.prodType();
+    			if (type.equalsIgnoreCase("keyboard")) {
+    				createScene(event, "KeyboardPage.fxml");
+    			} else if (type.equalsIgnoreCase("switch")) {
+    				createScene(event, "switchPage.fxml");
+    			} else if (type.equalsIgnoreCase("keycap")) {
+    				createScene(event, "keycaps.fxml");
+    			}
+    			break;
+    		}
+    	}
+    }
 }
