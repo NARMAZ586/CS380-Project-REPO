@@ -1,7 +1,9 @@
 package Company;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -160,5 +162,25 @@ public class account {
     		e.printStackTrace();
             System.out.println("Error occured while writing Accounts.csv");
     	}
+    }
+    
+    public static void writeSingleAccounts() {
+        File file = new File("Database/Accounts.csv");
+        //file.getParentFile().mkdirs();
+
+        try (FileWriter writer = new FileWriter(file, true)) {
+           // if (file.length() == 0) {
+              //  writer.append("Username,Password,Email\n");
+            //}
+
+            for (account a : accounts) {
+                writer.append(String.format("%s,%s,%s\n",a.getEmail(), a.getFirstName(), a.getPassword()));
+            }
+
+            System.out.println("Successful write: Accounts.csv");
+        } catch (IOException e) {
+            System.out.println("Error writing to Accounts.csv");
+            e.printStackTrace();
+        }
     }
 }

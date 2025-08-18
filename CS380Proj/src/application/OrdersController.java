@@ -187,7 +187,19 @@ public class OrdersController extends SceneController {
 	private static String username = "squadsoftware60@gmail.com";
 	private static String password = "otdj qrcv korx psan";
 	
-	public static void sendEmail(String customerEmail, String OrderId, String shipMethod, double total, String itemName) {
+	public static void sendEmail(orders newOrder) {
+	    String customerEmail = newOrder.getEmail();
+	    String orderId = String.valueOf(newOrder.getOrderID());
+	    String shipMethod = newOrder.getDate(); // shipping method
+	    double total = newOrder.gettotalPrice();
+	    ArrayList<String> itemNames = newOrder.getItem();
+	    
+	    StringBuilder items = new StringBuilder();
+	    for (String item : itemNames) {
+	        items.append(item).append(", ");
+	    }
+	    if (items.length() > 0) items.setLength(items.length() - 2); // remove trailing comma
+		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true"); 
@@ -204,11 +216,11 @@ public class OrdersController extends SceneController {
 			Message email = new MimeMessage(session);
 			email.setFrom(new InternetAddress(username));
 			email.setRecipients(Message.RecipientType.TO, InternetAddress.parse(customerEmail));
-			email.setSubject("Order Confirmation - #" + OrderId);
-			String message = "Hello,\n\n" +
+			email.setSubject("Order Confirmation - #" + orderId);
+			String message = "Hello" + newOrder.getfirstname() + "\n\n" +
                     "Thank you for your order!\n" +
-                    "Order ID: " + OrderId + "\n" +
-                    "Item: " + itemName + "\n" +
+                    "Order ID: " + orderId + "\n" +
+                    "Item: " + items + "\n" +
                     "Shipping Method: " + shipMethod + "\n" +
                     "Total Cost: $" + total + "\n\n" +
                     "Best regards,\nYour Company Name";

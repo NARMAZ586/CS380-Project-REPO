@@ -248,10 +248,18 @@ public class shoppingCartController extends SceneController{
 		QuantityItem.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 		Price.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
 		
+		shippingOptions.selectToggle(null);
+		shippingMethod = null;
+		
 		loadCart();
 		
 		shippingOptions.selectedToggleProperty().addListener((obs, oldToggle, newTogle) -> {
 			updateTotals();
 		});
+	}
+	
+	public void resetShipping() {
+		shippingOptions.selectToggle(null);
+	    shippingMethod = null;
 	}
 }
