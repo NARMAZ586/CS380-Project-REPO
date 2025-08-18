@@ -157,6 +157,11 @@ public class SceneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        Parent currentRoot = Main.getMainScene().getRoot();
+        if (currentRoot.getUserData() != null && currentRoot.getUserData() instanceof shoppingCartController) {
+            ((shoppingCartController) currentRoot.getUserData()).resetShipping();
+        }
     }
     
     
