@@ -256,7 +256,15 @@ public class CheckOutController extends SceneController/*implements Initializabl
 //        		System.out.println("Card Expiration Year: " + cardExpYear.getText().toString());
     			customer newCustomer = new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update());
     			customers.add(newCustomer);
-    			orders newOrder = new orders(newCustomer.getID(), orders.updateID(), productId, ShoppingCart.getTotalPrice(),shoppingCartController.getShippingMethod(), productNames, newCustomer.getFirstName(), newCustomer.getEmail(),newCustomer.getAddress());
+    			orders newOrder = new orders(
+    					newCustomer.getID(),
+    					orders.updateID(),
+    					productId, ShoppingCart.getTotalPrice(),
+    					shoppingCartController.getShippingMethod(),
+    					productNames,
+    					newCustomer.getFirstName(),
+    					newCustomer.getEmail(),
+    					newCustomer.getAddress());
         		//customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
         		//System.out.println("Shipping Method: " + shipping);
         		System.out.println("Payment process went through");
@@ -264,8 +272,13 @@ public class CheckOutController extends SceneController/*implements Initializabl
         		
         		createScene(event, "Orders.fxml");
         		OrdersController.allOrders.add(newOrder);
-        		OrdersController.sendEmail("customerreceiver@gmail.com", "62", "Express", 150.60, "Hopefully this sends");
         		
+        		// send email using the new order object
+        		OrdersController.sendEmail(newOrder);
+        		/*
+        		 * - go to the ordersController.java, change the parameters to sentEmail, make the parameters identical to the orders constructor
+        		 * - after that, then change the call for sendEmail to exactly new orders line 259
+        		 */
         	} else {
         		paymentProcessResult.setText("Card information is invalid");
         		System.out.println("Invalid Card Information Entered");

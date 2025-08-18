@@ -67,9 +67,6 @@
             <Button fx:id="loginBtn" onAction="#userLogin" prefWidth="180.0" style="-fx-background-color: D22030;" text="SIGN IN" textFill="WHITE">
                <font><Font name="System Bold" size="16.0" /></font>
             </Button>
-            <Button fx:id="createAccountBtn" onAction="#handleAccountClick" style="-fx-background-color: transparent; -fx-underline: true;" text="Create Account">
-               <font><Font name="System" size="14.0" /></font>
-            </Button>
             <Label fx:id="wrongPasswordLabel" text="" textFill="RED" />
             <Button fx:id="loginBackbtn" onAction="#handleBackToHomepageClick" text="Back to Homepage">
                <font>
