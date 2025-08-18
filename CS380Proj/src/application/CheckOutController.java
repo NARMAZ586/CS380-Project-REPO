@@ -23,6 +23,8 @@ import Company.products.product;
 import Company.products;
 import Company.customer;
 import Company.inventory;
+import Company.orders;
+import application.OrdersController;
 import application.CreditCardValidation;
 import Company.ShoppingCart;
 import application.OrdersController;
@@ -235,11 +237,16 @@ public class CheckOutController extends SceneController/*implements Initializabl
 //        		System.out.println("Card CVC: " + cardCVC.getText().toString());
 //        		System.out.println("Card Expiration Month: " + cardExpMonth.getText().toString());
 //        		System.out.println("Card Expiration Year: " + cardExpYear.getText().toString());
+    			//customer newCustomer = new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update());
+    			//customers.add(newCustomer);
+    			//orders newOrder = new orders(newCustomer.getID(), newOrder.updateID(), newCustomer.getFirstName(), )
         		customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
         		//System.out.println("Shipping Method: " + shipping);
         		System.out.println("Payment process went through");
         		paymentProcessResult.setText("Payment has been processed");
+        		
         		createScene(event, "Orders.fxml");
+        		//OrdersContainer.allOrders.add(new orders());
         		OrdersController.sendEmail("customerreceiver@gmail.com", "62", "Express", 150.60, "Hopefully this sends");
         		
         	} else {

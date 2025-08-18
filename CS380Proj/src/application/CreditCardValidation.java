@@ -18,7 +18,7 @@ public class CreditCardValidation {
 	 @param args starts the args of CreditCard
 	 */
 	public static void main(String[] args) {
-		Boolean result = isValidCard("", "", "", "");
+		Boolean result = isValidCard("4929839163636989", "123", "11", "2027");
 		System.out.println(result);
     }
 	
@@ -56,7 +56,7 @@ public class CreditCardValidation {
 	 * @return The return is boolean, so it is either true or false
 	 */
 	//Uses Luhn Algorithm to verify if Card number is valid
-	private static Boolean checkSum(String num) {
+	public static Boolean checkSum(String num) {
 		Boolean alternate = false;
 		int currNum = 0;
 		int sum = 0;

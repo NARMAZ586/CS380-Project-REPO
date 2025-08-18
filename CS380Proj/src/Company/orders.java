@@ -1,4 +1,6 @@
 package Company;
+import java.util.ArrayList;
+import Company.products.product;
 
 /** 
  * orders
@@ -24,27 +26,33 @@ public class orders {
 	/**
 	* order Id of class orders 
 	*/
-	int orderID;
+	int orderID = 0;
 	/**
 	* product Id of class orders 
 	*/
 	int productID;
 	/**
-	* price of class orders 
+	* total price of class orders 
 	*/
-	double price;
+	double totalPrice;
 	/**
-	* shipping date of class orders 
+	* shipping method of class orders 
 	*/
-	String shippingDate;
+	String shippingMethod;
 	/**
 	* payment Method of class orders 
 	*/
-	String paymentMethod;
+	String paymentMethod = "Card";
 	/**
 	* item name of the order
 	*/
-	String itemName;
+	ArrayList<product> itemNames;
+	
+	String firstName;
+	
+	String email;
+	
+	String address;
 	
 	
 	//constructor 
@@ -59,17 +67,36 @@ public class orders {
 	 *@param paymentMethod method used for payment
 	 *@param itemName name of the item ordered
 	 */
-	public orders(int customerID, int orderID, int productID, double price, String shippingDate, String paymentMethod, String itemName) {
+	public orders(int customerID, int orderID, int productID, double price, String shippingMethod, ArrayList<product> itemName, String name, String email, String address) {
         this.customerID = customerID;
         this.orderID = orderID;
         this.productID = productID;
-        this.price = price;
-        this.shippingDate = shippingDate;
-        this.paymentMethod = paymentMethod;
-        this.itemName = itemName;
+        this.totalPrice = price;
+        this.shippingMethod = shippingMethod;
+        //this.paymentMethod = paymentMethod;
+        this.itemNames = itemName;
+        this.firstName = name;
+        this.email = email;
+        this.address = address;
     }
 	
+	public int updateID () {
+		return ++orderID;
+	}
+	
 	// getter methods for order and product attributes
+	
+	public String getfirstname() {
+		return firstName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public String address () {
+		return address;
+	}
 
 	/**
 	 *gets customerID
@@ -102,8 +129,8 @@ public class orders {
 	 *gets price
 	 *@return price
 	 */
-	public double getPrice() {
-		return price;
+	public double gettotalPrice() {
+		return totalPrice;
 		
 	}
 	
@@ -112,7 +139,7 @@ public class orders {
 	 *@return shippingDate
 	 */
 	public String getDate() {
-		return shippingDate;
+		return shippingMethod;
 		
 	}
 	
@@ -129,12 +156,24 @@ public class orders {
 	 *gets customerID
 	 *@return customerID
 	 */
-    public String getItem() {
-		return itemName;
+    public ArrayList<product> getItem() {
+		return itemNames;
 		
 	}
     
     //Setter methods for order
+    
+    public void setfirstname(String name) {
+    	this.firstName = name;
+    }
+    
+    public void setEmail(String email) {
+    	this.email = email;
+    }
+    
+    public void setAddress(String address) {
+    	this.address = address;
+    }
 
 	/**
 	 *Sets customerID
@@ -165,7 +204,7 @@ public class orders {
      * @param price The price of the product.
      */
     public void setPrice(double price) {
-	    this.price = price;
+	    this.totalPrice = price;
     }
 
 	/**
@@ -173,7 +212,7 @@ public class orders {
      * @param shippingDate The shipping date of the order.
      */
     public void setDate(String shippingDate) {
-	    this.shippingDate = shippingDate;
+	    this.shippingMethod = shippingDate;
     }
 
 	/**
@@ -188,8 +227,8 @@ public class orders {
      * Sets the item Name.
      * @param itemName The itemName of the product.
      */
-    public void setItem(String itemName) {
-    	this.itemName = itemName;
+    public void setItem(ArrayList<product> itemName) {
+    	this.itemNames = itemName;
     }
     
     //FIX: NEED TO MAKE METHODS FOR CSV FILES AND DATA PALACEMENT - Matt

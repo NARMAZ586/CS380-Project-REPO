@@ -173,7 +173,7 @@ public class Controller extends SceneController {
         Validates user login credentials and displays the feedback and switches to the AdminPage if valid or invalid.
         @param event in ActionEvent is triggered by the login attempt.
     */
-    private void checkLogin(ActionEvent event) {
+    public void checkLogin(ActionEvent event) {
     	String email = loginEmail.getText().trim();
     	String password = loginPassword.getText().trim();
     	
