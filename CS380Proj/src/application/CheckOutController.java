@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import java.io.IOException;
@@ -24,10 +26,14 @@ import Company.products;
 import Company.customer;
 import Company.inventory;
 import Company.orders;
+import Company.ShoppingCart;
 import application.OrdersController;
+import application.shoppingCartController.cartItem;
+import application.shoppingCartController;
 import application.CreditCardValidation;
 import Company.ShoppingCart;
 import application.OrdersController;
+import Company.ShoppingCart;
 
 
 import javafx.scene.layout.Region;
@@ -230,6 +236,17 @@ public class CheckOutController extends SceneController/*implements Initializabl
     	System.out.println("\n\n");
     	
     	System.out.println(ShoppingCart.getCartItems());
+    	ArrayList<Integer> productId = new ArrayList<>();
+    	ArrayList<String> productNames = new ArrayList<>();
+    	ObservableList<cartItem> cart = FXCollections.observableArrayList();
+    	for (var entry: ShoppingCart.getCartItems().entrySet()) {
+    		cart.add(new cartItem(entry.getKey(), entry.getValue()));
+    	}
+    	
+    	for(cartItem item: cart) {
+    		productId.add(item.getProdID());
+    		productNames.add(item.getName());
+    	}
     	
     	if(!customerFirstName.getText().isBlank() && !customerLastName.getText().isBlank() && !customerEmail.getText().isBlank() && !customerPhoneNum.getText().isBlank() && !customerAddress.getText().isBlank()) {
     		if(validate.isValidCard(cardNumber.getText().toString(), cardCVC.getText().toString(), cardExpMonth.getText().toString(), cardExpYear.getText().toString())) {
@@ -237,16 +254,16 @@ public class CheckOutController extends SceneController/*implements Initializabl
 //        		System.out.println("Card CVC: " + cardCVC.getText().toString());
 //        		System.out.println("Card Expiration Month: " + cardExpMonth.getText().toString());
 //        		System.out.println("Card Expiration Year: " + cardExpYear.getText().toString());
-    			//customer newCustomer = new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update());
-    			//customers.add(newCustomer);
-    			//orders newOrder = new orders(newCustomer.getID(), newOrder.updateID(), newCustomer.getFirstName(), )
-        		customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
+    			customer newCustomer = new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update());
+    			customers.add(newCustomer);
+    			orders newOrder = new orders(newCustomer.getID(), orders.updateID(), productId, ShoppingCart.getTotalPrice(),shoppingCartController.getShippingMethod(), productNames, newCustomer.getFirstName(), newCustomer.getEmail(),newCustomer.getAddress());
+        		//customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
         		//System.out.println("Shipping Method: " + shipping);
         		System.out.println("Payment process went through");
         		paymentProcessResult.setText("Payment has been processed");
         		
         		createScene(event, "Orders.fxml");
-        		//OrdersContainer.allOrders.add(new orders());
+        		OrdersController.allOrders.add(newOrder);
         		OrdersController.sendEmail("customerreceiver@gmail.com", "62", "Express", 150.60, "Hopefully this sends");
         		
         	} else {

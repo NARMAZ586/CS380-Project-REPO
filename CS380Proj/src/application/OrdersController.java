@@ -58,7 +58,7 @@ public class OrdersController extends SceneController {
 	@FXML private Label subtotalLabel;
 	@FXML private Label totalLabel;
 	private static List<customer> customers = CheckOutController.getAllCustomers();
-	public static List<orders> allOrder = new ArrayList<>();
+	public static List<orders> allOrders = new ArrayList<>();
 	
 	private int orderNum = 0;
 

@@ -22,37 +22,37 @@ public class orders {
 	/**
 	* customer Id of class orders 
 	*/	
-	int customerID;
+	private int customerID;
 	/**
 	* order Id of class orders 
 	*/
-	int orderID = 0;
+	private static int orderID = 0;
 	/**
 	* product Id of class orders 
 	*/
-	int productID;
+	private ArrayList<Integer> productID;
 	/**
 	* total price of class orders 
 	*/
-	double totalPrice;
+	private double totalPrice;
 	/**
 	* shipping method of class orders 
 	*/
-	String shippingMethod;
+	private String shippingMethod;
 	/**
 	* payment Method of class orders 
 	*/
-	String paymentMethod = "Card";
+	private String paymentMethod = "Card";
 	/**
 	* item name of the order
 	*/
-	ArrayList<product> itemNames;
+	private ArrayList<String> itemNames;
 	
-	String firstName;
+	private String firstName;
 	
-	String email;
+	private String email;
 	
-	String address;
+	private String address;
 	
 	
 	//constructor 
@@ -67,7 +67,7 @@ public class orders {
 	 *@param paymentMethod method used for payment
 	 *@param itemName name of the item ordered
 	 */
-	public orders(int customerID, int orderID, int productID, double price, String shippingMethod, ArrayList<product> itemName, String name, String email, String address) {
+	public orders(int customerID, int orderID, ArrayList<Integer> productID, double price, String shippingMethod, ArrayList<String> itemName, String name, String email, String address) {
         this.customerID = customerID;
         this.orderID = orderID;
         this.productID = productID;
@@ -80,7 +80,7 @@ public class orders {
         this.address = address;
     }
 	
-	public int updateID () {
+	public static int updateID () {
 		return ++orderID;
 	}
 	
@@ -120,7 +120,7 @@ public class orders {
 	 *gets productID
 	 *@return productID
 	 */
-	public int getProductID() {
+	public ArrayList<Integer> getProductID() {
 		return productID;
 		
 	}
@@ -156,7 +156,7 @@ public class orders {
 	 *gets customerID
 	 *@return customerID
 	 */
-    public ArrayList<product> getItem() {
+    public ArrayList<String> getItem() {
 		return itemNames;
 		
 	}
@@ -195,7 +195,7 @@ public class orders {
      * Sets the product ID.
      * @param productID The ID of the product.
      */
-    public void setProductID(int productID) {
+    public void setProductID(ArrayList<Integer> productID) {
 	    this.productID = productID;
     }
 
@@ -227,7 +227,7 @@ public class orders {
      * Sets the item Name.
      * @param itemName The itemName of the product.
      */
-    public void setItem(ArrayList<product> itemName) {
+    public void setItem(ArrayList<String> itemName) {
     	this.itemNames = itemName;
     }
     
