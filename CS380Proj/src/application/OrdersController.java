@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
@@ -57,6 +58,8 @@ public class OrdersController extends SceneController {
 	@FXML private Label subtotalLabel;
 	@FXML private Label totalLabel;
 	private static List<customer> customers = CheckOutController.getAllCustomers();
+	public static List<orders> allOrder = new ArrayList<>();
+	
 	private int orderNum = 0;
 
 
@@ -67,7 +70,7 @@ public class OrdersController extends SceneController {
 	/**
 	 * method of the write default orders
 	 */
-	public static void writeDefaultOrders() {
+	public static void writeOrders() {
 		File file = new File("Database/Orders.csv");
 		file.getParentFile().mkdirs();
 		
@@ -81,9 +84,6 @@ public class OrdersController extends SceneController {
 		if(!customers.isEmpty()) {
 			mostRecentCustomer = customers.get(customers.size() - 1);
 		}
-		//String firstName = mostRecentCustomer.getFirstName();
-		//String lastName = mostRecentCustomer.getLastName();
-		//String fullName = firstName + " " + lastName;
 		String fullname = mostRecentCustomer.getFirstName() + " " + mostRecentCustomer.getLastName();
 		String email = mostRecentCustomer.getEmail();
 		String phone = mostRecentCustomer.getPhoneNumber();
