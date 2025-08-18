@@ -55,39 +55,39 @@ public class AdminPageController extends SceneController{
 	/**
 	 * TextField that the user enters their email
 	 */
-	@FXML private TextField txtFieldAdminPageEmail;
+	@FXML public TextField txtFieldAdminPageEmail;
 	/**
 	 * TextField that the users enters their username
 	 */
-	@FXML private TextField txtFieldAdminPageUsername;
+	@FXML public TextField txtFieldAdminPageUsername;
 	/**
 	 * TextField that the users enters their password
 	 */
-	@FXML private TextField txtFieldAdminPagePassword;
+	@FXML public TextField txtFieldAdminPagePassword;
 	/**
 	 * TableView that brings the products to this page to display
 	 */
-	@FXML private TableView<product> tblViewProductStock;
+	@FXML public TableView<product> tblViewProductStock;
 	/**
 	 * TableColumn that showcases the name of the product
 	 */
-	@FXML private TableColumn<product, String> tblColumnProductName;
+	@FXML public TableColumn<product, String> tblColumnProductName;
 	/**
 	 * TableColumn that shows the  Product quantities
 	 */
-	@FXML private TableColumn<product, Integer> tblColumnQuantity;
+	@FXML public TableColumn<product, Integer> tblColumnQuantity;
 	/**
 	 * Button that removes the stock quantity by 1
 	 */
-    @FXML private Button btnRemoveStock;
+    @FXML public Button btnRemoveStock;
     /**
      * Button that adds the stock quantity by 1
      */
-    @FXML private Button btnAddStock;
+    @FXML public Button btnAddStock;
     /**
      * Observable list that brings the productList and put it in an Array List
      */
-    private ObservableList<product> productList = FXCollections.observableArrayList();
+    public ObservableList<product> productList = FXCollections.observableArrayList();
     /**
      * Logs out the user and to the homepage
      * @param event leads to the Homepage when pressed
@@ -115,7 +115,7 @@ public class AdminPageController extends SceneController{
 	 * When pressed it adds a stock
 	 * @param event Adds the stock by 1
 	 */
-	@FXML private void handleBtnAddStock(ActionEvent event) {
+	@FXML public void handleBtnAddStock(ActionEvent event) {
 		product selected = tblViewProductStock.getSelectionModel().getSelectedItem();
         if (selected != null) {
             selected.setStockQuantity(selected.getStockQuantity() + 1);
@@ -126,7 +126,7 @@ public class AdminPageController extends SceneController{
 	 * When pressed it removes a stock
 	 * @param event Removes the stock by 1
 	 */
-	@FXML private void handleBtnRemoveStock(ActionEvent event) {
+	@FXML public void handleBtnRemoveStock(ActionEvent event) {
 		product selected = tblViewProductStock.getSelectionModel().getSelectedItem();
         if (selected != null && selected.getStockQuantity() > 0) {
             selected.setStockQuantity(selected.getStockQuantity() - 1);
@@ -137,7 +137,7 @@ public class AdminPageController extends SceneController{
 	 * When pressed it adds the account
 	 * @param event gets email, username, password to the storage
 	 */
-	@FXML private void handleBtnAddAccount(ActionEvent event) {
+	@FXML public void handleBtnAddAccount(ActionEvent event) {
 		String email = txtFieldAdminPageEmail.getText().trim();
 		String username = txtFieldAdminPageUsername.getText().trim();
 	    String password = txtFieldAdminPagePassword.getText().trim();
