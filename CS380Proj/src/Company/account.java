@@ -43,14 +43,14 @@ public class account {
         this.firstName = firstName;
     }
 
-    // Default constructor
+    
     /**
      * Default constructor
      */
     public account() {
     }
 
-    // Gets email
+    
     /**
      * Getter method that gets account email
      * @return Returns the email for the account
@@ -59,7 +59,7 @@ public class account {
         return email;
     }
     
-    //Sets email
+    
     /**
      * Setter method that sets account email
      * @param email Takes input and sets it as email
@@ -68,7 +68,7 @@ public class account {
         this.email = email;
     }
 
-    //Gets password
+    
     /**
      * Getter method that gets account password
      * @return Returns the password for the account
@@ -77,8 +77,7 @@ public class account {
         return password;
     }
     
-    //Sets password
-  //Sets email
+    
     /**
      * Setter method that sets account password
      * @param password Takes input and sets it as password
@@ -87,7 +86,7 @@ public class account {
         this.password = password;
     }
 
-    //Gets firstName
+    
     /**
      * Getter method that gets account first name
      * @return Returns the first name for the account
@@ -96,8 +95,7 @@ public class account {
         return firstName;
     }
     
-    //Sets firstName
-  //Sets email
+    
     /**
      * Setter method that sets account first name
      * @param firstName Takes input and sets it as first name
@@ -115,6 +113,8 @@ public class account {
 	static {
 		accounts.add(new account("Admin","123","Admin"));
 	}
+	
+	
 	/**
 	 * adds account as a
 	 * @param a uses a as an account method use
@@ -137,7 +137,6 @@ public class account {
 		return false;
 	}
     
-    //FIX: Write to Csv 
 
     public static void readAccountsCSV(String fileName) {
     	try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -166,13 +165,8 @@ public class account {
     
     public static void writeSingleAccounts() {
         File file = new File("Database/Accounts.csv");
-        //file.getParentFile().mkdirs();
 
         try (FileWriter writer = new FileWriter(file, true)) {
-           // if (file.length() == 0) {
-              //  writer.append("Username,Password,Email\n");
-            //}
-
             for (account a : accounts) {
                 writer.append(String.format("%s,%s,%s\n",a.getEmail(), a.getFirstName(), a.getPassword()));
             }

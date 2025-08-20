@@ -114,6 +114,7 @@ public class KeycapPageController extends SceneController implements Initializab
     	selectedProduct = prod; //saves selected product for add cart
     	updateStockLabel(prod);
     }
+    
     /**
      *  initializes for thekeycaps products
      */

@@ -175,7 +175,7 @@ public class shoppingCartController extends SceneController{
 	 * displays the shipping cost
 	 * @return returns depending which case has chosen
 	 */
-	//private double shippingCost() {
+	
 	public double shippingCost() {
 		String shipping = getShipping();
 		if (shipping == null) {
@@ -257,6 +257,17 @@ public class shoppingCartController extends SceneController{
 			updateTotals();
 		});
 	}
+	
+	/**
+     * restores stock, reloads table, and clears shipping when clear cart is pressed
+     */
+	@FXML
+	private void clearCart() {
+	    ShoppingCart.clearCartAndRestock(); // restore stock
+	    loadCart();                         // reload table and totals
+	    resetShipping();                    // clear shipping selection
+	}
+	
 	
 	public void resetShipping() {
 		shippingOptions.selectToggle(null);
