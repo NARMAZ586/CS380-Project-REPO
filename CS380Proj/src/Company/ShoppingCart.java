@@ -25,7 +25,6 @@ public class ShoppingCart {
     private static double currentTotalPrice = 0.0;
 
     
-    //Matt- modified this function to prevent adding to cart if not enough stock
     /**
      * adds the item in the shopping cart
      * @param p uses the product in the shopping cart
@@ -39,9 +38,6 @@ public class ShoppingCart {
     	
     	int currentQuantity = cartItems.getOrDefault(p, 0);
     	int stock = p.getStockQuantity();
-//    	System.out.println("\nThis is my test for the stock: " + stock);
-//    	System.out.println("\nThis is my test for the currentquantity: " + currentQuantity);
-//    	System.out.println("\nThis is my test for the quantity: " + quantity);
     	
     	if (quantity > stock) {
             System.out.println("Cannot add more than stock. Only " + stock + " available.");

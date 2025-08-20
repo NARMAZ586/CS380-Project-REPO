@@ -1,11 +1,9 @@
 package application;
 
-import application.InterfaceListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -23,12 +21,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.ColumnConstraints;
-import Company.ShoppingCart;
 import Company.inventory;
 import Company.products;
 import Company.products.product;
 
-import application.Controller;
 
 /** 
  * SwitchPageController
@@ -51,10 +47,6 @@ public class SwitchPageController extends SceneController implements Initializab
 	 */
 	public SwitchPageController() {}
 	
-    /**
-    * An instance of products called myProds 
-    */
-    //private products myProds = new products();
     /**
      *Button use for the Account page
      */
@@ -163,7 +155,6 @@ public class SwitchPageController extends SceneController implements Initializab
      */
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");
-    	//myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
         allProducts = inventory.getallSwitches();
 

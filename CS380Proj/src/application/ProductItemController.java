@@ -1,6 +1,5 @@
 package application;
 
-import Company.ShoppingCart;
 import Company.products;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -103,8 +102,4 @@ public class ProductItemController {
     public void setImage(javafx.scene.image.Image image) {
         productImg.setImage(image);
     }
-
-    
-
-    
 }

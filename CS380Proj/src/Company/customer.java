@@ -32,14 +32,12 @@ public class customer {
 	private int ID;
 
 	
-	// --- Default constructor ---
 	/**
 	 * Default constructor for customer class
 	 */
 	public customer() {}
 	
 	
-	// --- Constructor ---
 	/**
 	 * Constructor for the class customer
 	 * @param firstName customer's first name
@@ -58,7 +56,6 @@ public class customer {
 		this.ID = ID;
 	}
 	
-		//--- Getters ---
 		/**
 		 * Getter method for customer first name
 		 * @return returns the customer first name
@@ -108,7 +105,6 @@ public class customer {
 		}
 		
 		
-		//--- Setters ---
 		/**
 		 * Setter method for customer first name
 		 * @param firstName takes input and sets for customer first name

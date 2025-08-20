@@ -1,11 +1,9 @@
 package application;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -14,15 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-
-import Company.products.product;
-import Company.inventory;
-import Company.products;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
@@ -97,7 +87,6 @@ public class Controller extends SceneController {
     */
     @FXML private ListView<String> listView;
     
-    //fx:id for switchpage
     /**
         Displays the selected products price
     */
@@ -139,19 +128,12 @@ public class Controller extends SceneController {
     */
     @FXML private ImageView imageView;
     
-    //stage and scene references
     /**
         Managing the main application window
     */
-    private Stage stage;
+    @FXML private Stage stage;
     /**
         Switching between the FXML views
-    */
-    //private Scene scene;
-    /**
-        Root node in loading the new FXML
-    */
-    //private Parent root;
     
 
     /**
@@ -177,9 +159,6 @@ public class Controller extends SceneController {
     	String email = loginEmail.getText().trim();
     	String password = loginPassword.getText().trim();
     	
-    	
-    	
-    	
     	if(Company.account.checkCredentials(email, password)) {
     		wrongPasswordLabel.setText("Success!");
     		createScene(event, "AdminPage.fxml");
@@ -202,12 +181,6 @@ public class Controller extends SceneController {
     	createScene(event, "Homepage.fxml");
     }
     
-    /**
-     * Void method that is meant to switch the scene
-     */
-//    public void switchScene() {
-//    	stage.setScene(new Scene(new Label("New Scene")));
-//    }
 
     /**
      * The initialize method runs as a method to load UI elements just as the program is starting
