@@ -47,25 +47,33 @@ public class orders {
 	* item name of the order
 	*/
 	private ArrayList<String> itemNames;
-	
+	/**
+	 * The customer's first name.
+	 */
 	private String firstName;
-	
+
+	/**
+	 * The customer's email address.
+	 */
 	private String email;
-	
+
+	/**
+	 * The customer's mailing address.
+	 */
 	private String address;
 	
 	
-	//constructor 
 	/**
-	 *constructor for the orders class
-	 *
-	 *@param customerID ID of customer placing order
-	 *@param orderID ID of placed order
-	 *@param productID ID of product ordered
-	 *@param price price of products
-	 *@param shippingDate shipping date for order
-	 *@param paymentMethod method used for payment
-	 *@param itemName name of the item ordered
+	 * constructor for the orders class
+	 * @param customerID ID of customer placing order
+	 * @param orderID ID of placed order
+	 * @param productID ID of product ordered
+	 * @param price price of products
+	 * @param shippingMethod shipping date for order
+	 * @param itemName name of the item ordered
+	 * @param name name of the customer
+	 * @param email email of the customer
+	 * @param address address of the customer
 	 */
 	public orders(int customerID, int orderID, ArrayList<Integer> productID, double price, String shippingMethod, ArrayList<String> itemName, String name, String email, String address) {
         this.customerID = customerID;
@@ -73,30 +81,44 @@ public class orders {
         this.productID = productID;
         this.totalPrice = price;
         this.shippingMethod = shippingMethod;
-        //this.paymentMethod = paymentMethod;
         this.itemNames = itemName;
         this.firstName = name;
         this.email = email;
         this.address = address;
     }
-	
+	/**
+	 * Increments and returns the next order ID.
+	 * @return next order ID
+	 */
 	public static int updateID () {
 		return ++orderID;
 	}
 	
-	// getter methods for order and product attributes
+	/**
+	 * Returns the shipping method.
+	 * @return shipping method
+	 */
 	public String getShipMethod() {
 		return shippingMethod;
 	}
-	
+	/**
+	 * Returns the customer's first name.
+	 * @return first name
+	 */
 	public String getfirstname() {
 		return firstName;
 	}
-	
+	/**
+	 * Returns the customer's email.
+	 * @return email
+	 */
 	public String getEmail() {
 		return email;
 	}
-	
+	/**
+	 * Returns the customer's address.
+	 * @return address
+	 */
 	public String getaddress () {
 		return address;
 	}
@@ -164,16 +186,24 @@ public class orders {
 		
 	}
     
-    //Setter methods for order
-    
+    /**
+     * Sets the customer's first name.
+     * @param name the first name to set
+     */
     public void setfirstname(String name) {
     	this.firstName = name;
     }
-    
+    /**
+     * Sets the customer's email.
+     * @param email the email to set
+     */
     public void setEmail(String email) {
     	this.email = email;
     }
-    
+    /**
+     * Sets the customer's address.
+     * @param address the address to set
+     */
     public void setAddress(String address) {
     	this.address = address;
     }
@@ -233,9 +263,4 @@ public class orders {
     public void setItem(ArrayList<String> itemName) {
     	this.itemNames = itemName;
     }
-    
-    //FIX: NEED TO MAKE METHODS FOR CSV FILES AND DATA PALACEMENT - Matt
-    
-    
-	
 }

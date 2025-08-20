@@ -1,9 +1,6 @@
 package application;
 import Company.ShoppingCart;
 import Company.products.product;
-import Company.inventory;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -143,7 +140,10 @@ public class shoppingCartController extends SceneController{
 		public double getTotalPriceNum() {
 			return prod.getPrice() * quantity;
 		}
-		
+		/**
+		 *gets prodID
+		 *@return product ID
+		 */	
 		public int getProdID() {
 			return prod.getprodID();
 		}
@@ -175,7 +175,7 @@ public class shoppingCartController extends SceneController{
 	 * displays the shipping cost
 	 * @return returns depending which case has chosen
 	 */
-	//private double shippingCost() {
+	
 	public double shippingCost() {
 		String shipping = getShipping();
 		if (shipping == null) {
@@ -258,6 +258,20 @@ public class shoppingCartController extends SceneController{
 		});
 	}
 	
+	/**
+     * restores stock, reloads table, and clears shipping when clear cart is pressed
+     */
+	@FXML
+	private void clearCart() {
+	    ShoppingCart.clearCartAndRestock(); // restore stock
+	    loadCart();                         // reload table and totals
+	    resetShipping();                    // clear shipping selection
+	}
+	
+	/**
+	 * Resets the shipping option.
+	 * Clears the current selection from the toggle group and sets the shipping method to null.
+	 */
 	public void resetShipping() {
 		shippingOptions.selectToggle(null);
 	    shippingMethod = null;

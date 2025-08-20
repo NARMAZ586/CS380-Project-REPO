@@ -32,7 +32,7 @@ public class ShoppingCart {
      */
     public static void addItem(product p, int quantity) {
     	
-    	if(quantity <= 0) {
+    	if(quantity < 0) {
     		return;
     	}
     	
@@ -79,8 +79,22 @@ public class ShoppingCart {
         }
         currentTotalPrice = total;
     }
+    
     /**
-     * clears the cart alongside the proce to 0
+     * clears cart and restocks when shopping cart is cancelled
+     */
+    public static void clearCartAndRestock() {
+        for (Map.Entry<product, Integer> entry : cartItems.entrySet()) {
+            product p = entry.getKey();
+            int quantityInCart = entry.getValue();
+            p.setStockQuantity(p.getStockQuantity() + quantityInCart); // Restore stock
+        }
+        cartItems.clear();
+        currentTotalPrice = 0.0;
+    }
+    
+    /**
+     * clears the cart, used after checkout
      */
     public static void clearCart() {
         cartItems.clear();

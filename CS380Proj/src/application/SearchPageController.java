@@ -157,7 +157,10 @@ public class SearchPageController extends SceneController implements Initializab
     		}
     	});
     }
-    
+    /**
+     * Opens the product details page for the selected product
+     * @param event the action event triggering the navigation
+     */
     @FXML private void handleGoToProductDetails(ActionEvent event) {
     	String selectedName = searchProductLabel.getText();
     	if (selectedName == null || selectedName.equals("Product")) {

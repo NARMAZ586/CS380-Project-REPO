@@ -3,7 +3,6 @@ import java.io.IOException;
 
 import Company.ShoppingCart;
 import Company.products.product;
-import application.shoppingCartController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -130,8 +129,6 @@ public class SceneController {
     		createScene(event, "Checkout.fxml");
     	}
     }
-    
-    
     
     
     
@@ -264,20 +261,4 @@ public class SceneController {
         return this.selectedProduct;
     }
 
-    
-//    /**
-//        A setter that sets the stage 
-//        @param stage sets the stage
-//   */
-//    public void setStage(Stage stage) {
-//        this.stage = stage;
-//    }
-//
-//    /**
-//     * Void method that is meant to switch the scene
-//     */
-//    public void switchScene() {
-//    	stage.setScene(new Scene(new Label("New Scene")));
-//    }
-    
 }
