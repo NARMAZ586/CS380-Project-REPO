@@ -1,26 +1,136 @@
 package Company;
 import Company.products.product;
+import java.util.List;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
-* Name: inventory
-* Date of code: 8/4/2025
-* @author Nery A., Marlon S.
-* Class inventory holds all the methods and also class inventories
-* Inventory by itself represents all products on the application, despite their type
+ * Name: inventory
+ * Date of code: 8/4/2025
+ * Class inventory holds all the methods and also class inventories
+ * Inventory by itself represents all products on the application, despite their type
+ * @author Nery A., Marlon S.
 */
 public class inventory {
 	/**
-	 * 
-	 * @param args starts the Inventory java
+	 * default constructor of inventory
 	 */
-	public static void main(String[] args) {
-		
-	}
+	public inventory() {}
 	/**
 	* Class inventories is used to describe a group of products
 	* For example the brand sells keyboards, switches, and keycaps, so each of these is considered their own inventory group 
 	*/
+	
+	private static final List<product> allProducts = new ArrayList<>();
+	
+
+	/**
+	 * class for the default inventory
+	 */
+	public static void writeDefaultInventory() {
+		File file = new File("Database/Inventory.csv");
+		file.getParentFile().mkdirs();
+		List<product> keyboards = getAllKeyboards();
+		List<product> keycaps = getallKeycaps();
+		List<product> switches = getallSwitches();
+		try {
+			FileWriter writer = new FileWriter(file);
+			writer.append("Name, ID, Price, Type, Quantity, Description\n");
+			for (product k : keyboards) {
+				writer.append(String.format("%s,%d,%.2f,%s,%d,%s\n", k.getName(), k.getprodID(), k.getPrice(), k.prodType(), k.getStockQuantity(),k.prodDescription()));
+			}
+			for (product kc : keycaps) {
+				writer.append(String.format("%s,%d,%.2f,%s,%d,%s\n", kc.getName(), kc.getprodID(), kc.getPrice(), kc.prodType(), kc.getStockQuantity(),kc.prodDescription()));
+			}
+			for (product s : switches) {
+				writer.append(String.format("%s,%d,%.2f,%s,%d,%s\n", s.getName(), s.getprodID(), s.getPrice(), s.prodType(), s.getStockQuantity(),s.prodDescription()));
+			}
+			System.out.println("Successful write: Inventory.csv");
+			writer.close();
+		} catch(IOException e) {
+			System.out.println("Error occured while writing Inventory.csv");
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * adds to inventory from allProducts
+	 * @param name adds name to the inventory
+	 * @param id adds ID to the inventory
+	 * @param price adds the price to the inventory
+	 * @param type adds the type to the inventory
+	 * @param description adds the description to the inventory
+	 * @param stock adds the stock to the inventory
+	 * @param imgSRC adds the image to the inventory
+	 */
+	public static void addToInventory(String name, int id, double price, String type, String description, int stock, String imgSRC) {
+		allProducts.add(new product(name, id, price, type, description, stock, imgSRC));
+	}
+	/**
+	 * gets all products
+	 * @return returns to allProducts
+	 */
+	public static List<product> getAllProducts(){
+		return allProducts;
+	}
+
+	/**
+	 * gets all Products by ID
+	 * @param ID if the prod id is the correct one
+	 * @return returns the product
+	 */
+	public static product getProductByID (int ID) {
+		for(product p: allProducts) {
+			if(p.getprodID() == ID) {
+				return p;
+			}
+		}
+		return null;
+	}
+	/**
+	 * gets all the keyboards
+	 * @return returns all the keyboards in the inventory
+	 */
+	public static ArrayList<product> getAllKeyboards () {
+		ArrayList<product> allKeyboards = new ArrayList<> ();
+		for(product p: allProducts) {
+			if("keyboard".equals(p.prodType())) {
+				allKeyboards.add(p);
+			}
+		}
+		return allKeyboards;
+	}
+	/**
+	 * gets all the keycaps
+	 * @return returns all the keycaps from the inventory
+	 */
+	public static ArrayList<product> getallKeycaps() {
+		ArrayList<product> allKeycaps = new ArrayList<> ();
+		for (product p: allProducts) {
+			if("keycap".equals(p.prodType())) {
+				allKeycaps.add(p);
+			}
+		}
+		return allKeycaps;
+	}
+	/**
+	 * gets all the switches
+	 * @return returns all the switches from the inventory
+	 */
+	public static ArrayList<product> getallSwitches() {
+		ArrayList<product> allSwitches = new ArrayList<>();
+		for (product p : allProducts) {
+			if ("switch".equals(p.prodType())){
+				allSwitches.add(p);
+			}
+		}
+		return allSwitches;
+	}
+	/**
+	 * class for the inventories that has name, prodID, quantity, and type
+	 */
 	public static class inventories{
 		/**
 		* Name of the inventory
@@ -50,7 +160,7 @@ public class inventory {
 		Constructor of the inventories class
 		@param name inventories name
 		@param prodID inventories prodID
-		@param quanitity inventories quantity
+		@param quantity inventories quantity
 		@param type inventories type
 		*/
 		public inventories(String name, int prodID, int quantity, String type) {

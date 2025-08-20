@@ -1,10 +1,10 @@
 package Company;
 /**
-    Name: customer
-    Date of code: 8/8/25
-    Represents an individual customer order in the system
-    @author  Michelle L.
-*/
+ * Name: customer
+ * Date of code: 8/8/25
+ * Represents an individual customer order in the system
+ * @author  Michelle L.
+ */
 public class customer {
 	/**
 		Customers first name
@@ -36,9 +36,7 @@ public class customer {
 	/**
 	 * Default constructor for customer class
 	 */
-	customer() {
-		
-	}
+	public customer() {}
 	
 	
 	// --- Constructor ---
@@ -47,7 +45,6 @@ public class customer {
 	 * @param firstName customer's first name
 	 * @param lastName customer's last name
 	 * @param email customer's email
-	 * @param username customer's username
 	 * @param phoneNumber customer's phone number
 	 * @param address customer's address
 	 * @param ID customer's ID

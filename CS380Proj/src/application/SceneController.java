@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import Company.ShoppingCart;
 import Company.products.product;
+import application.shoppingCartController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +14,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-
+/**
+SceneController
+Date of code: 8/15/25
+This controller class handles all of the Scenes
+This includes things like moving scenes from one fxml to another or have interactions with the UI
+@author Nery A.
+*/
+/**
+ * class of the scene controller
+ */
 public class SceneController {
-	
-	
+	/**
+	 * default constructor of SceneController
+	 */
+	public SceneController() {}
+	/**
+	 * Displays the shopping cart result label
+	 */
+	@FXML private Label shoppingCartResultLabel;
 	/**
     Handles the logo button clicked from the navigation bar
     Navigates the user back to the homepage
@@ -104,8 +120,18 @@ public class SceneController {
     @param event Triggered when the user clicks checkout button on the shopping cart page*/@FXML
     protected void handleCheckOutClick(ActionEvent event) {
     	System.out.println("Checkout clicked");
-        createScene(event, "Checkout.fxml");
+    	if (ShoppingCart.getCartItems().isEmpty()) {
+    		shoppingCartResultLabel.setText("Your cart is empty");
+    		System.out.println("Your cart is empty");
+    	} else if(shoppingCartController.getShippingMethod() == null) {
+    		shoppingCartResultLabel.setText("Select a shipping method");
+    		System.out.println("Please select a shipping method first");
+    	} else {
+    		createScene(event, "Checkout.fxml");
+    	}
     }
+    
+    
     
     
     
@@ -119,17 +145,25 @@ public class SceneController {
             Parent root = FXMLLoader.load(getClass().getResource(fileName));
             Stage stage = Main.getPrimaryStage();
             Scene scene = Main.getMainScene();
-            if (root instanceof Region) {
-                Region regionR = (Region) root;
+            if (root instanceof Region regionR) {
+            	//stage.setWidth(regionR.prefWidth(-1));
+            	//stage.setHeight(regionR.prefHeight(-1));
+            	
+                //Region regionR = (Region) root;
                 regionR.prefWidthProperty().bind(stage.widthProperty());
                 regionR.prefHeightProperty().bind(stage.heightProperty());
             }
             scene.setRoot(root);
-            stage.setFullScreen(true);
+            //stage.setFullScreen(true);
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        
+        Parent currentRoot = Main.getMainScene().getRoot();
+        if (currentRoot.getUserData() != null && currentRoot.getUserData() instanceof shoppingCartController) {
+            ((shoppingCartController) currentRoot.getUserData()).resetShipping();
         }
     }
     
@@ -138,7 +172,9 @@ public class SceneController {
      * Variable used to store selected product from grid, and used to add to cart
      */
     protected product selectedProduct;
-    
+    /**
+     * variable used to store the quantity of the product
+     */
     protected int quantity;
     
     /**
@@ -146,12 +182,15 @@ public class SceneController {
      */
     @FXML
     protected Button btnAddToCart;
-    
+    /**
+     * displays the stock label of the product
+     */
     @FXML
     protected Label productStockLabel;
     
     /**
      * Updates the label based on the stock of the selected product card.
+     * @param prod gets the stock quantity from the product
      */
     protected void updateStockLabel(product prod) {
         if (prod.getStockQuantity() > 0) {
@@ -174,7 +213,10 @@ public class SceneController {
      */
     @FXML
     protected void handleAddToCart() {
-    	if (selectedProduct == null) return;
+    	if (selectedProduct == null) {
+    		System.out.println("No Product selected.");
+    		return;
+    	}
 
         int requestedQty = 1; // default
         try {
@@ -198,6 +240,7 @@ public class SceneController {
             ShoppingCart.addItem(selectedProduct, requestedQty);
             selectedProduct.setStockQuantity(stock - requestedQty);
             updateStockLabel(selectedProduct);
+            System.out.println("This is the stock of " + selectedProduct.getName() + ": " + stock);
             quantityField.setText(""); // clear after adding
         } else {
             System.out.println("Not enough stock available.");
@@ -205,12 +248,18 @@ public class SceneController {
         }
     }
     
-    //Sets selected product in product selection page
+    /**
+     * Sets selected product in product selection page
+     * @param p constructor for the product in scene controller
+     */
     public void setSelectedProduct(product p) {
         this.selectedProduct = p;
     }
     
-    //not used but useful for getting product info that has been selected
+    /**
+     * not used but useful for getting product info that has been selected
+     * @return retunrs to the selected product
+     */
     public product getSelectedProduct() {
         return this.selectedProduct;
     }

@@ -1,0 +1,16 @@
+Name, ID, Price, Type, Quantity, Description
+red Mechanical,1,150.00,keyboard,10,Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps
+retroMechanical,2,200.00,keyboard,5,A retro themed mechanical keyboard that comes in 5 different shades of blue and neon green
+blueMechanical,3,150.00,keyboard,8,Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable
+CustomeBuild,4,250.00,keyboard,3,This is a fully custom build. This keyboard option gives full customizable options to the buyer
+Retro,9,100.00,keycap,25,These neon retro themed keycaps come in multiple shade of an assortment of colors
+Cherry Blossom,10,120.00,keycap,15,Ergonomic with angled tops and varying heights across rows also suitable for gaming and typing
+Samurai,11,110.00,keycap,12,Common ergonomic type also taller and more angled than Cherry
+Purple,12,135.00,keycap,20,Tall rounded and ergonomic with indented tops
+Charmer,13,90.00,keycap,30,Non-ergonomic with a low-profile flat shape providing versatility for various keyboard setups
+Latin,14,105.00,keycap,10,Non-ergonomic with rounded shapes and smaller tops giving keyboards a cozy bubble-like appearance
+Katana,15,4.50,keycap,1000,Offers fully custom keycaps for any size of keyboard
+Eva-0,5,15.00,switch,100,These switches are for the user that wants a more tactile or stealthy sound to their keyboard
+BananaSplit,6,18.50,switch,75,These switches provide an even more tactile sound than the original cherry mx red switches
+cherry mx brown,7,17.00,switch,60,A tactile key switch which offers a balance of feedback and noise
+Novelkey Creams,8,20.00,switch,90,Fast linear designed for quick response times

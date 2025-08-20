@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.ColumnConstraints;
 import Company.ShoppingCart;
+import Company.inventory;
 import Company.products;
 import Company.products.product;
 
@@ -32,7 +33,6 @@ import application.Controller;
 /** 
  * SwitchPageController
  * 08/12/2025
- * @author Matthew Berleson
  * 
  * Class Description:Class is meant to be a controller for the switch product page that displays products and adds them to shopping cart.
  * 
@@ -41,15 +41,20 @@ import application.Controller;
  * handleAccountClick(), handleCartClick(), etc... : Handles navigation on mouse click
  * 
  * DataStructures:
- * ArrayList<product>: used to hold product objects
+ * ArrayList product: used to hold product objects
  * GridPane: Layout to display product cars in a grid
+ * @author Matthew Berleson
  */
-
 public class SwitchPageController extends SceneController implements Initializable{
+	/**
+	 * default constructor of SwitchPageController
+	 */
+	public SwitchPageController() {}
+	
     /**
     * An instance of products called myProds 
     */
-    private products myProds;
+    //private products myProds = new products();
     /**
      *Button use for the Account page
      */
@@ -123,10 +128,14 @@ public class SwitchPageController extends SceneController implements Initializab
     *  An instance of InterfaceListener, that is used to expect a click from the mouse
     */
     private InterfaceListener clickListener;
-    
+    /**
+     * displays the stock label of the product
+     */
     @FXML
     private Label productStockLabel;
-    
+    /**
+     * displays the add to car button
+     */
     @FXML
     private Button addToCartBtn;
     
@@ -154,9 +163,9 @@ public class SwitchPageController extends SceneController implements Initializab
      */
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("This was from the initialize class");
-    	myProds = new products(); // initialize product data
+    	//myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
-        allProducts = myProds.getSwitches();
+        allProducts = inventory.getallSwitches();
 
         if (!allProducts.isEmpty()) {
             setChosenProduct(allProducts.get(0));

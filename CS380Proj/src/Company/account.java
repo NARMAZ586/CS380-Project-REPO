@@ -1,5 +1,13 @@
 package Company;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Name: account
  * Date of code: 8/4/25
@@ -98,8 +106,81 @@ public class account {
         this.firstName = firstName;
     }
 	
+    //From Marlon, copy and pasted from UserDatabase.java to account.java
+    /**
+     * makes a new array list of the accounts
+     */
+	private static List<account> accounts = new ArrayList<>();
+	
+	static {
+		accounts.add(new account("Admin","123","Admin"));
+	}
+	/**
+	 * adds account as a
+	 * @param a uses a as an account method use
+	 */
+	public static void addAccount(account a) {
+		accounts.add(a);
+	}
+	/**
+	 * checks the credentials
+	 * @param email checks the email
+	 * @param password checks the password
+	 * @return true when credentials are correct
+	 */
+	public static boolean checkCredentials(String email, String password) {
+		for (account a : accounts ) {
+			if (a.getEmail().equals(email) && a.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+    
     //FIX: Write to Csv 
-    
-    
 
+    public static void readAccountsCSV(String fileName) {
+    	try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+    		String line;
+    		boolean headerLine = true;
+    		while ((line = br.readLine()) != null) {
+    			if (headerLine) {
+    				headerLine = false;
+    				continue;
+    			}
+    			String[] columnValues = line.split(",");
+    			if (columnValues.length >= 3) {
+                    String email = columnValues[0];
+                    String username = columnValues[1];
+                    String password = columnValues[2];
+                    addAccount(new account(email, password, username));
+    			}
+    			line = br.readLine();
+    		}
+    		System.out.println("Successful write: Accounts.csv");
+    	} catch(IOException e) {
+    		e.printStackTrace();
+            System.out.println("Error occured while writing Accounts.csv");
+    	}
+    }
+    
+    public static void writeSingleAccounts() {
+        File file = new File("Database/Accounts.csv");
+        //file.getParentFile().mkdirs();
+
+        try (FileWriter writer = new FileWriter(file, true)) {
+           // if (file.length() == 0) {
+              //  writer.append("Username,Password,Email\n");
+            //}
+
+            for (account a : accounts) {
+                writer.append(String.format("%s,%s,%s\n",a.getEmail(), a.getFirstName(), a.getPassword()));
+            }
+
+            System.out.println("Successful write: Accounts.csv");
+        } catch (IOException e) {
+            System.out.println("Error writing to Accounts.csv");
+            e.printStackTrace();
+        }
+    }
 }

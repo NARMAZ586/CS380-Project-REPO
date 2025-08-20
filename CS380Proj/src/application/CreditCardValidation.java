@@ -2,19 +2,23 @@ package application;
 /**
   CreditCardValidation
   Date of code: 8/12/25
-  @author Nery Armaz
   When making a purchase users have the option of paying with a credit card
   Important methods: isValidCard(String Card, String CVC, String expMonth, String expYear), checkSum(String num), isNumeric(String num)
   For checkSum, it was built on the Luhn algorithm, this is a popular algorithm used to verify if a card number is valid.
   It works for many different card types like Visa, MasterCard, etc and it was chosen for how efficient and effective it is
+  @author Nery Armaz
  */
 public class CreditCardValidation {
 	/**
+	 * default constructor of CreditCardvalidation
+	 */
+	public CreditCardValidation() {}
+	/**
 	 static main method that was used to test this program on its on
-	 @param args
+	 @param args starts the args of CreditCard
 	 */
 	public static void main(String[] args) {
-		Boolean result = isValidCard("", "", "", "");
+		Boolean result = isValidCard("4929839163636989", "123", "11", "2027");
 		System.out.println(result);
     }
 	
@@ -52,7 +56,7 @@ public class CreditCardValidation {
 	 * @return The return is boolean, so it is either true or false
 	 */
 	//Uses Luhn Algorithm to verify if Card number is valid
-	private static Boolean checkSum(String num) {
+	public static Boolean checkSum(String num) {
 		Boolean alternate = false;
 		int currNum = 0;
 		int sum = 0;

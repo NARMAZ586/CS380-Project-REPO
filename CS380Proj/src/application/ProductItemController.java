@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 /** 
  * ProductItemController
  * 08/12/2025
- * @author Matthew Berleson
  * 
  * Class Description:Class is meant to be a controller for individual product items, while managing
  * display name, price, and picture.
@@ -20,10 +19,13 @@ import javafx.scene.input.MouseEvent;
  * setProductName(String name), sets product name.
  * setPrice(String price), sets price to product.
  * setImage(String image), sets product image.
+ * @author Matthew Berleson
  */
-
 public class ProductItemController {
-
+	/**
+	 * default constructor for ProductItemController
+	 */
+	public ProductItemController() {}
 	/**
 	 * fx priceLabel for productItem, FXML linked
 	 * 
@@ -96,7 +98,7 @@ public class ProductItemController {
 
     /**
      * Sets the image of the product
-     * @param String image, image of the product to display
+     * @param image image of the product to display
      */
     public void setImage(javafx.scene.image.Image image) {
         productImg.setImage(image);
