@@ -13,7 +13,7 @@ public class ShoppingCart {
     //Matt- modified this function to prevent adding to cart if not enough stock
     public static void addItem(product p, int quantity) {
     	
-    	if(quantity <= 0) {
+    	if(quantity < 0) {
     		return;
     	}
     	
