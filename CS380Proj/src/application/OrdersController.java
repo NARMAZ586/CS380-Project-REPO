@@ -106,8 +106,23 @@ public class OrdersController extends SceneController {
 		if(!customers.isEmpty()) {
 			mostRecentCustomer = customers.get(customers.size() - 1);
 		}
-		int size = allOrders.size() - 1;
-		orders recent = allOrders.get(size);
+//		int size = 0;
+//		if (allOrders.size() > 0) {
+//			size = allOrders.size() - 1;
+//		}else {
+//			size = 0;
+//		}
+		
+		//orders recent = allOrders.get(size);
+		orders recent = null;
+		if (!allOrders.isEmpty()) {
+		    int size = allOrders.size() - 1; // safe because list not empty
+		    recent = allOrders.get(size);
+		} else {
+		    // handle empty case
+		    System.out.println("No orders available.");
+		    return; // or set labels to empty strings
+		}
 		String fullname = mostRecentCustomer.getFirstName() + " " + mostRecentCustomer.getLastName();
 		//String email = mostRecentCustomer.getEmail();
 		String phone = mostRecentCustomer.getPhoneNumber();

@@ -50,10 +50,6 @@ public class ShoppingCart {
 
         cartItems.put(p, currentQuantity + quantity);
         updateTotalPrice();
-//        if (quantity > 0) {
-//            cartItems.put(p, cartItems.getOrDefault(p, 0) + quantity);
-//            updateTotalPrice();
-//        }
     }
     /**
      * removes the item from the shopping cart

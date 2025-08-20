@@ -269,10 +269,9 @@ public class CheckOutController extends SceneController/*implements Initializabl
         		//System.out.println("Shipping Method: " + shipping);
         		System.out.println("Payment process went through");
         		paymentProcessResult.setText("Payment has been processed");
-        		
-        		createScene(event, "Orders.fxml");
         		OrdersController.allOrders.add(newOrder);
-        		OrdersController.AppendRecentOrder();     		
+        		createScene(event, "Orders.fxml");
+        		//OrdersController.AppendRecentOrder();     		
         		// send email using the new order object
         		OrdersController.sendEmail(newOrder);
         		/*
