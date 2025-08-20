@@ -12,6 +12,7 @@ import Company.account;
 import Company.inventory;
 import Company.products;
 import application.OrdersController;
+import Company.customer;
 
 /**
  * Name: Main
@@ -44,6 +45,7 @@ public class Main extends Application {
         	products.readProductsCSV("Database/DefaultProducts.csv");
         	account.readAccountsCSV("Database/Accounts.csv");
         	inventory.writeDefaultInventory();
+        	customer.readCustomersCSV();
         	OrdersController.createOrdersCSV();
         	
         	

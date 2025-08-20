@@ -1,5 +1,7 @@
 package application;
 import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -74,33 +76,81 @@ public class OrdersController extends SceneController {
 	public static void createOrdersCSV() {
 		File file = new File("Database/Orders.csv");
 		file.getParentFile().mkdirs();
-		try(FileWriter writer = new FileWriter(file)) {
-			writer.append("Name, Order ID, Product ID, Price, Shipping Method, Item Name, First Name, Email, Street Address\n");
-			System.out.println("Created orders.csv");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		boolean fileExists = file.exists();
 		
-	}
+		try {
+			if(!fileExists) {
+				FileWriter writer = new FileWriter(file, true);
+				writer.append("Customer ID, Order ID, Product ID, Price, Shipping Method, Item Name, First Name, Email, Street Address");
+				writer.close();
+				System.out.println("Created orders.csv");
+			}
+			
+			if(file.exists()) {
+				try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+					String line;
+					boolean first = true;
+					while((line = br.readLine()) != null) {
+						if(first) {
+							first = false;
+							continue;
+						}
+						String [] pieces = line.split(",");
+						int customerId;
+						int orderId;
+						if(pieces.length >= 9) {
+							customerId = Integer.parseInt(pieces[0].trim());
+	                        orderId = Integer.parseInt(pieces[1].trim());
+					
+						ArrayList<Integer> productIds = new ArrayList<>();
+                        for (String pid : pieces[2].trim().split("\\|")) {
+                            productIds.add(Integer.parseInt(pid.trim()));
+                        }
+                        double price = Double.parseDouble(pieces[3].trim());
+                        String shippingMethod = pieces[4].trim();
+                        ArrayList<String> itemNames = new ArrayList<>();
+                        for (String item : pieces[5].trim().split("\\|")) {
+                            itemNames.add(item.trim());
+                        }
+                        String firstName = pieces[6].trim();
+                        
+                        String email = pieces[7].trim();
+                        String streetAddress = pieces[8].trim();
+                        orders order = new orders(customerId, orderId, productIds, price, shippingMethod, itemNames, firstName, email, streetAddress);
+                        allOrders.add(order);
+					}
+				}
+			}
+		}
+	} catch (IOException e) {
+		e.printStackTrace();
+	}	
+}
 	
 	
-	public static void AppendRecentOrder() {
-		File file = new File("Database/Inventory.csv");
+	public static void AppendRecentOrder(orders recentOrder) {
+		File file = new File("Database/Orders.csv");
 		try (FileWriter writer = new FileWriter(file, true);) {
-			int size = allOrders.size() - 1;
-			orders recent = allOrders.get(size);
-			String productIDs = recent.getProductID().stream().map(String::valueOf).collect(Collectors.joining(";"));
-			String itemNames = recent.getItem().stream().map(String::valueOf).collect(Collectors.joining(";"));
-			writer.append(String.format("%d, %d, %s, %.2f, %s, %s, %s, %s, %s", recent.getCustomerID(), recent.getOrderID(), productIDs, recent.gettotalPrice(), recent.getShipMethod(), itemNames, recent.getfirstname(), recent.getEmail(), recent.getaddress()));
+			//int size = allOrders.size() - 1;
+			//orders recent = allOrders.get(size);
+			String productIDs = recentOrder.getProductID().stream().map(String::valueOf).collect(Collectors.joining(";"));
+			String itemNames = recentOrder.getItem().stream().map(String::valueOf).collect(Collectors.joining(";"));
+			writer.append(String.format("\n%d, %d, %s, %.2f, %s, %s, %s, %s, %s", recentOrder.getCustomerID(), recentOrder.getOrderID(), productIDs, recentOrder.gettotalPrice(), recentOrder.getShipMethod(), itemNames, recentOrder.getfirstname(), recentOrder.getEmail(), recentOrder.getaddress()));
 			System.out.println("Appended new order");
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private int updateID() {
-		return ++orderNum;
-	}
+//	private int updateID() {
+//		if (!allOrders.isEmpty()) {
+//    		int index = allOrders.size() - 1;
+//    		orderNum = allOrders.get(index).getOrderID();
+//    		return ++orderNum;
+//    	} else {
+//    		return ++orderNum;
+//    	}
+//	}
 	public void loadOrderData() {
 		customer mostRecentCustomer = new customer();
 		if(!customers.isEmpty()) {

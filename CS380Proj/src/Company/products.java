@@ -3,8 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.io.File;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import Company.inventory;
 //Head
@@ -35,6 +37,8 @@ public class products {
 	 * An ArrayList of type product, which contains all of the default keycaps that are made at the start
 	 */
 	private ArrayList<product> keycaps;
+	
+	public static product picked;
 	
 	/**
 	 * Default constructor for products, when called it creates the ArrayList for keyboards, switches, and keycaps.
@@ -118,6 +122,44 @@ public class products {
 			}
 		} catch(IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void updateProductStockCSV() {
+		File originalFile = new File("Database/DefaultProducts.csv");
+		File tempFile = new File("Database/DefaultProducts_temp.csv");
+		try (BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+			String line;
+			while((line = reader.readLine()) != null) {
+				String [] pieces = line.split(",");
+				
+				if(pieces[0].equals("Name")) {
+					writer.write(line);
+					writer.newLine();
+					continue;
+				}
+				if(pieces[0].equals(picked.getName())) {
+					pieces[5] = String.valueOf(picked.getStockQuantity());
+					line = String.join(",", pieces);
+				}
+				writer.write(line);
+				writer.newLine();
+			}
+			System.out.println("Writing to file successful");
+			writer.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+			System.out.println("Error occured while writing file");
+		}
+		
+		try {
+			Files.delete(originalFile.toPath());
+			Files.move(tempFile.toPath(), originalFile.toPath());
+			System.out.println("Original csv was updated");
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Error occured while replacing original csv");
 		}
 	}
 	

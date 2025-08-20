@@ -183,30 +183,56 @@ public class CheckOutController extends SceneController/*implements Initializabl
     /**
      * This list holds all of the customers that will make a purchase
      */
-    private static List<customer> customers = new ArrayList<>();
+    public static List<customer> customers = new ArrayList<>();
     
     /**
      * Integer for the customer ID
      */
     private int customerCount = 0;
+    private int orderID = 0;
     
     /**
      * Constructor for the CheckOutController class
      */
     public CheckOutController() {}
+    private int updateOrderID() {
+    	if (!OrdersController.allOrders.isEmpty()) {
+    		int index = OrdersController.allOrders.size() - 1;
+    		orderID = OrdersController.allOrders.get(index).getOrderID();
+    		System.out.println("orders list is not empty and it should increment id");
+    		return ++orderID; 
+    	} else {
+    		System.out.println("orders list is empty so it will just be 1");
+    		return ++orderID;
+    	}
+    }
     
     /**
      * Method that updates the customer ID
      * @return customer add by 1
      */
     private int update() {
-    	return ++customerCount;
+    	if (!customers.isEmpty()) {
+    		int index = customers.size() - 1;
+    		customerCount = customers.get(index).getID();
+    		return ++customerCount;
+    	} else {
+    		return ++customerCount;
+    	}
     }
     
     public static List<customer> getAllCustomers() {
     	List<customer> allCustomer = customers;
     	return allCustomer;
     }
+    
+   public static void addCustomer(String fName, String lName, String email, String phone, String address, int id) {
+	   customers.add(new customer(fName, lName, email, phone, address, id));
+   }
+   
+   public static int customersSize() {
+	   return customers.size();
+   }
     
     /**
      * Returns the string of the shipping method selected
@@ -256,20 +282,15 @@ public class CheckOutController extends SceneController/*implements Initializabl
 //        		System.out.println("Card Expiration Year: " + cardExpYear.getText().toString());
     			customer newCustomer = new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update());
     			customers.add(newCustomer);
-    			orders newOrder = new orders(
-    					newCustomer.getID(),
-    					orders.updateID(),
-    					productId, ShoppingCart.getTotalPrice(),
-    					shoppingCartController.getShippingMethod(),
-    					productNames,
-    					newCustomer.getFirstName(),
-    					newCustomer.getEmail(),
-    					newCustomer.getAddress());
+    			orders newOrder = new orders(newCustomer.getID(), updateOrderID(), productId, ShoppingCart.getTotalPrice(), shoppingCartController.getShippingMethod(), productNames, newCustomer.getFirstName(), newCustomer.getEmail(), newCustomer.getAddress());
+    			//newOrder.setOrderID(newOrder.updateID());
+    			customer.writeSinglecustomer(newCustomer);
         		//customers.add(new customer(customerFirstName.getText().toString(), customerLastName.getText().toString(), customerEmail.getText().toString(), customerPhoneNum.getText().toString(), customerAddress.getText().toString(), update()));
         		//System.out.println("Shipping Method: " + shipping);
         		System.out.println("Payment process went through");
         		paymentProcessResult.setText("Payment has been processed");
         		OrdersController.allOrders.add(newOrder);
+        		OrdersController.AppendRecentOrder(newOrder);
         		createScene(event, "Orders.fxml");
         		//OrdersController.AppendRecentOrder();     		
         		// send email using the new order object

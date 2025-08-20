@@ -1,1 +1,3 @@
-Name, Order ID, Product ID, Price, Shipping Method, Item Name, First Name, Email, Street Address
+Customer ID,Order ID,Product ID,"Price,", Shipping Method,Item Name,First Name,Email ,Street Address
+12,1,9,100.00,4 - 6 Day Shipping, Retro, Stephen, customerreceiver@gmail.com,1289 Tarzana
+24, 2, 1, 150.00, 4 - 6 Day Shipping, red Mechanical, John, customerreceiver@gmail.com, 1234 Northridge

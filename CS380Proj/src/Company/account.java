@@ -27,7 +27,7 @@ public class account {
     /**
 	 * first name is for the first name that is linked to the account
 	 */
-    private String firstName;
+    private String userName;
     
     
     // Constructor
@@ -37,10 +37,10 @@ public class account {
      * @param password takes input password and sets to account password
      * @param firstName takes input firstName and sets the first name for the account
      */
-    public account(String email, String password, String firstName) {
+    public account(String email, String password, String userName) {
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
+        this.userName = userName;
     }
 
     // Default constructor
@@ -92,8 +92,8 @@ public class account {
      * Getter method that gets account first name
      * @return Returns the first name for the account
      */
-    public String getFirstName() {
-        return firstName;
+    public String getUserName() {
+        return userName;
     }
     
     //Sets firstName
@@ -102,8 +102,8 @@ public class account {
      * Setter method that sets account first name
      * @param firstName Takes input and sets it as first name
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String userName) {
+        this.userName = userName;
     }
 	
     //From Marlon, copy and pasted from UserDatabase.java to account.java
@@ -172,10 +172,13 @@ public class account {
            // if (file.length() == 0) {
               //  writer.append("Username,Password,Email\n");
             //}
-
-            for (account a : accounts) {
-                writer.append(String.format("%s,%s,%s\n",a.getEmail(), a.getFirstName(), a.getPassword()));
+        	int index = 0;
+            if(accounts.size() == 0) {
+            	index = 0;
+            } else {
+            	index = accounts.size() - 1;
             }
+                writer.append(String.format("\n%s,%s,%s", accounts.get(index).getEmail(), accounts.get(index).getUserName(), accounts.get(index).getPassword()));
 
             System.out.println("Successful write: Accounts.csv");
         } catch (IOException e) {

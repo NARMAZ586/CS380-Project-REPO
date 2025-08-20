@@ -1,4 +1,12 @@
 package Company;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import application.CheckOutController;
+
 /**
  * Name: customer
  * Date of code: 8/8/25
@@ -163,5 +171,46 @@ public class customer {
 		 */
 		public String toString() {
 			return "Customer - ID: " + ID + "First Name: " + firstName + ", Last Name: " + lastName + ", Email: " + email + "Phone: " + phoneNumber + ", Address: " + address;
+		}
+		//public customer(String firstName, String lastName, String email, String phoneNumber, String address, int ID) {
+		public static void readCustomersCSV() {
+			try(BufferedReader br = new BufferedReader(new FileReader("Database/Customers.csv"))) {
+				String line;
+				boolean headerLine = true;
+				while ((line = br.readLine()) != null) {
+					if(headerLine) {
+						headerLine = false;
+						continue;
+					}
+					String [] columnValues = line.split(",");
+					if(columnValues.length > 1) {
+						String firstName = columnValues[0];
+						String lastName = columnValues[1];
+						String email = columnValues[2];
+						String phone = columnValues[3];
+						String address = columnValues[4];
+						String id = columnValues[5];
+						CheckOutController.addCustomer(firstName, lastName, email, phone, address, Integer.parseInt(id));
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		public static void writeSinglecustomer(customer newCustomer) {
+			File file = new File("Database/Customers.csv");
+			try (FileWriter writer = new FileWriter(file, true)) {
+				int index = 0;
+				if (CheckOutController.customersSize() == 0) {
+					index = 0;
+				} else {
+					index = CheckOutController.customersSize() - 1;
+				}
+				//customer newCustomer = CheckOutController.customers.get(index);
+				writer.append(String.format("\n%s,%s,%s,%s,%s,%d", newCustomer.getFirstName(), newCustomer.getLastName(), newCustomer.getEmail(), newCustomer.getPhoneNumber(), newCustomer.getAddress(), newCustomer.getID()));
+			} catch (IOException e){
+	            System.out.println("Error writing to Customers.csv");
+				e.printStackTrace();
+			}
 		}
 }

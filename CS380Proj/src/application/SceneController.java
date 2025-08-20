@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import Company.ShoppingCart;
 import Company.products.product;
+import Company.products;
 import application.shoppingCartController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -239,6 +240,8 @@ public class SceneController {
         if (stock >= requestedQty) {
             ShoppingCart.addItem(selectedProduct, requestedQty);
             selectedProduct.setStockQuantity(stock - requestedQty);
+            products.picked = selectedProduct;
+            products.updateProductStockCSV();
             updateStockLabel(selectedProduct);
             System.out.println("This is the stock of " + selectedProduct.getName() + ": " + stock);
             quantityField.setText(""); // clear after adding

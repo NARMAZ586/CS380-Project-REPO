@@ -3,6 +3,7 @@ package application;
 import Company.account;
 import Company.inventory;
 import Company.products.product;
+import Company.products;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -120,6 +121,8 @@ public class AdminPageController extends SceneController{
 		product selected = tblViewProductStock.getSelectionModel().getSelectedItem();
         if (selected != null) {
             selected.setStockQuantity(selected.getStockQuantity() + 1);
+            products.picked = selected;
+            products.updateProductStockCSV();
             tblViewProductStock.refresh();
         }
 	}
@@ -131,9 +134,12 @@ public class AdminPageController extends SceneController{
 		product selected = tblViewProductStock.getSelectionModel().getSelectedItem();
         if (selected != null && selected.getStockQuantity() > 0) {
             selected.setStockQuantity(selected.getStockQuantity() - 1);
+            products.picked = selected;
+            products.updateProductStockCSV();
             tblViewProductStock.refresh();
         }
 	}
+	
 	/**
 	 * When pressed it adds the account
 	 * @param event gets email, username, password to the storage
@@ -144,7 +150,7 @@ public class AdminPageController extends SceneController{
 	    String password = txtFieldAdminPagePassword.getText().trim();
 	    
 	    if (!email.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
-	    	Company.account.addAccount(new Company.account(email, password, username));
+	    	account.addAccount(new account(email, password, username));
 	    	account.writeSingleAccounts();
 	    	System.out.println("New account created: " + email);
 	    	txtFieldAdminPageEmail.clear();

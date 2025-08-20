@@ -1,6 +1,7 @@
 package Company;
 import java.util.ArrayList;
 import Company.products.product;
+import application.OrdersController;
 
 /** 
  * orders
@@ -26,7 +27,9 @@ public class orders {
 	/**
 	* order Id of class orders 
 	*/
-	private static int orderID = 0;
+	private int orderID;
+	
+	//private static int lastOrderid = 0;
 	/**
 	* product Id of class orders 
 	*/
@@ -80,9 +83,18 @@ public class orders {
         this.address = address;
     }
 	
-	public static int updateID () {
-		return ++orderID;
-	}
+	
+	
+
+//	public static int updateID() {
+//        if (OrdersController.allOrders.isEmpty()) {
+//            lastOrderid = 1;
+//            return 1;
+//        } else {
+//            lastOrderid++;
+//            return lastOrderid;
+//        }
+//	}
 	
 	// getter methods for order and product attributes
 	public String getShipMethod() {
