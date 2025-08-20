@@ -233,20 +233,6 @@ public class inventory {
 			this.type = type;
 		}
 		
-		//Inventory.csv ---prodID---> Product.csv
-		//To associate with product.java
-		//To be changed later
-		/*public product getProduct(product[] allProducts) {
-			for (product p : allProducts) {
-				if (p.getProdID() == this.prodID) {
-					return p;
-				}
-			}
-			return null;
-		}
-		*/
-		
-		
 		@Override
 		/**
 		 * Method formats a readable string for the inventory item 

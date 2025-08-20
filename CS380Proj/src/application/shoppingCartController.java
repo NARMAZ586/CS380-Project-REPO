@@ -1,9 +1,6 @@
 package application;
 import Company.ShoppingCart;
 import Company.products.product;
-import Company.inventory;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -268,7 +265,10 @@ public class shoppingCartController extends SceneController{
 	    resetShipping();                    // clear shipping selection
 	}
 	
-	
+	/**
+	 * Resets the shipping option.
+	 * Clears the current selection from the toggle group and sets the shipping method to null.
+	 */
 	public void resetShipping() {
 		shippingOptions.selectToggle(null);
 	    shippingMethod = null;
