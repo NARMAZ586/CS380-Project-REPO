@@ -15,7 +15,6 @@ import java.util.List;
  * Class account contains all the attributes of a single account
  */
 public class account {
-	
 	/**
 	 * email is for the account email
 	 */
@@ -28,8 +27,17 @@ public class account {
 	 * first name is for the first name that is linked to the account
 	 */
     private String userName;
-    
-    
+    /**
+     * makes a new array list of the accounts
+     */
+	private static List<account> accounts = new ArrayList<>();
+	
+	/**
+	 * The only default account that we used during testing, all other accounts were added during testing
+	 */
+	static {
+	accounts.add(new account("Admin","123","Admin"));
+}
     // Constructor
     /**
      * Constructor used for the account class
@@ -42,15 +50,11 @@ public class account {
         this.password = password;
         this.userName = userName;
     }
-
-    // Default constructor
     /**
      * Default constructor
      */
     public account() {
     }
-
-    // Gets email
     /**
      * Getter method that gets account email
      * @return Returns the email for the account
@@ -58,8 +62,6 @@ public class account {
     public String getEmail() {
         return email;
     }
-    
-    //Sets email
     /**
      * Setter method that sets account email
      * @param email Takes input and sets it as email
@@ -67,8 +69,6 @@ public class account {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    //Gets password
     /**
      * Getter method that gets account password
      * @return Returns the password for the account
@@ -76,9 +76,6 @@ public class account {
     public String getPassword() {
         return password;
     }
-    
-    //Sets password
-  //Sets email
     /**
      * Setter method that sets account password
      * @param password Takes input and sets it as password
@@ -86,8 +83,6 @@ public class account {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    //Gets firstName
     /**
      * Getter method that gets account first name
      * @return Returns the first name for the account
@@ -95,9 +90,6 @@ public class account {
     public String getUserName() {
         return userName;
     }
-    
-    //Sets firstName
-  //Sets email
     /**
      * Setter method that sets account first name
      * @param firstName Takes input and sets it as first name
@@ -106,15 +98,6 @@ public class account {
         this.userName = userName;
     }
 	
-    //From Marlon, copy and pasted from UserDatabase.java to account.java
-    /**
-     * makes a new array list of the accounts
-     */
-	private static List<account> accounts = new ArrayList<>();
-	
-	static {
-		accounts.add(new account("Admin","123","Admin"));
-	}
 	/**
 	 * adds account as a
 	 * @param a uses a as an account method use
@@ -137,8 +120,11 @@ public class account {
 		return false;
 	}
     
-    //FIX: Write to Csv 
-
+	/**
+	 * Reads account data from a CSV file and adds accounts.
+	 *
+	 * @param fileName the path to the CSV file
+	 */
     public static void readAccountsCSV(String fileName) {
     	try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
     		String line;
@@ -163,15 +149,14 @@ public class account {
             System.out.println("Error occured while writing Accounts.csv");
     	}
     }
-    
+
+    /**
+     * Appends all accounts to the Accounts.csv file.
+     */
     public static void writeSingleAccounts() {
         File file = new File("Database/Accounts.csv");
-        //file.getParentFile().mkdirs();
 
         try (FileWriter writer = new FileWriter(file, true)) {
-           // if (file.length() == 0) {
-              //  writer.append("Username,Password,Email\n");
-            //}
         	int index = 0;
             if(accounts.size() == 0) {
             	index = 0;
@@ -179,7 +164,6 @@ public class account {
             	index = accounts.size() - 1;
             }
                 writer.append(String.format("\n%s,%s,%s", accounts.get(index).getEmail(), accounts.get(index).getUserName(), accounts.get(index).getPassword()));
-
             System.out.println("Successful write: Accounts.csv");
         } catch (IOException e) {
             System.out.println("Error writing to Accounts.csv");

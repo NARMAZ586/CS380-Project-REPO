@@ -25,29 +25,22 @@ public class ShoppingCart {
     private static double currentTotalPrice = 0.0;
 
     
-    //Matt- modified this function to prevent adding to cart if not enough stock
     /**
      * adds the item in the shopping cart
      * @param p uses the product in the shopping cart
      * @param quantity quantity used to check if theres isnt enough stock
      */
     public static void addItem(product p, int quantity) {
-    	
-    	if(quantity <= 0) {
+    	if(quantity < 0) {
     		return;
     	}
     	
     	int currentQuantity = cartItems.getOrDefault(p, 0);
     	int stock = p.getStockQuantity();
-//    	System.out.println("\nThis is my test for the stock: " + stock);
-//    	System.out.println("\nThis is my test for the currentquantity: " + currentQuantity);
-//    	System.out.println("\nThis is my test for the quantity: " + quantity);
-    	
     	if (quantity > stock) {
             System.out.println("Cannot add more than stock. Only " + stock + " available.");
             return;
         }
-
         cartItems.put(p, currentQuantity + quantity);
         updateTotalPrice();
     }
@@ -83,8 +76,22 @@ public class ShoppingCart {
         }
         currentTotalPrice = total;
     }
+    
     /**
-     * clears the cart alongside the proce to 0
+     * clears cart and restocks when shopping cart is cancelled
+     */
+    public static void clearCartAndRestock() {
+        for (Map.Entry<product, Integer> entry : cartItems.entrySet()) {
+            product p = entry.getKey();
+            int quantityInCart = entry.getValue();
+            p.setStockQuantity(p.getStockQuantity() + quantityInCart); // Restore stock
+        }
+        cartItems.clear();
+        currentTotalPrice = 0.0;
+    }
+    
+    /**
+     * clears the cart, used after checkout
      */
     public static void clearCart() {
         cartItems.clear();
@@ -97,5 +104,4 @@ public class ShoppingCart {
     public static void setTotalPrice(double newTotal) {
         currentTotalPrice = newTotal;
     }
-
 }

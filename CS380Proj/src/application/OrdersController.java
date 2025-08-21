@@ -4,36 +4,25 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
-
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
-
 import Company.orders;
 import Company.products.product;
 import Company.ShoppingCart;
 import Company.customer;
-import application.CheckOutController;
 import application.shoppingCartController.cartItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.beans.property.SimpleIntegerProperty;
 
 /**
 OrdersController
@@ -43,41 +32,86 @@ This includes things like displaying the orders and putting it in a csv file
 @author Nery A.
 */
 public class OrdersController extends SceneController {
+	/**
+	 * Table view that displays cart item summary
+	 */
 	@FXML private TableView<cartItem> cartTableView;
+	/**
+	 * Column for displaying product names
+	 */
 	@FXML private TableColumn<cartItem, String> productName;
-	
+	/**
+	 * Column for displaying unit prices of items
+	 */
 	@FXML private TableColumn<cartItem, String> unitPrice;
-	
+	/**
+	 * Column for displaying quantity of each cart item
+	 */
 	@FXML private TableColumn<cartItem, String> QuantityItem;
-	
+	/**
+	 * Column for displaying total price per line
+	 */
 	@FXML private TableColumn<cartItem, String> Price;
+	/**
+	 * Label for displaying the order ID
+	 */
 	@FXML private Label orderIDLabel;
+	/**
+	 * Label for displaying customers name
+	 */
 	@FXML private Label customerNameLabel;
+	/**
+	 * Label for displaying customers email
+	 */
 	@FXML private Label customerEmailLabel;
+	/**
+	 * Label for displaying customers phone number
+	 */
 	@FXML private Label customerPhoneLabel;
+	/**
+	 * Label for displaying shipping address
+	 */
 	@FXML private Label shippingLabel;
+	/**
+	 * Label for displaying selected shipping method
+	 */
 	@FXML private Label shipMethodLabel;
+	/**
+	 * Label for displaying selected payment
+	 */
 	@FXML private Label paymentLabel;
+	/**
+	 * Label for displaying subtotal amount
+	 */
 	@FXML private Label subtotalLabel;
+	/**
+	 * Label for displaying total cost including shipping
+	 */
 	@FXML private Label totalLabel;
-	private static List<customer> customers = CheckOutController.getAllCustomers();
-	public static List<orders> allOrders = new ArrayList<>();
 	
+	/**
+	 * List of customers gathered from the checkout
+	 */
+	private static List<customer> customers = CheckOutController.getAllCustomers();
+	/**
+	 * List of orders placed
+	 */
+	public static List<orders> allOrders = new ArrayList<>();
+	/**
+	 * Internal customer used to track/assign the order IDs
+	 */
 	private int orderNum = 0;
-
-
 	/**
 	 * default constructor for OrdersController
 	 */
 	public OrdersController() {}
 	/**
-	 * method of the write default orders
+	 * method of creating the OrdersCSV, if it doesn't exist and it also reads any possible saved entries into allOrders list
 	 */
 	public static void createOrdersCSV() {
 		File file = new File("Database/Orders.csv");
 		file.getParentFile().mkdirs();
 		boolean fileExists = file.exists();
-		
 		try {
 			if(!fileExists) {
 				FileWriter writer = new FileWriter(file, true);
@@ -85,7 +119,6 @@ public class OrdersController extends SceneController {
 				writer.close();
 				System.out.println("Created orders.csv");
 			}
-			
 			if(file.exists()) {
 				try(BufferedReader br = new BufferedReader(new FileReader(file))) {
 					String line;
@@ -103,13 +136,13 @@ public class OrdersController extends SceneController {
 	                        orderId = Integer.parseInt(pieces[1].trim());
 					
 						ArrayList<Integer> productIds = new ArrayList<>();
-                        for (String pid : pieces[2].trim().split("\\|")) {
+                        for (String pid : pieces[2].trim().split(";")) {
                             productIds.add(Integer.parseInt(pid.trim()));
                         }
                         double price = Double.parseDouble(pieces[3].trim());
                         String shippingMethod = pieces[4].trim();
                         ArrayList<String> itemNames = new ArrayList<>();
-                        for (String item : pieces[5].trim().split("\\|")) {
+                        for (String item : pieces[5].trim().split(";")) {
                             itemNames.add(item.trim());
                         }
                         String firstName = pieces[6].trim();
@@ -126,13 +159,15 @@ public class OrdersController extends SceneController {
 		e.printStackTrace();
 	}	
 }
-	
-	
+	/**
+	* Appends the recent order details to Inventory.csv, what this includes is
+	* the customer ID, order ID, product IDs, total price, shipping method, item names, and customer info.
+	* The data is formatted with a new line in the csv file, this assumes that from the most recent order
+	* would be towards the end from the allOrders list.
+	*/
 	public static void AppendRecentOrder(orders recentOrder) {
 		File file = new File("Database/Orders.csv");
 		try (FileWriter writer = new FileWriter(file, true);) {
-			//int size = allOrders.size() - 1;
-			//orders recent = allOrders.get(size);
 			String productIDs = recentOrder.getProductID().stream().map(String::valueOf).collect(Collectors.joining(";"));
 			String itemNames = recentOrder.getItem().stream().map(String::valueOf).collect(Collectors.joining(";"));
 			writer.append(String.format("\n%d, %d, %s, %.2f, %s, %s, %s, %s, %s", recentOrder.getCustomerID(), recentOrder.getOrderID(), productIDs, recentOrder.gettotalPrice(), recentOrder.getShipMethod(), itemNames, recentOrder.getfirstname(), recentOrder.getEmail(), recentOrder.getaddress()));
@@ -141,32 +176,30 @@ public class OrdersController extends SceneController {
 			e.printStackTrace();
 		}
 	}
-	
+//	/**
+//	 * Uses increments and returns a new order ID.
+//	 * @return Next available orderID.
+//	 */
 //	private int updateID() {
-//		if (!allOrders.isEmpty()) {
-//    		int index = allOrders.size() - 1;
-//    		orderNum = allOrders.get(index).getOrderID();
-//    		return ++orderNum;
-//    	} else {
-//    		return ++orderNum;
-//    	}
+//		return ++orderNum;
 //	}
+	
+	/**
+	 * Loads and displays most recent order with the customers data.
+	 * It then gets the most recent order from the allOrders list.
+	 * Then fetches the most recent customer from the customers list.
+	 * It calculates the subtotal and the total quantity based off the current items in the shopping cart.
+	 * Updates the label fields with the data retrieved.
+	 * Populates the items and the quantity amount in the shopping cart as a table view.
+	 */
 	public void loadOrderData() {
 		customer mostRecentCustomer = new customer();
 		if(!customers.isEmpty()) {
 			mostRecentCustomer = customers.get(customers.size() - 1);
 		}
-//		int size = 0;
-//		if (allOrders.size() > 0) {
-//			size = allOrders.size() - 1;
-//		}else {
-//			size = 0;
-//		}
-		
-		//orders recent = allOrders.get(size);
 		orders recent = null;
 		if (!allOrders.isEmpty()) {
-		    int size = allOrders.size() - 1; // safe because list not empty
+		    int size = allOrders.size() - 1;
 		    recent = allOrders.get(size);
 		} else {
 		    // handle empty case
@@ -174,14 +207,8 @@ public class OrdersController extends SceneController {
 		    return; // or set labels to empty strings
 		}
 		String fullname = mostRecentCustomer.getFirstName() + " " + mostRecentCustomer.getLastName();
-		//String email = mostRecentCustomer.getEmail();
 		String phone = mostRecentCustomer.getPhoneNumber();
-		//int customerId = mostRecentCustomer.getID();
-		//String address = mostRecentCustomer.getAddress();
-		//int orderID = updateID();
-		
 		double subtotal = 0;
-		//double total = 0;
 		int quantity = 0;
 		int totalQuantity = 0;
 		for(Map.Entry<product, Integer> entry: ShoppingCart.getCartItems().entrySet()) {
@@ -190,20 +217,6 @@ public class OrdersController extends SceneController {
 			totalQuantity += quantity;
 			subtotal += prod.getPrice() * quantity;
 		}
-//		String shipping = shoppingCartController.getShippingMethod();
-//		double shippingCost = 0.0;
-//		switch(shipping) {
-//		case "14 Day Free Shipping":
-//			shippingCost = 0.0;
-//			break;
-//		case "4 - 6 Day Shipping":
-//			shippingCost = 5.50;
-//			break;
-//		case "1 - 3 Day Shipping":
-//			shippingCost = 11.50;
-//			break;
-//		}
-		//total = shippingCost + subtotal;
 		orderIDLabel.setText(String.valueOf(recent.getOrderID()));
 		customerNameLabel.setText(fullname);
 		customerEmailLabel.setText(recent.getEmail());
@@ -218,40 +231,28 @@ public class OrdersController extends SceneController {
 		for(var entry: ShoppingCart.getCartItems().entrySet()) {
 			cartData.add(new cartItem(entry.getKey(), entry.getValue()));
 		}
-		cartTableView.setItems(cartData);
-		
-		
-		
+		cartTableView.setItems(cartData);	
 	}
-	
-//	public static void writeDefaultInventory() {
-//		File file = new File("Database/Inventory.csv");
-//		file.getParentFile().mkdirs();
-//		List<product> keyboards = getAllKeyboards();
-//		List<product> keycaps = getallKeycaps();
-//		List<product> switches = getallSwitches();
-//		try {
-//			FileWriter writer = new FileWriter(file);
-//			writer.append("Name, ID, Price, Type, Quantity, Description\n");
-//			for (product k : keyboards) {
-//				writer.append(String.format("%s,%d,%.2f,%s,%d,%s\n", k.getName(), k.getprodID(), k.getPrice(), k.prodType(), k.getStockQuantity(),k.prodDescription()));
-//			}
-//			for (product kc : keycaps) {
-//				writer.append(String.format("%s,%d,%.2f,%s,%d,%s\n", kc.getName(), kc.getprodID(), kc.getPrice(), kc.prodType(), kc.getStockQuantity(),kc.prodDescription()));
-//			}
-//			for (product s : switches) {
-//				writer.append(String.format("%s,%d,%.2f,%s,%d,%s\n", s.getName(), s.getprodID(), s.getPrice(), s.prodType(), s.getStockQuantity(),s.prodDescription()));
-//			}
-//			System.out.println("Successful write: Inventory.csv");
-//			writer.close();
-//		} catch(IOException e) {
-//			System.out.println("Error occured while writing Inventory.csv");
-//			e.printStackTrace();
-//		}
-//	}
+	/**
+	 * This is the email that is sending the email confirmation(2 Factor)
+	 */
 	private static String username = "squadsoftware60@gmail.com";
+	/**
+	 * App password which grants program all privileges to the gmail account above
+	 * It essentially allows the program to send an email from that account at any point
+	 */
 	private static String password = "otdj qrcv korx psan";
 	
+	/**
+	 * Sends an order confirmation email to the customer.
+	 * This sets the SMTP properties in using the Gmail's SMTP server,
+	 * it then authenticates it using the specific email and password,
+	 * it sets a confirmation email with the order details, and sends
+	 * the details to the customers email address they provided.
+	 * Also with this method you can send a email confirmation as long as it is a valid email
+	 * @param newOrder The instance of the orders class that contains the customers email,
+	 * order ID, shipping method selected, price total, and product items.
+	 */
 	public static void sendEmail(orders newOrder) {
 	    String customerEmail = newOrder.getEmail();
 	    String orderId = String.valueOf(newOrder.getOrderID());
@@ -263,7 +264,7 @@ public class OrdersController extends SceneController {
 	    for (String item : itemNames) {
 	        items.append(item).append(", ");
 	    }
-	    if (items.length() > 0) items.setLength(items.length() - 2); // remove trailing comma
+	    if (items.length() > 0) items.setLength(items.length() - 2);
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
@@ -299,6 +300,13 @@ public class OrdersController extends SceneController {
 		}
 	}
 	
+	/**
+	 * Initializes the table columns from the order confirmation view.
+	 * The method sets up the cell value factories for each of the columns in the 
+	 * table view for the properties of the shopping cart items such as
+	 * product name, ID, quantity, and total price. It loads the most recent order
+	 * information from the shopping cart and the customer details that populate the latest information.
+	 */
 	public void initialize() {
 		productName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		unitPrice.setCellValueFactory(new PropertyValueFactory<>("prodID"));
@@ -307,8 +315,5 @@ public class OrdersController extends SceneController {
 		
 		loadOrderData();
     }
-	
-	
-	
 	
 }

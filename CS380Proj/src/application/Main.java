@@ -5,13 +5,9 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import application.Controller;
-import javafx.application.Platform;
 import Company.account;
 import Company.inventory;
 import Company.products;
-import application.OrdersController;
 import Company.customer;
 
 /**
@@ -41,13 +37,11 @@ public class Main extends Application {
      */
     public void start(Stage stage) {
         try {
-        	//inventory.InitialProducts();
         	products.readProductsCSV("Database/DefaultProducts.csv");
         	account.readAccountsCSV("Database/Accounts.csv");
         	inventory.writeDefaultInventory();
         	customer.readCustomersCSV();
         	OrdersController.createOrdersCSV();
-        	
         	
             primaryStage = stage;
             Parent root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
@@ -55,13 +49,7 @@ public class Main extends Application {
             String css = this.getClass().getResource("application.css").toExternalForm();
             mainScene.getStylesheets().add(css);
             primaryStage.setResizable(false);
-            //primaryStage.setFullScreen(true);
             primaryStage.setScene(mainScene);
-            //uncomment this if program is not fully closing when you close it out
-            /*primaryStage.setOnCloseRequest(e -> {
-            	Platform.exit();
-            	System.exit(0);
-            }); */
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();

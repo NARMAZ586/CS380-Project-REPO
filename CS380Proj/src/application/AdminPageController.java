@@ -20,36 +20,7 @@ This controller class handles all of the UI elements of the Admin page
 This includes things like adding account, adding stock, remove stock
 @author Marlon Santana
 */
-public class AdminPageController extends SceneController{
-    /**
-    Returns user to the homepage
-     */
-	@FXML private Button logoBtn;
-	
-    /**
-    Button to navigate to the keyboards page
-     */
-	@FXML private Button btnKeyboards;
-	
-    /**
-    Button to navigate to the switches page
-     */
-	@FXML private Button btnSwitches;
-	
-    /**
-    Button to navigate to the keycaps page
-     */
-	@FXML private Button btnKeyCaps;
-	
-	/**
-	 * Button that leats to the search page*/
-	@FXML private Button btnSearch;
-	
-    /**
-    Button used to logout the user and return to the homepage
-     */
-	@FXML private Button logoutBtn;
-	
+public class AdminPageController extends SceneController{	
 	/**
 	 * Button that adds an account and stores it in account.java
 	 */
@@ -158,6 +129,4 @@ public class AdminPageController extends SceneController{
 	    	txtFieldAdminPagePassword.clear();
 	    }
 	}
-	
-	//IF THERE'S TIME, CREATE FEATURE ADD PRODUCTS
 }

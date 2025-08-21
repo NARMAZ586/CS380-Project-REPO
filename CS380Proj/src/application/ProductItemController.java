@@ -1,6 +1,5 @@
 package application;
 
-import Company.ShoppingCart;
 import Company.products;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -28,20 +27,16 @@ public class ProductItemController {
 	public ProductItemController() {}
 	/**
 	 * fx priceLabel for productItem, FXML linked
-	 * 
 	 */
-	@FXML
-    private Label priceLabel;
+	@FXML private Label priceLabel;
 	/**
 	 * fx productImg for product, FXML linked
 	 */
-    @FXML
-    private ImageView productImg;
+    @FXML private ImageView productImg;
     /**
      *FX Label for the product, FXML linked 
      */
-    @FXML
-    private Label productLabel;
+    @FXML private Label productLabel;
     
     /**
      * click method that expects a mouse click as its event
@@ -60,9 +55,6 @@ public class ProductItemController {
      * variable is called item and it is a product from the products class
      */
     private products.product item;
-
-
-
     /**
      * Sets the name of the product
      * @param name name of the product to display
@@ -70,7 +62,6 @@ public class ProductItemController {
     public void setProductName(String name) {
         productLabel.setText(name);
     }
-    
     /**
      * Method sets the data of the product within the item card
      * @param product Just a product from the products class
@@ -103,8 +94,4 @@ public class ProductItemController {
     public void setImage(javafx.scene.image.Image image) {
         productImg.setImage(image);
     }
-
-    
-
-    
 }

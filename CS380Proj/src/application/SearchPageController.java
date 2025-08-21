@@ -57,34 +57,6 @@ public class SearchPageController extends SceneController implements Initializab
         Returns user to the homepage
     */
     @FXML private Button logoBtn;
-    
-    /**
-    Button to navigate to the keyboards page
-     */
-    @FXML private Button btnKeyboards;
-    
-    /**
-    Button to navigate to the switches page
-     */
-    @FXML private Button btnSwitches;
-
-    /**
-    Button to navigate to the keycaps page
-     */
-    @FXML private Button btnKeycaps;
-    
-    /**
-    Button to navigate to the shopping cart page
-     */
-    @FXML private Button btnCart;
-    /**
-     * Constructor for the Controller class
-     */
-    
-    /**
-    Button to navigate to the account user page
-     */
-    @FXML private Button btnAccount;
     /**
      * displays the product label
      */
@@ -109,24 +81,18 @@ public class SearchPageController extends SceneController implements Initializab
     /**
      * class for the search page controller
      */
-	public SearchPageController() {
-	}
+	public SearchPageController() {}
 	
-	
-	///////////////FOR SEARCHING IN THE SEARCH FUNCTION
-
 	/**
      * creates an array list from keyboards, keypads, and switches
      */
 	ArrayList<product> allProducts = new ArrayList<>();
-	
-	
+
     /**
      *when clicked, it clears and makes a new search results
      */
 	@FXML private void search() {
 		String keyword = searchBar.getText().toLowerCase();
-		
 		ObservableList<String> matches = FXCollections.observableArrayList();
 		for (product p : allProducts) {
 			if (p.getName().toLowerCase().contains(keyword)) {
@@ -143,7 +109,6 @@ public class SearchPageController extends SceneController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	//inventory.InitialProducts();
     	allProducts.addAll(inventory.getAllProducts());
-    	
     	listView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
     		if (newVal != null ) {
     			for (product p : allProducts) {
@@ -157,13 +122,15 @@ public class SearchPageController extends SceneController implements Initializab
     		}
     	});
     }
-    
+    /**
+     * Opens the product details page for the selected product
+     * @param event the action event triggering the navigation
+     */
     @FXML private void handleGoToProductDetails(ActionEvent event) {
     	String selectedName = searchProductLabel.getText();
     	if (selectedName == null || selectedName.equals("Product")) {
     		return;
     	}
-    	
     	for (product p : allProducts) {
     		if (p.getName().equals(selectedName)) {
     			String type = p.prodType();
