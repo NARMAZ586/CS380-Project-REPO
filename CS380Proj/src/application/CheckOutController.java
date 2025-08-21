@@ -27,67 +27,67 @@ public class CheckOutController extends SceneController/*implements Initializabl
     /**
      * For entering customer first name
      */
-    @FXML private TextField customerFirstName;
+    @FXML public TextField customerFirstName;
     
     /**
      * For entering customer last name
      */
-    @FXML private TextField customerLastName;
+    @FXML public TextField customerLastName;
     
     /**
      * For entering customer email
      */
-    @FXML private TextField customerEmail;
+    @FXML public TextField customerEmail;
     
     /**
      * For entering customer phone number
      */
-    @FXML private TextField customerPhoneNum;
+    @FXML public TextField customerPhoneNum;
     
     /**
      * For entering customer street address
      */
-    @FXML private TextField customerAddress;
+    @FXML public TextField customerAddress;
     
     /**
      * For entering customer card number
      */
-    @FXML private TextField cardNumber;
+    @FXML public TextField cardNumber;
     
     /**
      * For entering customer card CVC
      */
-    @FXML private TextField cardCVC;
+    @FXML public TextField cardCVC;
     
     /**
      * For entering customer card expiration month
      */
-    @FXML private TextField cardExpMonth;
+    @FXML public TextField cardExpMonth;
     
     /**
      * For entering customer card expiration year
      */
-    @FXML private TextField cardExpYear;
+    @FXML public TextField cardExpYear;
     
     /**
      * Label outputs if payment process was a success or not
      */
-    @FXML private Label paymentProcessResult;
+    @FXML public Label paymentProcessResult;
     
     /**
      * An object of the CreditCardValidation class in order to use isValidCard method
      */
-    private CreditCardValidation validate;
+    public CreditCardValidation validate;
     
     /**
      * This list holds all of the customers that will make a purchase
      */
-    private static List<customer> customers = new ArrayList<>();
+    public static List<customer> customers = new ArrayList<>();
     
     /**
      * Integer for the customer ID
      */
-    private int customerCount = 0;
+    public int customerCount = 0;
     
     /**
      * Constructor for the CheckOutController class
@@ -98,7 +98,7 @@ public class CheckOutController extends SceneController/*implements Initializabl
      * Method that updates the customer ID
      * @return customer add by 1
      */
-    private int update() {
+    public int update() {
     	return ++customerCount;
     }
     /**
