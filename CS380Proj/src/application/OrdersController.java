@@ -176,13 +176,6 @@ public class OrdersController extends SceneController {
 			e.printStackTrace();
 		}
 	}
-//	/**
-//	 * Uses increments and returns a new order ID.
-//	 * @return Next available orderID.
-//	 */
-//	private int updateID() {
-//		return ++orderNum;
-//	}
 	
 	/**
 	 * Loads and displays most recent order with the customers data.
@@ -253,6 +246,7 @@ public class OrdersController extends SceneController {
 	 * @param newOrder The instance of the orders class that contains the customers email,
 	 * order ID, shipping method selected, price total, and product items.
 	 */
+	//Any email can be used for this method as long as it is valid
 	public static void sendEmail(orders newOrder) {
 	    String customerEmail = newOrder.getEmail();
 	    String orderId = String.valueOf(newOrder.getOrderID());

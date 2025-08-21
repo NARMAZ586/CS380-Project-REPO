@@ -146,6 +146,10 @@ public class CheckOutController extends SceneController{
     
     /**
      * Triggered when btnPayNow is clicked, it verified if all fields on this page are valid
+     * Credit card must be valid(Online fake card generator can be used to get a card number)
+     * CVC is any string of length 3 or 4 all comprised of digits
+     * Expiration month is valid for 1 - 12
+     * Expiration year is valid for 2025 - 2030
      * @param event Waits and expects a button click on btnPayNow
      */
     public void VerifyPaymentProcess(ActionEvent event) {
