@@ -175,7 +175,6 @@ public class shoppingCartController extends SceneController{
 	 * displays the shipping cost
 	 * @return returns depending which case has chosen
 	 */
-	
 	public double shippingCost() {
 		String shipping = getShipping();
 		if (shipping == null) {

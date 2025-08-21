@@ -161,17 +161,17 @@
                   </Button>
                </children>
             </HBox>
+            <Label fx:id="paymentProcessResult" alignment="TOP_CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnBackHome" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleBackToHomepageClick" text="Return to Homepage">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
-      <Button fx:id="btnBackHome" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleBackToHomepageClick" text="Return to Homepage" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="paymentProcessResult" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="50.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

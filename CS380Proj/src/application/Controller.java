@@ -10,9 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
@@ -23,125 +20,35 @@ This is connected to multiple FXML files such as the Homepage, AdminPage, Keyboa
 @author Michelle
 */
 public class Controller extends SceneController {
-
-    /**
-        Button to navigate to the keyboards page
-    */
-    @FXML private Button btnKeyboards;
-    /**
-        Button to navigate to the keycaps page
-    */
-    @FXML private Button btnKeycaps;
-    /**
-        Button to navigate to the switches page
-    */
-    @FXML private Button btnSwitches;
-    /**
-        Button to navigate to the shopping cart page
-    */
-    @FXML private Button btnCart;
-    /**
-        Button to navigate to the account user page
-    */
-    @FXML private Button btnAccount;
-
-    /**
-        Button to navigate to the keycaps page
-    */
-    @FXML private Button btnKeyCaps;
-    /**
-        A text field where the user inputs into the searchbar
-    */
-    @FXML private TextField searchBar; //keep this one for sure
-    /**
-        A text field where the user inputs a product search
-    */
-    @FXML private TextField searchField;
-    /**
-        Container that displays live search results
-    */
-    @FXML private VBox searchResultsBox;
     /**
         Returns user to the homepage
     */
-    @FXML private Button logoBtn;
+    @FXML public Button logoBtn;
     /**
         Entering the login email
     */
-    @FXML private TextField loginEmail;
+    @FXML public TextField loginEmail;
     /**
         Entering the ogin password
     */
-    @FXML private PasswordField loginPassword;
+    @FXML public PasswordField loginPassword;
     /**
         A label to display a login error message
     */
-    @FXML private Label wrongPasswordLabel;
+    @FXML public Label wrongPasswordLabel;
     /**
         Button used to logout the user and return to the homepage
     */
     @FXML private Button logoutBtn;
-
-    /**
-    * Listview which is used in the search method
-    */
-    @FXML private ListView<String> listView;
-    
-    /**
-        Displays the selected products price
-    */
-    @FXML private Label priceLabel;
-    /**
-        Displays the selected products image
-    */
-    @FXML private ImageView productImg;
-    /**
-        Displays the selected products name
-    */
-    @FXML private Label productLabel; 
-    /**
-        Displays a selected switch image
-    */
-    @FXML private ImageView switchImg;
-    /**
-        Displays the selected switch name
-    */
-    @FXML private Label switchNameLabel;  
-    /**
-        Displays the selected switch's price
-    */
-    @FXML private Label switchPriceLabel;
-    /**
-        Styles the selected product card
-    */
-    @FXML private VBox chosenProductCard;
-    /**
-        Places all the product cards in a layout
-    */
-    @FXML private GridPane grid;
-    /**
-        Wraps the product grip used for scrolling
-    */
-    @FXML private ScrollPane scroll;
-    /**
-        Displays the product or image
-    */
-    @FXML private ImageView imageView;
-    
     /**
         Managing the main application window
     */
     @FXML private Stage stage;
     /**
-        Switching between the FXML views
-    
-
-    /**
      * Constructor for the Controller class
      */
     public Controller() {
     }
-    
     /**
         Triggered when the login button is clicked
         @param event ActionEvent button is clicked by the login button 
@@ -150,12 +57,11 @@ public class Controller extends SceneController {
     public void userLogin(ActionEvent event) {
     	checkLogin(event);
     }
-    
     /**
         Validates user login credentials and displays the feedback and switches to the AdminPage if valid or invalid.
         @param event in ActionEvent is triggered by the login attempt.
     */
-    private void checkLogin(ActionEvent event) {
+    public void checkLogin(ActionEvent event) {
     	String email = loginEmail.getText().trim();
     	String password = loginPassword.getText().trim();
     	
@@ -179,15 +85,5 @@ public class Controller extends SceneController {
     @FXML
     private void userLogout(ActionEvent event) {
     	createScene(event, "Homepage.fxml");
-    }
-    
-
-    /**
-     * The initialize method runs as a method to load UI elements just as the program is starting
-     * @param url program starting
-     * @param resourceBundle gathers the resources
-     */
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

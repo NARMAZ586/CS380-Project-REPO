@@ -35,23 +35,6 @@ public class KeycapPageController extends SceneController implements Initializab
 	 * default constructor of KeycapPageController
 	 */
 	public KeycapPageController() {}
-    //private products myProds = new products();
-    /**
-    Button to navigate to the account user page
-    */
-	@FXML private Button btnAccount;
-    /**
-    Button to navigate to the shopping cart page
-    */
-    @FXML private Button btnCart;
-    /**
-    Button to navigate to the keyboards page
-    */
-    @FXML private Button btnKeyboards;
-    /**
-    Button to navigate to the switches page
-    */
-    @FXML private Button btnSwitches;
     /**
     Styles the selected product card
     */
@@ -119,8 +102,6 @@ public class KeycapPageController extends SceneController implements Initializab
      *  initializes for thekeycaps products
      */
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("This was from the initialize class");
-    	//myProds = new products(); // initialize product data
         ArrayList<product> allProducts = new ArrayList<>();
         allProducts = inventory.getallKeycaps();
 
@@ -140,18 +121,14 @@ public class KeycapPageController extends SceneController implements Initializab
             col.setPercentWidth(33.33); // divide grid width equally
             grid.getColumnConstraints().add(col);
         }
-
-    
         RowConstraints rowConst = new RowConstraints();
         rowConst.setMinHeight(220); // height for each product card
         grid.getRowConstraints().add(rowConst);
         
         int column = 0;
         int row = 0;
-        
         try {
             for (products.product prod : allProducts) {
-                System.out.println(prod.getName());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("productItem.fxml"));
             	AnchorPane pane = loader.load();
 

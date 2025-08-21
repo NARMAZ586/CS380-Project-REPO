@@ -1,8 +1,12 @@
 package Company;
 import java.util.ArrayList;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.io.File;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 /**
  * Name: products
@@ -28,41 +32,18 @@ public class products {
 	 */
 	private ArrayList<product> keycaps;
 	
+	public static product picked;
+	
 	/**
 	 * Default constructor for products, when called it creates the ArrayList for keyboards, switches, and keycaps.
 	 * It will then fill the array list with objects of product 
 	 */
-	public products() {
-
-	}
+	public products() {}
 	
 	/**
-	 * Method creates a CSV and fills it up with all of the products that were created in the constructor
-	 * @param fileName Just the naming of the csv file
+	 * Method reads the DefaultProducts csv and it adds every entry into the inventory list
+	 * @param fileName The filename that is being read "Database/DefaultProducts.csv"
 	 */
-//	public void writeCSV(String fileName) {
-//		File file = new File("Database/" + fileName);
-//		file.getParentFile().mkdirs();
-//		try {
-//			FileWriter writer = new FileWriter(file);
-//			writer.append("Name,ID,Price,Type,Description\n");
-//			for(product k : keyboards) {
-//				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", k.getName(), k.getprodID(), k.getPrice(), k.prodType(), k.prodDescription(), k.getImgSrc()));
-//			}
-//			for(product s : switches) {
-//				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", s.getName(), s.getprodID(), s.getPrice(), s.prodType(), s.prodDescription(), s.getImgSrc()));
-//			}
-//			for(product c : keycaps) {
-//				writer.append(String.format("%s,%d,%f,%s,%s,%s\n", c.getName(), c.getprodID(), c.getPrice(), c.prodType(), c.prodDescription(), c.getImgSrc()));
-//			}
-//			System.out.println("Writing to file successful");
-//			writer.close();
-//		} catch(IOException e) {
-//			e.printStackTrace();
-//			System.out.println("Error occured while writing file");
-//		}
-//	}
-	
 	public static void readProductsCSV(String fileName){ 
 		//List<product> readProducts = new ArrayList<>();
 		try (BufferedReader BR = new BufferedReader(new FileReader(fileName))){
@@ -90,6 +71,47 @@ public class products {
 			}
 		} catch(IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * During runtime it updates the stock of the default products 
+	 * This is because inventory list is filled from the contents of default products
+	 * This means that default products must be updated in order to get an accurate representation of the stock being bought up
+	 */
+	public static void updateProductStockCSV() {
+		File originalFile = new File("Database/DefaultProducts.csv");
+		File tempFile = new File("Database/DefaultProducts_temp.csv");
+		try (BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+			String line;
+			while((line = reader.readLine()) != null) {
+				String [] pieces = line.split(",");
+				
+				if(pieces[0].equals("Name")) {
+					writer.write(line);
+					writer.newLine();
+					continue;
+				}
+				if(pieces[0].equals(picked.getName())) {
+					pieces[5] = String.valueOf(picked.getStockQuantity());
+					line = String.join(",", pieces);
+				}
+				writer.write(line);
+				writer.newLine();
+			}
+			System.out.println("Writing to Default Products csv successful");
+			writer.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+			System.out.println("Error occured while writing file");
+		}
+		try {
+			Files.delete(originalFile.toPath());
+			Files.move(tempFile.toPath(), originalFile.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Error occured while replacing original csv");
 		}
 	}
 	
@@ -129,21 +151,12 @@ public class products {
 	 * It then adds all previous array lists into a single one 
 	 * @return Will return an ArrayList of all products
 	 */
-	//----- SEARCH FUNCTION FOR CONTROLLER.JAVA ------
 	public ArrayList<product> getAllProducts() {
 	    ArrayList<product> all = new ArrayList<>();
 	    all.addAll(keyboards);
 	    all.addAll(switches);
 	    all.addAll(keycaps);
 	    return all;
-	}
-	
-    /**
-	 * Small method used to test if class object was correctly be used in controller.java
-	 * @param n Just the string that is meant to be printed to console
-	 */
-	public void attempt(String n) {
-		System.out.println(n);
 	}
 	
 	/**

@@ -25,7 +25,6 @@ public class inventory {
 	*/
 	
 	private static final List<product> allProducts = new ArrayList<>();
-	
 
 	/**
 	 * class for the default inventory
@@ -152,8 +151,7 @@ public class inventory {
 		/**
 		* Default constructor for inventories 
 		*/
-		public inventories() {
-	}
+		public inventories() {}
 	
 		//Constructor
 		/**
@@ -233,12 +231,12 @@ public class inventory {
 			this.type = type;
 		}
 		
-		@Override
-		/**
-		 * Method formats a readable string for the inventory item 
-		 */
-		public String toString() {
-			return "Inventory Item: " + name + ", ID: " + prodID + ", Quantity: " + quantity;
-		}
+//		@Override
+//		/**
+//		 * Method formats a readable string for the inventory item 
+//		 */
+//		public String toString() {
+//			return "Inventory Item: " + name + ", ID: " + prodID + ", Quantity: " + quantity;
+//		}
 	}
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import Company.account;
+import Company.products;
 import Company.products.product;
 
 class AdminPageControllerTest {
@@ -25,6 +26,8 @@ class AdminPageControllerTest {
         new JFXPanel();  
 
         controller = new AdminPageController();
+        
+        //products.updateProductStockCSV = () -> {};
 
         tableView = new TableView<>();
         TableColumn<product, String> nameCol = new TableColumn<>("Name");
@@ -38,7 +41,7 @@ class AdminPageControllerTest {
         controller.tblColumnProductName = nameCol;
         controller.tblColumnQuantity = qtyCol;
 
-        product p = new product("Keyboard", 5, 0, null, null, 0, null);
+        product p = new product("productkeyboard", 5, 0, null, null, 5, null);
         tableView.setItems(FXCollections.observableArrayList(p));
         tableView.getSelectionModel().select(p);
     }
@@ -53,24 +56,14 @@ class AdminPageControllerTest {
         assertEquals(initialQty + 1, selected.getStockQuantity(),
             "Stock quantity should increase by 1 after Add Stock");
     }
-    
     @Test
-    void testHandleBtnAddAccount() {
-    	controller.txtFieldAdminPageEmail = new TextField("test@example.com");
-    	controller.txtFieldAdminPageUsername = new TextField("testUser");
-    	controller.txtFieldAdminPagePassword = new TextField("testPass");
-    	
-    	boolean before = account.checkCredentials("test@example.com", "testPass");
-        assertFalse(before, "Account should not exist before handleBtnAddAccount()");
+    void testHandleBtnRemoveStock() {
+        product selected = tableView.getSelectionModel().getSelectedItem();
+        int initialQty = selected.getStockQuantity();
 
-        controller.handleBtnAddAccount(new ActionEvent());
+        controller.handleBtnRemoveStock(new ActionEvent());
 
-        boolean after = account.checkCredentials("test@example.com", "testPass");
-        assertTrue(after, "Account should exist after handleBtnAddAccount()");
-
-        assertEquals("", controller.txtFieldAdminPageEmail.getText());
-        assertEquals("", controller.txtFieldAdminPageUsername.getText());
-        assertEquals("", controller.txtFieldAdminPagePassword.getText());
-    	
+        assertEquals(initialQty - 1, selected.getStockQuantity(),
+            "Stock quantity should decrease by 1 after Remove Stock");
     }
 }

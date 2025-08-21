@@ -1,19 +1,18 @@
 package application;
 import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
-
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.util.Properties;
 import java.util.stream.Collectors;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import Company.orders;
 import Company.products.product;
 import Company.ShoppingCart;
@@ -102,41 +101,76 @@ public class OrdersController extends SceneController {
 	 * Internal customer used to track/assign the order IDs
 	 */
 	private int orderNum = 0;
-
-
 	/**
 	 * default constructor for OrdersController
 	 */
 	public OrdersController() {}
 	/**
-	 * method of the write default orders
+	 * method of creating the OrdersCSV, if it doesn't exist and it also reads any possible saved entries into allOrders list
 	 */
 	public static void createOrdersCSV() {
 		File file = new File("Database/Orders.csv");
 		file.getParentFile().mkdirs();
-		try(FileWriter writer = new FileWriter(file)) {
-			writer.append("Name, Order ID, Product ID, Price, Shipping Method, Item Name, First Name, Email, Street Address\n");
-			System.out.println("Created orders.csv");
-		} catch (IOException e) {
-			e.printStackTrace();
+		boolean fileExists = file.exists();
+		try {
+			if(!fileExists) {
+				FileWriter writer = new FileWriter(file, true);
+				writer.append("Customer ID, Order ID, Product ID, Price, Shipping Method, Item Name, First Name, Email, Street Address");
+				writer.close();
+				System.out.println("Created orders.csv");
+			}
+			if(file.exists()) {
+				try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+					String line;
+					boolean first = true;
+					while((line = br.readLine()) != null) {
+						if(first) {
+							first = false;
+							continue;
+						}
+						String [] pieces = line.split(",");
+						int customerId;
+						int orderId;
+						if(pieces.length >= 9) {
+							customerId = Integer.parseInt(pieces[0].trim());
+	                        orderId = Integer.parseInt(pieces[1].trim());
+					
+						ArrayList<Integer> productIds = new ArrayList<>();
+                        for (String pid : pieces[2].trim().split(";")) {
+                            productIds.add(Integer.parseInt(pid.trim()));
+                        }
+                        double price = Double.parseDouble(pieces[3].trim());
+                        String shippingMethod = pieces[4].trim();
+                        ArrayList<String> itemNames = new ArrayList<>();
+                        for (String item : pieces[5].trim().split(";")) {
+                            itemNames.add(item.trim());
+                        }
+                        String firstName = pieces[6].trim();
+                        
+                        String email = pieces[7].trim();
+                        String streetAddress = pieces[8].trim();
+                        orders order = new orders(customerId, orderId, productIds, price, shippingMethod, itemNames, firstName, email, streetAddress);
+                        allOrders.add(order);
+					}
+				}
+			}
 		}
-		
-	}
-	
+	} catch (IOException e) {
+		e.printStackTrace();
+	}	
+}
 	/**
 	* Appends the recent order details to Inventory.csv, what this includes is
 	* the customer ID, order ID, product IDs, total price, shipping method, item names, and customer info.
 	* The data is formatted with a new line in the csv file, this assumes that from the most recent order
 	* would be towards the end from the allOrders list.
 	*/
-	public static void AppendRecentOrder() {
-		File file = new File("Database/Inventory.csv");
+	public static void AppendRecentOrder(orders recentOrder) {
+		File file = new File("Database/Orders.csv");
 		try (FileWriter writer = new FileWriter(file, true);) {
-			int size = allOrders.size() - 1;
-			orders recent = allOrders.get(size);
-			String productIDs = recent.getProductID().stream().map(String::valueOf).collect(Collectors.joining(";"));
-			String itemNames = recent.getItem().stream().map(String::valueOf).collect(Collectors.joining(";"));
-			writer.append(String.format("%d, %d, %s, %.2f, %s, %s, %s, %s, %s", recent.getCustomerID(), recent.getOrderID(), productIDs, recent.gettotalPrice(), recent.getShipMethod(), itemNames, recent.getfirstname(), recent.getEmail(), recent.getaddress()));
+			String productIDs = recentOrder.getProductID().stream().map(String::valueOf).collect(Collectors.joining(";"));
+			String itemNames = recentOrder.getItem().stream().map(String::valueOf).collect(Collectors.joining(";"));
+			writer.append(String.format("\n%d, %d, %s, %.2f, %s, %s, %s, %s, %s", recentOrder.getCustomerID(), recentOrder.getOrderID(), productIDs, recentOrder.gettotalPrice(), recentOrder.getShipMethod(), itemNames, recentOrder.getfirstname(), recentOrder.getEmail(), recentOrder.getaddress()));
 			System.out.println("Appended new order");
 		}catch (IOException e) {
 			e.printStackTrace();
@@ -144,31 +178,18 @@ public class OrdersController extends SceneController {
 	}
 	
 	/**
-	 * Uses increments and returns a new order ID.
-	 * @return Next available orderID.
-	 */
-	private int updateID() {
-		return ++orderNum;
-	}
-	
-	/**
-	 * Loads the most recent data from the customer that's from the customer list.
-	 * When the list is empty a new customer is returned.
+	 * Loads and displays most recent order with the customers data.
+	 * It then gets the most recent order from the allOrders list.
+	 * Then fetches the most recent customer from the customers list.
+	 * It calculates the subtotal and the total quantity based off the current items in the shopping cart.
+	 * Updates the label fields with the data retrieved.
+	 * Populates the items and the quantity amount in the shopping cart as a table view.
 	 */
 	public void loadOrderData() {
 		customer mostRecentCustomer = new customer();
 		if(!customers.isEmpty()) {
 			mostRecentCustomer = customers.get(customers.size() - 1);
 		}
-		
-		/**
-		 * Loads and displays most recent order with the customers data.
-		 * It then gets the most recent order from the allOrders list.
-		 * Then fetches the most recent customer from the customers list.
-		 * It calculates the subtotal and the total quantity based off the current items in the shopping cart.
-		 * Updates the label fields with the data retrieved.
-		 * Populates the items and the quantity amount in the shopping cart as a table view.
-		 */
 		orders recent = null;
 		if (!allOrders.isEmpty()) {
 		    int size = allOrders.size() - 1;
@@ -180,8 +201,6 @@ public class OrdersController extends SceneController {
 		}
 		String fullname = mostRecentCustomer.getFirstName() + " " + mostRecentCustomer.getLastName();
 		String phone = mostRecentCustomer.getPhoneNumber();
-
-		
 		double subtotal = 0;
 		int quantity = 0;
 		int totalQuantity = 0;
@@ -191,7 +210,6 @@ public class OrdersController extends SceneController {
 			totalQuantity += quantity;
 			subtotal += prod.getPrice() * quantity;
 		}
-
 		orderIDLabel.setText(String.valueOf(recent.getOrderID()));
 		customerNameLabel.setText(fullname);
 		customerEmailLabel.setText(recent.getEmail());
@@ -206,17 +224,15 @@ public class OrdersController extends SceneController {
 		for(var entry: ShoppingCart.getCartItems().entrySet()) {
 			cartData.add(new cartItem(entry.getKey(), entry.getValue()));
 		}
-		cartTableView.setItems(cartData);
-		
-		
-		
+		cartTableView.setItems(cartData);	
 	}
 	/**
-	 * The email used for login.
+	 * This is the email that is sending the email confirmation(2 Factor)
 	 */
 	private static String username = "squadsoftware60@gmail.com";
 	/**
-	 * The password used for login.
+	 * App password which grants program all privileges to the gmail account above
+	 * It essentially allows the program to send an email from that account at any point
 	 */
 	private static String password = "otdj qrcv korx psan";
 	
@@ -226,9 +242,11 @@ public class OrdersController extends SceneController {
 	 * it then authenticates it using the specific email and password,
 	 * it sets a confirmation email with the order details, and sends
 	 * the details to the customers email address they provided.
+	 * Also with this method you can send a email confirmation as long as it is a valid email
 	 * @param newOrder The instance of the orders class that contains the customers email,
 	 * order ID, shipping method selected, price total, and product items.
 	 */
+	//Any email can be used for this method as long as it is valid
 	public static void sendEmail(orders newOrder) {
 	    String customerEmail = newOrder.getEmail();
 	    String orderId = String.valueOf(newOrder.getOrderID());

@@ -31,19 +31,16 @@ public class ShoppingCart {
      * @param quantity quantity used to check if theres isnt enough stock
      */
     public static void addItem(product p, int quantity) {
-    	
     	if(quantity < 0) {
     		return;
     	}
     	
     	int currentQuantity = cartItems.getOrDefault(p, 0);
     	int stock = p.getStockQuantity();
-    	
     	if (quantity > stock) {
             System.out.println("Cannot add more than stock. Only " + stock + " available.");
             return;
         }
-
         cartItems.put(p, currentQuantity + quantity);
         updateTotalPrice();
     }
@@ -107,5 +104,4 @@ public class ShoppingCart {
     public static void setTotalPrice(double newTotal) {
         currentTotalPrice = newTotal;
     }
-
 }

@@ -1,6 +1,5 @@
 package Company;
 import java.util.ArrayList;
-import Company.products.product;
 
 /** 
  * orders
@@ -26,7 +25,9 @@ public class orders {
 	/**
 	* order Id of class orders 
 	*/
-	private static int orderID = 0;
+	private int orderID;
+	
+	//private static int lastOrderid = 0;
 	/**
 	* product Id of class orders 
 	*/
@@ -86,13 +87,16 @@ public class orders {
         this.email = email;
         this.address = address;
     }
-	/**
-	 * Increments and returns the next order ID.
-	 * @return next order ID
-	 */
-	public static int updateID () {
-		return ++orderID;
-	}
+	
+	
+//	// PLEASE REMOVE THIS  LATER ON
+//	/**
+//	 * Increments and returns the next order ID.
+//	 * @return next order ID
+//	 */
+//	public int updateID () {
+//		return ++orderID;
+//	}
 	
 	/**
 	 * Returns the shipping method.

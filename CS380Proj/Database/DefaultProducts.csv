@@ -1,16 +1,16 @@
-Name,ID,Price,Type,Description,Quantity,Image Source,,,
-red Mechanical,1,150.000000,keyboard,Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps,10,redMech.png,,,
-retroMechanical,2,200.000000,keyboard,A retro themed mechanical keyboard that comes in 5 different shades of blue and neon green,5,retroMech.jpg, and neon green,retroMech.jpg,
-blueMechanical,3,150.000000,keyboard,Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable,8,blueMech.jpg,,,
-CustomeBuild,4,250.000000,keyboard,This is a fully custom build. This keyboard option gives full customizable options to the buyer,3,owlKeyboard.jpg,,,
-Eva-0,5,15.000000,switch,These switches are for the user that wants a more tactile or stealthy sound to their keyboard,100,evaSwitch.jpg,,,
-BananaSplit,6,18.500000,switch,These switches provide an even more tactile sound than the original cherry mx red switches,75,pinkSwitch.png,,,
-cherry mx brown,7,17.000000,switch,A tactile key switch which offers a balance of feedback and noise,60,cherrymxbrown.jpg,,,
-Novelkey Creams,8,20.000000,switch,Fast linear designed for quick response times,90,novelkey-creams-switches-596114.jpg,,,
-Retro,9,100.000000,keycap,These neon retro themed keycaps come in multiple shade of an assortment of colors,25,retro.png,,,
-Cherry Blossom,10,120.000000,keycap,Ergonomic with angled tops and varying heights across rows also suitable for gaming and typing,15,cherryBloss.png,cherryBloss.png,,
-Samurai,11,110.000000,keycap,Common ergonomic type also taller and more angled than Cherry,12,samurai.png, used in most pre-built keyboards,samurai.png,
-Purple,12,135.000000,keycap,Tall rounded and ergonomic with indented tops,20,purple.png, and ergonomic with indented tops, offering comfort for extended typing sessions,purple.png
-Charmer,13,90.000000,keycap,Non-ergonomic with a low-profile flat shape providing versatility for various keyboard setups,30,charmer.png, providing versatility for various keyboard setups,charmer.png,
-Latin,14,105.000000,keycap,Non-ergonomic with rounded shapes and smaller tops giving keyboards a cozy bubble-like appearance,10,latin.png, bubble-like appearance,latin.png,
-Katana,15,4.500000,keycap,Offers fully custom keycaps for any size of keyboard,1000,katana.png,katana.png,,
+Name,ID,Price,Type,Description,Quantity,Image Source
+red Mechanical,1,150.000000,keyboard,Red mechanical keyboard that comes with cherry mx red switches for a more silent experience and custom red patterned keycaps,30,redMech.png
+retroMechanical,2,200.000000,keyboard,A retro themed mechanical keyboard that comes in 5 different shades of blue and neon green,25,retroMech.jpg
+blueMechanical,3,150.000000,keyboard,Blue mechanical keyboard that comes with blue mx switches and bright blue keycaps that are removeable,30,blueMech.jpg
+CustomeBuild,4,250.000000,keyboard,This is a fully custom build. This keyboard option gives full customizable options to the buyer,20,owlKeyboard.jpg
+Eva-0,5,15.000000,switch,These switches are for the user that wants a more tactile or stealthy sound to their keyboard,125,evaSwitch.jpg
+BananaSplit,6,18.500000,switch,These switches provide an even more tactile sound than the original cherry mx red switches,100,pinkSwitch.png
+cherry mx brown,7,17.000000,switch,A tactile key switch which offers a balance of feedback and noise,85,cherrymxbrown.jpg
+Novelkey Creams,8,20.000000,switch,Fast linear designed for quick response times,125,novelkey-creams-switches-596114.jpg
+Retro,9,100.000000,keycap,These neon retro themed keycaps come in multiple shade of an assortment of colors,75,retro.png
+Cherry Blossom,10,120.000000,keycap,Ergonomic with angled tops and varying heights across rows also suitable for gaming and typing,80,cherryBloss.png
+Samurai,11,110.000000,keycap,Common ergonomic type also taller and more angled than Cherry,80,samurai.png
+Purple,12,135.000000,keycap,Tall rounded and ergonomic with indented tops,65,purple.png
+Charmer,13,90.000000,keycap,Non-ergonomic with a low-profile flat shape providing versatility for various keyboard setups,90,charmer.png
+Latin,14,105.000000,keycap,Non-ergonomic with rounded shapes and smaller tops giving keyboards a cozy bubble-like appearance,60,latin.png
+Katana,15,4.500000,keycap,Offers fully custom keycaps for any size of keyboard,1000,katana.png

@@ -1,8 +1,9 @@
 package application;
 import java.io.IOException;
-
 import Company.ShoppingCart;
 import Company.products.product;
+import Company.products;
+import application.shoppingCartController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,29 @@ This includes things like moving scenes from one fxml to another or have interac
  * class of the scene controller
  */
 public class SceneController {
+    /**
+     * Variable used to store selected product from grid, and used to add to cart
+     */
+    protected product selectedProduct;
+    /**
+     * variable used to store the quantity of the product
+     */
+    protected int quantity;
+    
+    /**
+     * button for product page add to cart.
+     */
+    @FXML protected Button btnAddToCart;
+    /**
+     * displays the stock label of the product
+     */
+    @FXML protected Label productStockLabel;
+    /**
+     * textfield for quantityfield in product page vbox display
+     */
+    @FXML protected TextField quantityField;
+	
+	
 	/**
 	 * default constructor of SceneController
 	 */
@@ -69,7 +93,7 @@ public class SceneController {
     */
     @FXML
     protected void handleBackToHomepageClick(ActionEvent event) {
-    System.out.println("Back!");
+    System.out.println("Back to homepage!");
     createScene(event, "Homepage.fxml");
     }
     
@@ -81,8 +105,6 @@ public class SceneController {
     System.out.println("Search clicked!");
     createScene(event, "searchPage.fxml");
     }
-
-    
     /**
         Leads the user to the Keyboards page
         @param event is triggered by the keybord button
@@ -114,7 +136,6 @@ public class SceneController {
     }
     
     /**
-    
     Leads the user to the checkout page
     @param event Triggered when the user clicks checkout button on the shopping cart page*/@FXML
     protected void handleCheckOutClick(ActionEvent event) {
@@ -129,9 +150,6 @@ public class SceneController {
     		createScene(event, "Checkout.fxml");
     	}
     }
-    
-    
-    
     /**
      * Loads a new scene in switching the root from the main scene
      * @param eve ActionEvent is being triggered by the button being clicked
@@ -143,48 +161,20 @@ public class SceneController {
             Stage stage = Main.getPrimaryStage();
             Scene scene = Main.getMainScene();
             if (root instanceof Region regionR) {
-            	//stage.setWidth(regionR.prefWidth(-1));
-            	//stage.setHeight(regionR.prefHeight(-1));
-            	
-                //Region regionR = (Region) root;
                 regionR.prefWidthProperty().bind(stage.widthProperty());
                 regionR.prefHeightProperty().bind(stage.heightProperty());
             }
             scene.setRoot(root);
-            //stage.setFullScreen(true);
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
         Parent currentRoot = Main.getMainScene().getRoot();
         if (currentRoot.getUserData() != null && currentRoot.getUserData() instanceof shoppingCartController) {
             ((shoppingCartController) currentRoot.getUserData()).resetShipping();
         }
-    }
-    
-    
-    /**
-     * Variable used to store selected product from grid, and used to add to cart
-     */
-    protected product selectedProduct;
-    /**
-     * variable used to store the quantity of the product
-     */
-    protected int quantity;
-    
-    /**
-     * button for product page add to cart.
-     */
-    @FXML
-    protected Button btnAddToCart;
-    /**
-     * displays the stock label of the product
-     */
-    @FXML
-    protected Label productStockLabel;
-    
+    }  
     /**
      * Updates the label based on the stock of the selected product card.
      * @param prod gets the stock quantity from the product
@@ -198,13 +188,6 @@ public class SceneController {
             if (btnAddToCart != null) btnAddToCart.setDisable(true);
         }
     }
-    
-    /**
-     * textfield for quantityfield in product page vbox display
-     */
-    @FXML
-    protected TextField quantityField;
-    
     /**
      * Called when "Add to Cart" button is pressed.
      */
@@ -214,7 +197,6 @@ public class SceneController {
     		System.out.println("No Product selected.");
     		return;
     	}
-
         int requestedQty = 1; // default
         try {
             if (quantityField != null && !quantityField.getText().isEmpty()) {
@@ -225,26 +207,24 @@ public class SceneController {
             quantityField.setText("1");
             return;
         }
-
         if (requestedQty <= 0) {
             System.out.println("Quantity must be at least 1.");
             quantityField.setText("1");
             return;
         }
-
         int stock = selectedProduct.getStockQuantity();
         if (stock >= requestedQty) {
             ShoppingCart.addItem(selectedProduct, requestedQty);
             selectedProduct.setStockQuantity(stock - requestedQty);
+            products.picked = selectedProduct;
+            products.updateProductStockCSV();
             updateStockLabel(selectedProduct);
-            System.out.println("This is the stock of " + selectedProduct.getName() + ": " + stock);
             quantityField.setText(""); // clear after adding
         } else {
             System.out.println("Not enough stock available.");
             quantityField.setText(String.valueOf(stock));
         }
     }
-    
     /**
      * Sets selected product in product selection page
      * @param p constructor for the product in scene controller
@@ -260,5 +240,4 @@ public class SceneController {
     public product getSelectedProduct() {
         return this.selectedProduct;
     }
-
 }

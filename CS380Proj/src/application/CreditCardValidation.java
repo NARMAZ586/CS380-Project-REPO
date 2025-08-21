@@ -9,6 +9,7 @@ package application;
   @author Nery Armaz
  */
 public class CreditCardValidation {
+	
 	/**
 	 * default constructor of CreditCardvalidation
 	 */

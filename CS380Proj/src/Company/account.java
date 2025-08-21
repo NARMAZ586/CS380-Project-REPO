@@ -15,7 +15,6 @@ import java.util.List;
  * Class account contains all the attributes of a single account
  */
 public class account {
-	
 	/**
 	 * email is for the account email
 	 */
@@ -27,9 +26,18 @@ public class account {
     /**
 	 * first name is for the first name that is linked to the account
 	 */
-    private String firstName;
-    
-    
+    private String userName;
+    /**
+     * makes a new array list of the accounts
+     */
+	private static List<account> accounts = new ArrayList<>();
+	
+	/**
+	 * The only default account that we used during testing, all other accounts were added during testing
+	 */
+	static {
+	accounts.add(new account("Admin","123","Admin"));
+}
     // Constructor
     /**
      * Constructor used for the account class
@@ -37,20 +45,16 @@ public class account {
      * @param password takes input password and sets to account password
      * @param firstName takes input firstName and sets the first name for the account
      */
-    public account(String email, String password, String firstName) {
+    public account(String email, String password, String userName) {
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
+        this.userName = userName;
     }
-
-    
     /**
      * Default constructor
      */
     public account() {
     }
-
-    
     /**
      * Getter method that gets account email
      * @return Returns the email for the account
@@ -58,8 +62,6 @@ public class account {
     public String getEmail() {
         return email;
     }
-    
-    
     /**
      * Setter method that sets account email
      * @param email Takes input and sets it as email
@@ -67,8 +69,6 @@ public class account {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    
     /**
      * Getter method that gets account password
      * @return Returns the password for the account
@@ -76,8 +76,6 @@ public class account {
     public String getPassword() {
         return password;
     }
-    
-    
     /**
      * Setter method that sets account password
      * @param password Takes input and sets it as password
@@ -85,35 +83,20 @@ public class account {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    
     /**
      * Getter method that gets account first name
      * @return Returns the first name for the account
      */
-    public String getFirstName() {
-        return firstName;
+    public String getUserName() {
+        return userName;
     }
-    
-    
     /**
      * Setter method that sets account first name
      * @param firstName Takes input and sets it as first name
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String userName) {
+        this.userName = userName;
     }
-	
-    //From Marlon, copy and pasted from UserDatabase.java to account.java
-    /**
-     * makes a new array list of the accounts
-     */
-	private static List<account> accounts = new ArrayList<>();
-	
-	static {
-		accounts.add(new account("Admin","123","Admin"));
-	}
-	
 	
 	/**
 	 * adds account as a
@@ -174,10 +157,13 @@ public class account {
         File file = new File("Database/Accounts.csv");
 
         try (FileWriter writer = new FileWriter(file, true)) {
-            for (account a : accounts) {
-                writer.append(String.format("%s,%s,%s\n",a.getEmail(), a.getFirstName(), a.getPassword()));
+        	int index = 0;
+            if(accounts.size() == 0) {
+            	index = 0;
+            } else {
+            	index = accounts.size() - 1;
             }
-
+                writer.append(String.format("\n%s,%s,%s", accounts.get(index).getEmail(), accounts.get(index).getUserName(), accounts.get(index).getPassword()));
             System.out.println("Successful write: Accounts.csv");
         } catch (IOException e) {
             System.out.println("Error writing to Accounts.csv");
